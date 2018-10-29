@@ -1,0 +1,11 @@
+#management:
+#  security:
+#    enabled: false
+#spring:
+#  application:
+#    name: config-server-client
+#  profiles:
+#    active: gateway
+#  cloud:
+#    config:
+#      uri: http://localhost:8092

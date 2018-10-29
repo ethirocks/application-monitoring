@@ -1,0 +1,47 @@
+#server:
+#  port: 8090
+#jdbc:
+#    basic:
+#        maxOpenPreparedStatements: -1
+#movie-service:
+#  controller:
+#    exceptionmsg1: "Movie not found"
+#spring:
+#  application:
+#    name: movie-service
+#    h2:
+#        console:
+#            enabled: true
+#    jackson:
+#        serialization:
+#            write_dates_as_timestamps: false
+#    data:
+#        mongodb:
+#            uri: mongodb://localhost/test_movie
+#            database: test_movie
+#            host: localhost
+#            port: 27017
+##eureka:         #tells about the Eureka server details and its refresh time
+##  instance:
+##    leaseRenewalIntervalInSeconds: 1
+##    leaseExpirationDurationInSeconds: 2
+##  client:
+##    serviceUrl:
+##      defaultZone: http://127.0.0.1:8091/eureka/
+##    healthcheck:
+##      enabled: true
+##    lease:
+##      duration: 5
+#management:
+#  security:
+#    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc.
+#
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web:  ERROR
+#    com.stackroute.moviecruiserapp:  WARN
+#  #logging.level.org.hibernate=ERROR
+#  file:  logs/spring-boot-logging.log
+#  log4j.logger.org.thymeleaf:  DEBUG

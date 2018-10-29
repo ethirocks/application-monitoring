@@ -1,0 +1,62 @@
+version:  '2'
+services:
+  eureka:
+    image: eureka:v1
+    build: eureka-registry/
+    restart: always
+    container_name: eureka-container
+    network_mode: host
+    ports:
+      - 8091:8091
+    expose:
+      - 8091
+
+  config-server:
+    image: config-server:v1
+    build: config-server/
+    restart: always
+    container_name: config-container
+    network_mode: host
+    depends_on:
+      - eureka
+    ports:
+      - 8092:8092
+    expose:
+      - 8092
+
+  mongodb:
+    image: mongo:3.2-jessie
+    ports:
+      - "27017:27017"
+    container_name: mongo-movie
+    network_mode: host
+    depends_on:
+      - config-server
+    volumes:
+      - '/home/cgi/data/mysql:/data/db'
+
+  movie-demo:
+    image: movie-mongo:v1
+    build: movie-cruiser-app/
+    restart: always
+    container_name: mongo-demo-compose
+    network_mode: host
+    depends_on:
+      - mongodb
+    ports:
+      - 8090:8090
+    expose:
+      - 8090
+
+  gateway:
+    image: zuulgateway:v1
+    build: zuulgateway/
+    restart: always
+    container_name: zuul-container
+    network_mode: host
+    depends_on:
+      - mongo-demo
+    ports:
+      - 8081:8081
+    expose:
+      - 8081
