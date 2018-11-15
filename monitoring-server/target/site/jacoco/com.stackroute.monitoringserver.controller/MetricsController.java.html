@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MetricsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MonitoringServer</a> &gt; <a href="index.source.html" class="el_package">com.stackroute.monitoringserver.controller</a> &gt; <span class="el_source">MetricsController.java</span></div><h1>MetricsController.java</h1><pre class="source lang-java linenums">package com.stackroute.monitoringserver.controller;
+
+import com.stackroute.monitoringserver.service.MetricsService;
+import org.influxdb.dto.QueryResult;
+import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+
+@CrossOrigin
+@RestController
+@RequestMapping(&quot;/api/v1/metrics&quot;)
+public class MetricsController {
+
+    private MetricsService metricsService;
+
+    @Autowired
+<span class="fc" id="L21">    public MetricsController(MetricsService metricsService) {</span>
+<span class="fc" id="L22">        this.metricsService = metricsService;</span>
+<span class="fc" id="L23">    }</span>
+
+//    @PostMapping
+//    public ResponseEntity insertMetrics(@RequestBody String metrics){
+//        ResponseEntity responseEntity;
+//        try{
+//            String insertedMetrics = metricsService.insertMetrics(metrics);
+//            responseEntity=new ResponseEntity&lt;String&gt;(insertedMetrics, HttpStatus.CREATED);
+//        }
+//        catch (JSONException e) {
+//            responseEntity=new ResponseEntity&lt;String&gt;(&quot;&quot;, HttpStatus.CONFLICT);
+//        }
+//        return responseEntity;
+//    }
+
+    @GetMapping
+    public ResponseEntity getAllMetrics(){
+<span class="nc" id="L40">        String metricsList = null;</span>
+        ResponseEntity responseEntity;
+        try {
+<span class="nc" id="L43">            metricsList = metricsService.getAllMetrics();</span>
+<span class="nc" id="L44">            responseEntity=new ResponseEntity&lt;String&gt;(metricsList, HttpStatus.OK);</span>
+<span class="nc" id="L45">        } catch (IOException e) {</span>
+<span class="nc" id="L46">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;IO Exception&quot;, HttpStatus.CONFLICT);</span>
+<span class="nc" id="L47">        } catch (JSONException e) {</span>
+<span class="nc" id="L48">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;Json exception&quot;, HttpStatus.CONFLICT);</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">        return responseEntity;</span>
+    }
+
+    @GetMapping(&quot;{metricsName}&quot;)
+    public ResponseEntity searchMetrics(@PathVariable(&quot;metricsName&quot;) String metricsName){
+        ResponseEntity responseEntity;
+        QueryResult queryResult;
+        try {
+<span class="nc" id="L58">            queryResult = metricsService.searchMetrics(metricsName);</span>
+<span class="nc" id="L59">            responseEntity=new ResponseEntity&lt;QueryResult&gt;(queryResult, HttpStatus.OK);</span>
+<span class="nc" id="L60">        } catch (JSONException e) {</span>
+<span class="nc" id="L61">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;Json exception&quot;, HttpStatus.CONFLICT);</span>
+<span class="nc" id="L62">        }</span>
+<span class="nc" id="L63">        return responseEntity;</span>
+    }
+
+    @GetMapping(&quot;query/{query}&quot;)
+    public ResponseEntity queryMetrics(@PathVariable(&quot;query&quot;) String query){
+        ResponseEntity responseEntity;
+        QueryResult queriedMetricsList;
+        try {
+<span class="nc" id="L71">            queriedMetricsList = metricsService.queryMetrics(query);</span>
+<span class="nc" id="L72">            responseEntity=new ResponseEntity&lt;QueryResult&gt;(queriedMetricsList, HttpStatus.OK);</span>
+<span class="nc" id="L73">        } catch (IOException e) {</span>
+<span class="nc" id="L74">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;IO Exception&quot;, HttpStatus.CONFLICT);</span>
+<span class="nc" id="L75">        } catch (JSONException e) {</span>
+<span class="nc" id="L76">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;Json exception&quot;, HttpStatus.CONFLICT);</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">        return responseEntity;</span>
+    }
+
+//    @DeleteMapping()
+//    public ResponseEntity deleteMetrics(String metricsName){
+//        ResponseEntity responseEntity;
+//        metricsService.deleteMetrics(metricsName);
+//        responseEntity=new ResponseEntity&lt;String&gt;(&quot;Successfully deleted &quot;, HttpStatus.OK);
+//        return responseEntity;
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

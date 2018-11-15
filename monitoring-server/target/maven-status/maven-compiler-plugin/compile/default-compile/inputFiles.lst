@@ -1,22 +1,22 @@
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/CPUTempConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/ThreadConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/CPUUsageConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HardDiskConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HttpMetrics.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/Metrics.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/KafkaConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HealthMetrics.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/service/MetricsService.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/controller/MetricsController.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/MemoryPoint.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/service/PollingService.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HealthMetricsDetails.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/ContainerConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/IConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ThreadMetrics.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/configuration/KafkaConfiguration.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HealthConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HttpConsumer.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/MonitoringServerApplication.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ContainerMetricsMemory.java
-/home/cgi/Run via compose/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ContainerMetrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/KafkaConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HttpConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/Metrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/configuration/KafkaConfiguration.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HealthConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/CPUTempConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ThreadMetrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/IConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/ThreadConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ContainerMetrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HealthMetrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HealthMetricsDetails.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/ContainerMetricsMemory.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/controller/MetricsController.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/CPUUsageConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/ContainerConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/service/PollingService.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/consumer/HardDiskConsumer.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/MemoryPoint.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/domain/HttpMetrics.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/service/MetricsService.java
+/home/cgi/application-monitoring/monitoring-server/src/main/java/com/stackroute/monitoringserver/MonitoringServerApplication.java

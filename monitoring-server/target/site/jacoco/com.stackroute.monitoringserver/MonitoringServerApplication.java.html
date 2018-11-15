@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MonitoringServerApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MonitoringServer</a> &gt; <a href="index.source.html" class="el_package">com.stackroute.monitoringserver</a> &gt; <span class="el_source">MonitoringServerApplication.java</span></div><h1>MonitoringServerApplication.java</h1><pre class="source lang-java linenums">package com.stackroute.monitoringserver;
+
+import com.stackroute.monitoringserver.consumer.*;
+import com.stackroute.monitoringserver.service.MetricsService;
+import com.stackroute.monitoringserver.service.PollingService;
+import org.influxdb.InfluxDB;
+import org.influxdb.InfluxDBFactory;
+import org.json.JSONException;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+@SpringBootApplication
+<span class="fc" id="L16">public class MonitoringServerApplication {</span>
+
+    public static void main(String[] args) throws IOException, JSONException, URISyntaxException {
+
+<span class="nc" id="L20">        SpringApplication.run(MonitoringServerApplication.class, args);</span>
+
+<span class="nc" id="L22">        MetricsService metricsService=new MetricsService();</span>
+
+
+ //       HealthConsumer healthConsumer=new HealthConsumer();
+ //       healthConsumer.start();
+//        healthConsumer.stop();
+//        ContainerConsumer containerConsumer=new ContainerConsumer();
+//        containerConsumer.start();
+
+        //health
+<span class="nc" id="L32">        IConsumer healthConsumer=new HealthConsumer(metricsService);</span>
+<span class="nc" id="L33">        PollingService healthPoll=new PollingService();</span>
+<span class="nc" id="L34">        healthPoll.setTimerTask(healthConsumer,&quot;http://172.23.239.80:8082&quot;);</span>
+<span class="nc" id="L35">        healthPoll.start(1000);</span>
+
+//        //disk
+//        IConsumer diskConsumer=new HardDiskConsumer(metricsService);
+//        PollingService diskPoll=new PollingService();
+//        diskPoll.setTimerTask(diskConsumer,&quot;http://172.23.239.80:8082&quot;);
+//        diskPoll.start(20000);
+
+        //CPU Usage
+<span class="nc" id="L44">        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);</span>
+<span class="nc" id="L45">        PollingService cpuUsagePoll=new PollingService();</span>
+<span class="nc" id="L46">        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://172.23.239.80:8082&quot;);</span>
+<span class="nc" id="L47">        cpuUsagePoll.start(20000);</span>
+
+        //CPU Temp
+<span class="nc" id="L50">        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);</span>
+<span class="nc" id="L51">        PollingService cpuTempPoll=new PollingService();</span>
+<span class="nc" id="L52">        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://172.23.239.80:8082&quot;);</span>
+<span class="nc" id="L53">        cpuTempPoll.start(20000);</span>
+
+
+//        IConsumer httpConsumer=new HttpConsumer(metricsService);
+//        PollingService httpPoll=new PollingService();
+//        httpPoll.setTimerTask(httpConsumer,&quot;http://172.23.239.80:8082&quot;);
+//        httpPoll.start(10000);
+
+
+//        consumer=new HttpConsumer(metricsService);
+// //       consumer.consumeMetrics();
+//
+//        //container
+////        consumer=new ContainerConsumer(metricsService);
+////        consumer.consumeMetrics();
+//
+        //thread
+<span class="nc" id="L70">        IConsumer threadConsumer=new ThreadConsumer(metricsService);</span>
+<span class="nc" id="L71">        PollingService threadPoll=new PollingService();</span>
+<span class="nc" id="L72">        threadPoll.setTimerTask(threadConsumer,&quot;http://172.23.239.80:8082&quot;);</span>
+<span class="nc" id="L73">        threadPoll.start(1000000);</span>
+
+<span class="nc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadConsumer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MonitoringServer</a> &gt; <a href="index.source.html" class="el_package">com.stackroute.monitoringserver.consumer</a> &gt; <span class="el_source">ThreadConsumer.java</span></div><h1>ThreadConsumer.java</h1><pre class="source lang-java linenums">package com.stackroute.monitoringserver.consumer;
+
+import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.monitoringserver.service.MetricsService;
+import org.influxdb.dto.Point;
+import org.json.JSONException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
+@Service
+public class ThreadConsumer implements IConsumer {
+
+    private MetricsService metricsService;
+
+<span class="fc" id="L23">    public ThreadConsumer(MetricsService metricsService) {</span>
+<span class="fc" id="L24">        this.metricsService = metricsService;</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+<span class="nc" id="L29">        RestTemplate restTemplate = new RestTemplate();</span>
+        //String url = &quot;http://172.23.239.67:8081/threads&quot;;
+<span class="nc" id="L31">        ResponseEntity&lt;ThreadMetrics&gt; response</span>
+<span class="nc" id="L32">                = restTemplate.getForEntity(url+&quot;/threads&quot;, ThreadMetrics.class);</span>
+<span class="nc" id="L33">        Logger.getLogger(&quot;ThreadDetails &quot;+response.toString());</span>
+<span class="nc" id="L34">        ThreadMetrics threadMetrics= response.getBody();</span>
+//        Point point = Point.measurement(&quot;thread&quot;)
+//                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+//                .tag(&quot;total_Threads&quot;,String.valueOf(threadMetrics.getTotal_Threads()))
+//                  .build();
+<span class="nc" id="L39">        long time=System.currentTimeMillis();</span>
+<span class="nc bnc" id="L40" title="All 4 branches missed.">        if (threadMetrics!=null &amp;&amp; threadMetrics.getType_Of_threads()!=null){</span>
+<span class="nc" id="L41">            Iterator it = threadMetrics.getType_Of_threads().entrySet().iterator();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            while (it.hasNext()) {</span>
+<span class="nc" id="L43">                Map.Entry threadEntry = (Map.Entry)it.next();</span>
+<span class="nc" id="L44">                Thread thread= (Thread) threadEntry.getKey();</span>
+<span class="nc" id="L45">                Point point = Point.measurement(&quot;thread&quot;)</span>
+<span class="nc" id="L46">                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L47">                        .tag(&quot;timeStamp&quot;,String.valueOf(time))</span>
+<span class="nc" id="L48">                        .tag(&quot;total_Threads&quot;,String.valueOf(threadMetrics.getTotal_Threads()))</span>
+<span class="nc" id="L49">                        .addField(&quot;thread_name&quot;,thread.getName())</span>
+<span class="nc" id="L50">                        .addField(&quot;thread_priority&quot;,thread.getPriority())</span>
+<span class="nc" id="L51">                        .addField(&quot;thread_group&quot;,thread.getThreadGroup().getName())</span>
+<span class="nc" id="L52">                        .addField(&quot;thread_status&quot;,threadEntry.getValue().toString())</span>
+<span class="nc" id="L53">                        .build();</span>
+<span class="nc" id="L54">                metricsService.insertMetrics(point);</span>
+//                it.remove(); // avoids a ConcurrentModificationException
+<span class="nc" id="L56">            }</span>
+        }
+
+<span class="nc" id="L59">    }</span>
+
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

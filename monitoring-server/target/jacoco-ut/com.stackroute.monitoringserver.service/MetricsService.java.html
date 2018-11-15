@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MetricsService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MonitoringServer</a> &gt; <a href="index.source.html" class="el_package">com.stackroute.monitoringserver.service</a> &gt; <span class="el_source">MetricsService.java</span></div><h1>MetricsService.java</h1><pre class="source lang-java linenums">package com.stackroute.monitoringserver.service;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import com.stackroute.monitoringserver.domain.HealthMetrics;
+import com.stackroute.monitoringserver.domain.MemoryPoint;
+import org.influxdb.InfluxDB;
+import org.influxdb.InfluxDBFactory;
+import org.influxdb.dto.*;
+import org.influxdb.impl.InfluxDBResultMapper;
+import org.json.JSONException;
+import org.springframework.stereotype.Service;
+
+import static org.apache.kafka.common.requests.FetchMetadata.log;
+
+@Service
+public class MetricsService{
+
+    private InfluxDB influxDB;
+<span class="fc" id="L23">    private ArrayList&lt;String&gt; databases=new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L25">    public MetricsService() {</span>
+<span class="fc" id="L26">        influxDB = InfluxDBFactory.connect(&quot;http://localhost:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
+<span class="fc" id="L27">        Pong response = this.influxDB.ping();</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (response.getVersion().equalsIgnoreCase(&quot;unknown&quot;)) {</span>
+<span class="nc" id="L29">            log.error(&quot;Error pinging server.&quot;);</span>
+        }
+        //influxDB.createDatabase(&quot;cAdvisor&quot;);
+<span class="fc" id="L32">        databases.add(&quot;cAdvisor&quot;);</span>
+<span class="fc" id="L33">        databases.add(&quot;metrics&quot;);</span>
+<span class="fc" id="L34">    }</span>
+
+    public void insertMetrics(Point point){
+<span class="nc" id="L37">        BatchPoints batchPoints = BatchPoints</span>
+<span class="nc" id="L38">                .database(&quot;cAdvisor&quot;)</span>
+<span class="nc" id="L39">                .build();</span>
+<span class="nc" id="L40">        batchPoints.point(point);</span>
+<span class="nc" id="L41">        influxDB.write(batchPoints);</span>
+<span class="nc" id="L42">    }</span>
+
+//    
+//    public String streamMetrics(String input){
+//        return null;
+//    }
+
+//    
+//    public boolean deleteMetrics(String metricsName) {
+//        Query query=new Query(&quot;drop series from &quot;+metricsName,databases.get(0));
+//        QueryResult queryResult= influxDB.query(query,TimeUnit.MILLISECONDS);
+//        return !queryResult.hasError();
+//    }
+
+    
+    public QueryResult searchMetrics(String metricsName) throws JSONException {
+<span class="nc" id="L58">        Query query=new Query(&quot;select * from &quot;+metricsName,databases.get(0));</span>
+<span class="nc" id="L59">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L60">        return queryResult;</span>
+    }
+
+    
+    public QueryResult queryMetrics(String givenQuery) throws IOException, JSONException {
+<span class="nc" id="L65">        Query query=new Query(givenQuery,databases.get(0));</span>
+<span class="nc" id="L66">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+
+<span class="nc" id="L68">        InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();</span>
+<span class="nc" id="L69">        String memoryPointList = resultMapper.toString();</span>
+        //        .toPOJO(queryResult, String.class);
+<span class="nc" id="L71">        String result=&quot;&quot;;</span>
+//        for (MemoryPoint memoryPoint:
+//                memoryPointList) {
+//            result=result.concat(memoryPoint.toString());
+//            result=result.concat(&quot;\n&quot;);
+//        }
+<span class="nc" id="L77">        return queryResult;</span>
+    }
+
+    
+    public String getAllMetrics() throws IOException, JSONException {
+<span class="nc" id="L82">        Query query=new Query(&quot;show series&quot;,databases.get(0));</span>
+<span class="nc" id="L83">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L84">        return queryResult.getResults().toString();</span>
+    }
+
+//    public static String readFileToString(String filePathName) throws IOException {
+//        File dirs = new File(filePathName);
+//        String filePath = dirs.getCanonicalPath();
+//
+//        StringBuilder fileData = new StringBuilder(1000);//Constructs a string buffer with no characters in it and the specified initial capacity
+//        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+//
+//            char[] buf = new char[1024];
+//            int numRead = 0;
+//            while ((numRead = reader.read(buf)) != -1) {
+//                String readData = String.valueOf(buf, 0, numRead);
+//                fileData.append(readData);
+//                buf = new char[1024];
+//            }
+//        }
+//        return fileData.toString();
+//    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
