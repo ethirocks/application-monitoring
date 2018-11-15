@@ -4,14 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/zuulgateway/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/zuulgateway/pom.xml" />
-        <option value="$PROJECT_DIR$/config-server/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/config-server/pom.xml" />
-        <option value="$PROJECT_DIR$/eureka-registry/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/eureka-registry/pom.xml" />
-        <option value="$PROJECT_DIR$/movie-cruiser-app/target/maven-archiver/pom.properties" />
-        <option value="$PROJECT_DIR$/movie-cruiser-app/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
