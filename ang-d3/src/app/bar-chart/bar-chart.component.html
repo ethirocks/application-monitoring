@@ -1,0 +1,17 @@
+<button type="button" style="background-color:green; color: white" (onclick)="health(docker)">up/down</button>
+<button type="button" style="background-color:firebrick; color:white" (onclick)="thr()">threads</button>
+<div #chart id="chart" (window:resize)="onResize($event)"></div>
+
+<!-- <button *ngFor="let button of data.get(0).get(docker);" [ngClass]="{'active': button.isClicked}" (click)="ngOnInit()">
+    {{ button.docker }}
+</button> -->
+<!-- <button *ngFor="let button of button_list; let i = index" [ngClass]="{'active':button.isClicked[i]}" (click)="button.isClicked[i] = (button.isClicked[i]? up : down )">up/down</button> -->
+<!-- <ul ng-repeat="data in list">
+    <li>{{data.docker}}</li>
+</ul> -->
+
+<button type="button" style="background-color: orange; color:white">disk-used</button>
+<button type="button" style="background-color: brown; color:white">disk-free</button>
+
+<!-- <button type="button" *ngFor="let button of data;" (onclick)="health(docker)">up/dwn</button> -->
+<!-- <button type="button" style="background-color:green; color: white">up</button> -->

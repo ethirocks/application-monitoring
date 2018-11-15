@@ -1,0 +1,17 @@
+http - metrics - format
+
+//    {
+//        "name":"http.server.requests",
+//        "description":null,
+//        "baseUnit":"milliseconds",
+//        "measurements":[{"statistic":"COUNT","value":0.0},
+//                        {"statistic":"TOTAL_TIME","value":0.0},
+//                        {"statistic":"MAX","value":20.05443}],
+//        "availableTags":[{"tag":"exception","values":["None"]},
+//                         {"tag":"method","values":["GET"]},
+//                         {"tag":"uri","values":["/actuator/metrics/{requiredMetricName}","/actuator/metrics"]},
+//                         {"tag":"outcome","values":["CLIENT_ERROR","SUCCESS"]},
+//                         {"tag":"status","values":["404","200"]}]
+//    }
+
+............................................................................................................

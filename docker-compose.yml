@@ -1,62 +1,67 @@
-version:  '2'
+version: '2'
 services:
-  eureka:
-    image: eureka:v1
-    build: eureka-registry/
-    restart: always
-    container_name: eureka-container
-    network_mode: host
-    ports:
-      - 8091:8091
-    expose:
-      - 8091
+ zookeeper:
+   image: wurstmeister/zookeeper
+   ports:
+     - "2181:2181"
 
-  config-server:
-    image: config-server:v1
-    build: config-server/
-    restart: always
-    container_name: config-container
-    network_mode: host
-    depends_on:
-      - eureka
-    ports:
-      - 8092:8092
-    expose:
-      - 8092
+ kafka:
+   image: wurstmeister/kafka
+   ports:
+     - "9092"
+   environment:
+     KAFKA_ADVERTISED_HOST_NAME: 172.23.239.80
+     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+   links:
+     - zookeeper
+   depends_on:
+     - zookeeper
+   volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
 
-  mongodb:
-    image: mongo:3.2-jessie
-    ports:
-      - "27017:27017"
-    container_name: mongo-movie
-    network_mode: host
-    depends_on:
-      - config-server
-    volumes:
-      - '/home/cgi/data/mysql:/data/db'
+ influxdb:
+   image: influxdb:0.13
+   volumes:
+     - ./data/influxdb:/var/lib/influxdb
+   ports:
+     - "8086:8086"
 
-  movie-demo:
-    image: movie-mongo:v1
-    build: movie-cruiser-app/
-    restart: always
-    container_name: mongo-demo-compose
-    network_mode: host
-    depends_on:
-      - mongodb
-    ports:
-      - 8090:8090
-    expose:
-      - 8090
+ client:
+   image: client
+   build: client/.
+   ports:
+     - "8082:8082"
+   expose:
+     - "8082"
+   container_name: "client"
 
-  gateway:
-    image: zuulgateway:v1
-    build: zuulgateway/
-    restart: always
-    container_name: zuul-container
-    network_mode: host
-    depends_on:
-      - mongo-demo
-    ports:
-      - 8081:8081
-    expose:
-      - 8081
+ monitoring-server:
+   image:  spring
+   build:  monitoring-server/.
+   restart:  always
+   network_mode:  host
+   container_name:  monitoring-server
+   depends_on:
+     -  influxdb
+     -  client
+   ports:
+     -  8080:8080
+   expose:
+     -  8080
+
+ angular:
+   image: ang-d3
+   build: ang-d3/.
+   ports: 
+     - "4200:4200"
+   expose: 
+     - "4200"
+   container_name: "angular"
+
+ artifactory:
+   image: docker.bintray.io/jfrog/artifactory-oss:latest
+   container_name: artifactory1
+   ports:
+     - "8081:8081"
+   expose:
+     - "8081"
