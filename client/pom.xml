@@ -52,8 +52,8 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<name>bb6fc6266cf5-snapshots</name>
-			<url>http://172.23.239.80:8081/artifactory/libs-snapshot-local</url>
+			<name>0742930caa80-snapshots</name>
+			<url>http://52.66.184.4:8081/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
