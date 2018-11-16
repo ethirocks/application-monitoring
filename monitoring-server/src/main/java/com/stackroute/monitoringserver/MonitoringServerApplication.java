@@ -31,31 +31,31 @@ public class MonitoringServerApplication {
         //health
         IConsumer healthConsumer=new HealthConsumer(metricsService);
         PollingService healthPoll=new PollingService();
-        healthPoll.setTimerTask(healthConsumer,"http://172.23.239.80:8082");
+        healthPoll.setTimerTask(healthConsumer,"http://localhost:8082");
         healthPoll.start(1000);
 
 //        //disk
 //        IConsumer diskConsumer=new HardDiskConsumer(metricsService);
 //        PollingService diskPoll=new PollingService();
-//        diskPoll.setTimerTask(diskConsumer,"http://172.23.239.80:8082");
+//        diskPoll.setTimerTask(diskConsumer,"http://localhost:8082");
 //        diskPoll.start(20000);
 
         //CPU Usage
         IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);
         PollingService cpuUsagePoll=new PollingService();
-        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://172.23.239.80:8082");
+        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://localhost:8082");
         cpuUsagePoll.start(20000);
 
         //CPU Temp
         IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);
         PollingService cpuTempPoll=new PollingService();
-        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://172.23.239.80:8082");
+        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://localhost:8082");
         cpuTempPoll.start(20000);
 
 
 //        IConsumer httpConsumer=new HttpConsumer(metricsService);
 //        PollingService httpPoll=new PollingService();
-//        httpPoll.setTimerTask(httpConsumer,"http://172.23.239.80:8082");
+//        httpPoll.setTimerTask(httpConsumer,"http://localhost:8082");
 //        httpPoll.start(10000);
 
 
@@ -69,7 +69,7 @@ public class MonitoringServerApplication {
         //thread
         IConsumer threadConsumer=new ThreadConsumer(metricsService);
         PollingService threadPoll=new PollingService();
-        threadPoll.setTimerTask(threadConsumer,"http://172.23.239.80:8082");
+        threadPoll.setTimerTask(threadConsumer,"http://localhost:8082");
         threadPoll.start(1000000);
 
     }

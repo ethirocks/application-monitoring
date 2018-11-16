@@ -58,10 +58,3 @@ services:
      - "4200"
    container_name: "angular"
 
- artifactory:
-   image: docker.bintray.io/jfrog/artifactory-oss:latest
-   container_name: artifactory1
-   ports:
-     - "8081:8081"
-   expose:
-     - "8081"

@@ -1,6 +1,6 @@
-FROM openjdk:10
+FROM openjdk:8
 
-ADD ./target/profilerClient-0.0.1-SNAPSHOT.jar     /usr/src/profilerClient-0.0.1-SNAPSHOT.jar
+ADD ./target/client-0.0.1-SNAPSHOT.jar     /usr/src/client-0.0.1-SNAPSHOT.jar
 
 
 # We state that we want to open port 8082 on the container
@@ -8,4 +8,4 @@ EXPOSE 8082
 
 WORKDIR usr/src
 
-ENTRYPOINT ["java", "-jar","profilerClient-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar","client-0.0.1-SNAPSHOT.jar"]
