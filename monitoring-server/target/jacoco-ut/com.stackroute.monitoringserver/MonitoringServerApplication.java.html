@@ -31,7 +31,7 @@ import java.net.URISyntaxException;
         //health
 <span class="nc" id="L32">        IConsumer healthConsumer=new HealthConsumer(metricsService);</span>
 <span class="nc" id="L33">        PollingService healthPoll=new PollingService();</span>
-<span class="nc" id="L34">        healthPoll.setTimerTask(healthConsumer,&quot;http://localhost:8082&quot;);</span>
+<span class="nc" id="L34">        healthPoll.setTimerTask(healthConsumer,&quot;http://52.66.184.4:8082&quot;);</span>
 <span class="nc" id="L35">        healthPoll.start(1000);</span>
 
 //        //disk
@@ -43,13 +43,13 @@ import java.net.URISyntaxException;
         //CPU Usage
 <span class="nc" id="L44">        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);</span>
 <span class="nc" id="L45">        PollingService cpuUsagePoll=new PollingService();</span>
-<span class="nc" id="L46">        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://localhost:8082&quot;);</span>
+<span class="nc" id="L46">        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://52.66.184.4:8082&quot;);</span>
 <span class="nc" id="L47">        cpuUsagePoll.start(20000);</span>
 
         //CPU Temp
 <span class="nc" id="L50">        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);</span>
 <span class="nc" id="L51">        PollingService cpuTempPoll=new PollingService();</span>
-<span class="nc" id="L52">        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://localhost:8082&quot;);</span>
+<span class="nc" id="L52">        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://52.66.184.4:8082&quot;);</span>
 <span class="nc" id="L53">        cpuTempPoll.start(20000);</span>
 
 
@@ -69,7 +69,7 @@ import java.net.URISyntaxException;
         //thread
 <span class="nc" id="L70">        IConsumer threadConsumer=new ThreadConsumer(metricsService);</span>
 <span class="nc" id="L71">        PollingService threadPoll=new PollingService();</span>
-<span class="nc" id="L72">        threadPoll.setTimerTask(threadConsumer,&quot;http://localhost:8082&quot;);</span>
+<span class="nc" id="L72">        threadPoll.setTimerTask(threadConsumer,&quot;http://52.66.184.4:8082&quot;);</span>
 <span class="nc" id="L73">        threadPoll.start(1000000);</span>
 
 <span class="nc" id="L75">    }</span>

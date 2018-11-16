@@ -16,7 +16,7 @@ export class AdventureTimeService {
   constructor(private http: HttpClient) { }
 
 
-  private _url : string = "http://172.23.239.80:8080/api/v1/metrics/";
+  private _url : string = "http://52.66.184.4:8080/api/v1/metrics/";
   data : any = {};
 
   getDetails(metricsName:string): Observable<any>{
