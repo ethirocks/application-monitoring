@@ -31,7 +31,7 @@ public class MonitoringServerApplication {
         //health
         IConsumer healthConsumer=new HealthConsumer(metricsService);
         PollingService healthPoll=new PollingService();
-        healthPoll.setTimerTask(healthConsumer,"http://52.66.184.4:8082");
+        healthPoll.setTimerTask(healthConsumer,"http://localhost:8082");
         healthPoll.start(1000);
 
 //        //disk
@@ -43,13 +43,13 @@ public class MonitoringServerApplication {
         //CPU Usage
         IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);
         PollingService cpuUsagePoll=new PollingService();
-        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://52.66.184.4:8082");
+        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://localhost:8082");
         cpuUsagePoll.start(20000);
 
         //CPU Temp
         IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);
         PollingService cpuTempPoll=new PollingService();
-        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://52.66.184.4:8082");
+        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://localhost:8082");
         cpuTempPoll.start(20000);
 
 
@@ -69,7 +69,7 @@ public class MonitoringServerApplication {
         //thread
         IConsumer threadConsumer=new ThreadConsumer(metricsService);
         PollingService threadPoll=new PollingService();
-        threadPoll.setTimerTask(threadConsumer,"http://52.66.184.4:8082");
+        threadPoll.setTimerTask(threadConsumer,"http://localhost:8082");
         threadPoll.start(1000000);
 
     }

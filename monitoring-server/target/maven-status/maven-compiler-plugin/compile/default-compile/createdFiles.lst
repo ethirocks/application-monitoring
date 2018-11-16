@@ -13,8 +13,8 @@ com/stackroute/monitoringserver/MonitoringServerApplication.class
 com/stackroute/monitoringserver/service/PollingService.class
 com/stackroute/monitoringserver/consumer/HealthConsumer.class
 com/stackroute/monitoringserver/domain/HealthMetrics.class
-com/stackroute/monitoringserver/consumer/CPUUsageConsumer.class
 com/stackroute/monitoringserver/domain/MemoryPoint.class
+com/stackroute/monitoringserver/consumer/CPUUsageConsumer.class
 com/stackroute/monitoringserver/service/PollingService$1.class
 com/stackroute/monitoringserver/domain/ContainerMetrics.class
 com/stackroute/monitoringserver/domain/Metrics.class
