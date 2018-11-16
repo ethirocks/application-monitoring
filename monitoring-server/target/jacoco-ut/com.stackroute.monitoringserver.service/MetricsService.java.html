@@ -23,7 +23,7 @@ public class MetricsService{
 <span class="fc" id="L23">    private ArrayList&lt;String&gt; databases=new ArrayList&lt;&gt;();</span>
 
 <span class="fc" id="L25">    public MetricsService() {</span>
-<span class="fc" id="L26">        influxDB = InfluxDBFactory.connect(&quot;http://localhost:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
+<span class="fc" id="L26">        influxDB = InfluxDBFactory.connect(&quot;http://10.20.1.218:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
 <span class="fc" id="L27">        Pong response = this.influxDB.ping();</span>
 <span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (response.getVersion().equalsIgnoreCase(&quot;unknown&quot;)) {</span>
 <span class="nc" id="L29">            log.error(&quot;Error pinging server.&quot;);</span>

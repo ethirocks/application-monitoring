@@ -23,7 +23,7 @@ public class MetricsService{
     private ArrayList<String> databases=new ArrayList<>();
 
     public MetricsService() {
-        influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
+        influxDB = InfluxDBFactory.connect("http://10.20.1.218:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
             log.error("Error pinging server.");
