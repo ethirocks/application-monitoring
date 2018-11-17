@@ -1,0 +1,9 @@
+server:
+    port: 8080
+spring:
+    influxdb:
+        url: http://localhost:8086
+        username: tanu
+        password: password
+        database: metricData
+

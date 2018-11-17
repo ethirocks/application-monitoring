@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1/metrics")
 public class MetricsController {
 

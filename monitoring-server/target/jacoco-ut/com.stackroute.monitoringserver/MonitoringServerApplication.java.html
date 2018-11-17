@@ -3,8 +3,6 @@
 import com.stackroute.monitoringserver.consumer.*;
 import com.stackroute.monitoringserver.service.MetricsService;
 import com.stackroute.monitoringserver.service.PollingService;
-import org.influxdb.InfluxDB;
-import org.influxdb.InfluxDBFactory;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,13 +11,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
-<span class="fc" id="L16">public class MonitoringServerApplication {</span>
+<span class="fc" id="L14">public class MonitoringServerApplication {</span>
 
     public static void main(String[] args) throws IOException, JSONException, URISyntaxException {
 
-<span class="nc" id="L20">        SpringApplication.run(MonitoringServerApplication.class, args);</span>
+<span class="nc" id="L18">        SpringApplication.run(MonitoringServerApplication.class, args);</span>
 
-<span class="nc" id="L22">        MetricsService metricsService=new MetricsService();</span>
+<span class="nc" id="L20">        MetricsService metricsService=new MetricsService();</span>
 
 
  //       HealthConsumer healthConsumer=new HealthConsumer();
@@ -28,35 +26,34 @@ import java.net.URISyntaxException;
 //        ContainerConsumer containerConsumer=new ContainerConsumer();
 //        containerConsumer.start();
 
-        //health
-<span class="nc" id="L32">        IConsumer healthConsumer=new HealthConsumer(metricsService);</span>
-<span class="nc" id="L33">        PollingService healthPoll=new PollingService();</span>
-<span class="nc" id="L34">        healthPoll.setTimerTask(healthConsumer,&quot;http://10.20.1.218:8082&quot;);</span>
-<span class="nc" id="L35">        healthPoll.start(1000);</span>
-
+//        //health
+//        IConsumer healthConsumer=new HealthConsumer(metricsService);
+//        PollingService healthPoll=new PollingService();
+//        healthPoll.setTimerTask(healthConsumer,&quot;http://172.23.239.167:8082&quot;);
+//        healthPoll.start(1000);
+//
 //        //disk
 //        IConsumer diskConsumer=new HardDiskConsumer(metricsService);
 //        PollingService diskPoll=new PollingService();
-//        diskPoll.setTimerTask(diskConsumer,&quot;http://localhost:8082&quot;);
+//        diskPoll.setTimerTask(diskConsumer,&quot;http://172.23.239.167:8082&quot;);
 //        diskPoll.start(20000);
 
-        //CPU Usage
-<span class="nc" id="L44">        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);</span>
-<span class="nc" id="L45">        PollingService cpuUsagePoll=new PollingService();</span>
-<span class="nc" id="L46">        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://10.20.1.218:8082&quot;);</span>
-<span class="nc" id="L47">        cpuUsagePoll.start(20000);</span>
 
-        //CPU Temp
-<span class="nc" id="L50">        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);</span>
-<span class="nc" id="L51">        PollingService cpuTempPoll=new PollingService();</span>
-<span class="nc" id="L52">        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://10.20.1.218:8082&quot;);</span>
-<span class="nc" id="L53">        cpuTempPoll.start(20000);</span>
+//        //CPU Usage
+//        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);
+//        PollingService cpuUsagePoll=new PollingService();
+//        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://172.23.239.167:8082&quot;);
+//        cpuUsagePoll.start(20000);
+//
+//        //CPU Temp
+//        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);
+//        PollingService cpuTempPoll=new PollingService();
+//        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://172.23.239.167:8082&quot;);
+//        cpuTempPoll.start(20000);
 
-
-//        IConsumer httpConsumer=new HttpConsumer(metricsService);
-//        PollingService httpPoll=new PollingService();
-//        httpPoll.setTimerTask(httpConsumer,&quot;http://localhost:8082&quot;);
-//        httpPoll.start(10000);
+//        IConsumer consumer=new HttpConsumer();
+//        poll.setTimerTask(consumer);
+//        poll.start(10000);
 
 
 //        consumer=new HttpConsumer(metricsService);
@@ -66,12 +63,11 @@ import java.net.URISyntaxException;
 ////        consumer=new ContainerConsumer(metricsService);
 ////        consumer.consumeMetrics();
 //
-        //thread
-<span class="nc" id="L70">        IConsumer threadConsumer=new ThreadConsumer(metricsService);</span>
-<span class="nc" id="L71">        PollingService threadPoll=new PollingService();</span>
-<span class="nc" id="L72">        threadPoll.setTimerTask(threadConsumer,&quot;http://10.20.1.218:8082&quot;);</span>
-<span class="nc" id="L73">        threadPoll.start(1000000);</span>
+//        //thread
+//        IConsumer threadConsumer=new ThreadConsumer(metricsService);
+//        threadConsumer=new ThreadConsumer(metricsService);
+//        threadConsumer.consumeMetrics(&quot;http://172.23.239.67:8084&quot;);
 
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L71">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.stackroute.monitoringserver.AppMonitoringApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.436 s - in com.stackroute.monitoringserver.AppMonitoringApplicationTests
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.86 s - in com.stackroute.monitoringserver.AppMonitoringApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.065 s - in com.stackroute.monitoringserver.AppMonitoringApplicationTests
+>>>>>>> cc0fda36bfccf42107962a7f06f06c79cc93832c

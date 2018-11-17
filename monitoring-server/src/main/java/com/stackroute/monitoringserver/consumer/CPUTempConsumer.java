@@ -1,6 +1,5 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.HealthMetrics;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
 import org.json.JSONException;
@@ -28,10 +27,14 @@ public class CPUTempConsumer implements IConsumer {
                 = restTemplate.getForEntity(url+"/cputemp", Double.class);
         Logger.getLogger("cpuTemp "+response.toString());
         Double cpuTemp= response.getBody();
-        Point cpuTempPoint = Point.measurement("cputemp")
-                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                .addField("cpu_temp",cpuTemp)
-                .build();
-        metricsService.insertMetrics(cpuTempPoint);
+        try{
+            Point cpuTempPoint = Point.measurement("cputemp")
+                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                    .addField("cpu_temp",cpuTemp)
+                    .build();
+            metricsService.insertMetrics(cpuTempPoint);
+        }
+        catch (NullPointerException n){        }
+
     }
 }

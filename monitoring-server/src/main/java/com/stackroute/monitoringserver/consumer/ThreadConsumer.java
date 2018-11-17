@@ -36,25 +36,28 @@ public class ThreadConsumer implements IConsumer {
 //                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
 //                .tag("total_Threads",String.valueOf(threadMetrics.getTotal_Threads()))
 //                  .build();
-        long time=System.currentTimeMillis();
-        if (threadMetrics!=null && threadMetrics.getType_Of_threads()!=null){
-            Iterator it = threadMetrics.getType_Of_threads().entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry threadEntry = (Map.Entry)it.next();
-                Thread thread= (Thread) threadEntry.getKey();
-                Point point = Point.measurement("thread")
-                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                        .tag("timeStamp",String.valueOf(time))
-                        .tag("total_Threads",String.valueOf(threadMetrics.getTotal_Threads()))
-                        .addField("thread_name",thread.getName())
-                        .addField("thread_priority",thread.getPriority())
-                        .addField("thread_group",thread.getThreadGroup().getName())
-                        .addField("thread_status",threadEntry.getValue().toString())
-                        .build();
-                metricsService.insertMetrics(point);
+        try{
+            long time=System.currentTimeMillis();
+            if (threadMetrics!=null && threadMetrics.getType_Of_threads()!=null){
+                Iterator it = threadMetrics.getType_Of_threads().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry threadEntry = (Map.Entry)it.next();
+                    Thread thread= (Thread) threadEntry.getKey();
+                    Point point = Point.measurement("thread")
+                            .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                            .tag("timeStamp",String.valueOf(time))
+                            .tag("total_Threads",String.valueOf(threadMetrics.getTotal_Threads()))
+                            .addField("thread_name",thread.getName())
+                            .addField("thread_priority",thread.getPriority())
+                            .addField("thread_group",thread.getThreadGroup().getName())
+                            .addField("thread_status",threadEntry.getValue().toString())
+                            .build();
+                    metricsService.insertMetrics(point);
 //                it.remove(); // avoids a ConcurrentModificationException
+                }
             }
         }
+        catch (NullPointerException n){ }
 
     }
 
