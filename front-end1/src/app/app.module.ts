@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ThreadListComponent } from './thread-list/thread-list.component';
 import { TableRowComponent } from './table-row/table-row.component';
+import { HealthMetricComponent } from './health-metric/health-metric.component';
+import { CpuMetricComponent } from './cpu-metric/cpu-metric.component';
+import { CpuUsageComponent } from './cpu-usage/cpu-usage.component';
+import { CpuCoresComponent } from './cpu-cores/cpu-cores.component';
+import { RamComponent } from './ram/ram.component';
+import { HttpComponent } from './http/http.component';
+import { NetworkComponent } from './network/network.component';
 
 
 @NgModule({
@@ -13,7 +20,14 @@ import { TableRowComponent } from './table-row/table-row.component';
     AppComponent,
     BarChartComponent,
     ThreadListComponent,
-    TableRowComponent
+    TableRowComponent,
+    HealthMetricComponent,
+    CpuMetricComponent,
+    CpuUsageComponent,
+    CpuCoresComponent,
+    RamComponent,
+    HttpComponent,
+    NetworkComponent
   ],
   imports: [
     BrowserModule,
