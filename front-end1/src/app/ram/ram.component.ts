@@ -17,8 +17,8 @@ export class RamComponent implements OnInit {
   ngOnInit() {
     this.atService.getDetails("memory").subscribe((data:any) =>{ this.container = data
       // console.log("error msg " + this.errorMsg);
-       console.log("kkkkk..  "+this.container);
-      console.log(this.container);
+      //  console.log("kkkkk..  "+this.container);
+      // console.log(this.container);
       this.res = this.container.results;
       //this.myFunction();
        //this.r = this.res.series;

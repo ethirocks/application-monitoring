@@ -37,13 +37,6 @@ export class BarChartComponent implements OnInit {
   res : any;
  
 
-  // getCharacters(): Observable<any[]>{
-  //   return Observable.of(CHARACTERS).delay(100);
-  // }
-  // getColumns(): string[]{
-  //   return ["time", "thread_group", "thread_name", "thread_priority","thread_status","timeStamp","total_threads"]};
-  // }
-
   ngOnInit() {
     
     
@@ -56,7 +49,7 @@ export class BarChartComponent implements OnInit {
       this.createChart();
     });
   
-    // this.createChart();
+    
   }
 
   onResize() {
@@ -77,13 +70,11 @@ export class BarChartComponent implements OnInit {
     const element = this.chartContainer.nativeElement;
     const data = this.bar;
     //this.res = this.bar.results;
-    console.log("cccc"+this.bar);
+  
     this.res = this.bar.results;
-    console.log("nnnn"+this.bar);
+    //console.log("nnnn"+this.bar);
 
-  //   const button_list = [
-  //     { text: 'item1' ,isClicked : false }
-  // ]
+ 
     
 
   
@@ -150,7 +141,7 @@ export class BarChartComponent implements OnInit {
       // console.log("obbbbb"+obj);
     const i = 300;
     
-    console.log("hhhhhh "+ i); 
+   // console.log("hhhhhh "+ i); 
     //for(var k = 0; k<i; k++){
      const x = d3
       .scaleBand()

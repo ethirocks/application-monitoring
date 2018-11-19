@@ -31,9 +31,9 @@ export class ThreadListComponent implements OnInit {
     // //all data in mock-data.ts
 
     this.atService.getDetails("thread").subscribe((data:any) =>{ this.thread = data
-      console.log("error msg " + this.errorMsg);
-      console.log("theraasds..  "+this.thread);
-      console.log(this.thread);
+      // console.log("error msg " + this.errorMsg);
+      // console.log("theraasds..  "+this.thread);
+      // console.log(this.thread);
       this.res = this.thread.results;
     });
 
