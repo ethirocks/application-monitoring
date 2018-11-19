@@ -1,5 +1,5 @@
 import { AdventureTimeService } from './../services/adventure-time.service';
-import { CpuDataModel } from './../data/cpu.model';
+import { CpuDataModel } from '../health-data/cpu.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

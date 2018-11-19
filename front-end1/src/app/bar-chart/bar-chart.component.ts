@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { threadValues } from './../thread-data/thread-data.model';
 import { AdventureTimeService } from './../services/adventure-time.service';
-import { DataModel } from './../data/data.model';
+import { DataModel } from '../health-data/data.model';
 import { Component, ElementRef, Input, OnChanges, ViewChild, ViewEncapsulation, HostListener, SystemJsNgModuleLoader, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import { timeParse } from 'd3';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataModel } from './data/data.model';
+import { DataModel } from './health-data/data.model';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
