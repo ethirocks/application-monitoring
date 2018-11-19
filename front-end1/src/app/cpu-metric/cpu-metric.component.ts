@@ -1,6 +1,6 @@
 import { AdventureTimeService } from './../services/adventure-time.service';
 import { Component, OnInit } from '@angular/core';
-import { CpuDataModel } from '../data/cpu.model';
+import { CpuDataModel } from '../health-data/cpu.model';
 
 @Component({
   selector: 'app-cpu-metric',

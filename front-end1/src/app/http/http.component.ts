@@ -1,4 +1,4 @@
-import { CpuDataModel } from './../data/cpu.model';
+import { CpuDataModel } from '../health-data/cpu.model';
 import { AdventureTimeService } from './../services/adventure-time.service';
 import { Component, OnInit } from '@angular/core';
 
