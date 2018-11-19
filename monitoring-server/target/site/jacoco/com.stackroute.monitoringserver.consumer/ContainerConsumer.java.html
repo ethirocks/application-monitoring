@@ -17,9 +17,9 @@ import java.util.concurrent.TimeUnit;
 public class ContainerConsumer implements IConsumer{
     private MetricsService metricsService;
     @Autowired
-<span class="fc" id="L20">    public ContainerConsumer(MetricsService metricsService) {</span>
-<span class="fc" id="L21">        this.metricsService = metricsService;</span>
-<span class="fc" id="L22">    }</span>
+<span class="nc" id="L20">    public ContainerConsumer(MetricsService metricsService) {</span>
+<span class="nc" id="L21">        this.metricsService = metricsService;</span>
+<span class="nc" id="L22">    }</span>
 
     @Override
     public void consumeMetrics(String url) {

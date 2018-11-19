@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 public class HardDiskConsumer implements IConsumer {
     private MetricsService metricsService;
     @Autowired
-<span class="fc" id="L21">    public HardDiskConsumer(MetricsService metricsService) {</span>
-<span class="fc" id="L22">        this.metricsService = metricsService;</span>
-<span class="fc" id="L23">    }</span>
+<span class="nc" id="L21">    public HardDiskConsumer(MetricsService metricsService) {</span>
+<span class="nc" id="L22">        this.metricsService = metricsService;</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
     public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
@@ -28,14 +28,27 @@ public class HardDiskConsumer implements IConsumer {
         //String url = &quot;http://172.23.239.197:8889/health&quot;;
 <span class="nc" id="L29">        ResponseEntity&lt;HealthMetrics&gt; response</span>
 <span class="nc" id="L30">                = restTemplate.getForEntity(url+&quot;/health&quot;, HealthMetrics.class);</span>
-<span class="nc" id="L31">        System.out.println(&quot;health &quot;+response.toString());</span>
-<span class="nc" id="L32">        HealthMetrics healthMetrics= response.getBody();</span>
+<span class="nc" id="L31">        HealthMetrics healthMetrics= response.getBody();</span>
+<span class="nc" id="L32">        long startTime = System.currentTimeMillis();</span>
 <span class="nc" id="L33">        Point diskPoint = Point.measurement(&quot;disk_utilization&quot;)</span>
-<span class="nc" id="L34">                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L35">                .addField(&quot;details_diskFree&quot;,  healthMetrics.getDetails().getDiskFree())</span>
-<span class="nc" id="L36">                .addField(&quot;details_diskTotal&quot;,  healthMetrics.getDetails().getDiskTotal())</span>
-<span class="nc" id="L37">                .build();</span>
-<span class="nc" id="L38">        metricsService.insertMetrics(diskPoint);</span>
-<span class="nc" id="L39">    }</span>
+<span class="nc" id="L34">                .time(startTime, TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L35">                .addField(&quot;timeStamp&quot;,String.valueOf(startTime))</span>
+<span class="nc" id="L36">                .addField(&quot;details_diskFree&quot;,  healthMetrics.getDetails().getDiskFree())</span>
+<span class="nc" id="L37">                .addField(&quot;details_diskTotal&quot;,  healthMetrics.getDetails().getDiskTotal())</span>
+<span class="nc" id="L38">                .build();</span>
+<span class="nc" id="L39">        metricsService.insertMetrics(diskPoint);</span>
+
+        try{
+<span class="nc" id="L42">             diskPoint = Point.measurement(&quot;disk_utilization&quot;)</span>
+<span class="nc" id="L43">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L44">                    .addField(&quot;details_diskFree&quot;,  healthMetrics.getDetails().getDiskFree())</span>
+<span class="nc" id="L45">                    .addField(&quot;details_diskTotal&quot;,  healthMetrics.getDetails().getDiskTotal())</span>
+<span class="nc" id="L46">                    .build();</span>
+<span class="nc" id="L47">            metricsService.insertMetrics(diskPoint);</span>
+        }
+<span class="nc" id="L49">        catch (NullPointerException n){</span>
+<span class="nc" id="L50">            System.out.println(&quot;disk null.... &quot;+healthMetrics);</span>
+<span class="nc" id="L51">        }</span>
+<span class="nc" id="L52">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

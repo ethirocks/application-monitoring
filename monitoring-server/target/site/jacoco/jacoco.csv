@@ -1,27 +1,32 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-MonitoringServer,com.stackroute.monitoringserver.controller,MetricsController,80,6,0,0,23,3,3,1,3,1
-MonitoringServer,com.stackroute.monitoringserver.domain,HealthMetricsDetails,115,0,22,0,3,0,20,0,9,0
-MonitoringServer,com.stackroute.monitoringserver.domain,ThreadMetrics,106,0,16,0,3,0,17,0,9,0
-MonitoringServer,com.stackroute.monitoringserver.domain,HealthMetrics,115,0,22,0,3,0,20,0,9,0
-MonitoringServer,com.stackroute.monitoringserver.domain,ContainerMetricsMemory,115,0,22,0,3,0,20,0,9,0
-MonitoringServer,com.stackroute.monitoringserver.domain,ContainerMetrics,155,0,30,0,4,0,26,0,11,0
+MonitoringServer,com.stackroute.monitoringserver.controller,MetricsController,86,0,0,0,26,0,4,0,4,0
+MonitoringServer,com.stackroute.monitoringserver.domain,HealthMetricsDetails,126,0,22,0,3,0,20,0,9,0
+MonitoringServer,com.stackroute.monitoringserver.domain,HealthMetrics,126,0,22,0,3,0,20,0,9,0
+MonitoringServer,com.stackroute.monitoringserver.domain,ThreadMetrics,117,0,16,0,3,0,17,0,9,0
+MonitoringServer,com.stackroute.monitoringserver.domain,ContainerMetricsMemory,126,0,22,0,3,0,20,0,9,0
+MonitoringServer,com.stackroute.monitoringserver.domain,ContainerMetrics,169,0,30,0,4,0,26,0,11,0
 MonitoringServer,com.stackroute.monitoringserver.domain,Metrics,9,0,0,0,2,0,2,0,2,0
-MonitoringServer,com.stackroute.monitoringserver.domain,HttpMetrics,396,0,52,0,12,0,53,0,27,0
-MonitoringServer,com.stackroute.monitoringserver.domain,MemoryPoint,235,0,46,0,6,0,38,0,15,0
-MonitoringServer,com.stackroute.monitoringserver.consumer,HttpConsumer,126,6,6,0,25,3,4,1,1,1
-MonitoringServer,com.stackroute.monitoringserver.consumer,ThreadConsumer,85,6,6,0,23,3,4,1,1,1
-MonitoringServer,com.stackroute.monitoringserver.consumer,ContainerConsumer,82,6,2,0,19,3,2,1,1,1
-MonitoringServer,com.stackroute.monitoringserver.consumer,CPUTempConsumer,42,0,0,0,14,0,2,0,2,0
-MonitoringServer,com.stackroute.monitoringserver.consumer,CPUConsumer,88,0,2,0,22,0,3,0,2,0
-MonitoringServer,com.stackroute.monitoringserver.consumer,CPUConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
-MonitoringServer,com.stackroute.monitoringserver.consumer,CPUUsageConsumer,36,6,0,0,11,3,1,1,1,1
-MonitoringServer,com.stackroute.monitoringserver.consumer,CPUCoresConsumer,42,0,0,0,14,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.domain,NetworkMetrics,513,0,94,0,12,0,74,0,27,0
+MonitoringServer,com.stackroute.monitoringserver.domain,HttpMetrics,434,0,52,0,12,0,53,0,27,0
+MonitoringServer,com.stackroute.monitoringserver.domain,MemoryPoint,255,0,46,0,6,0,38,0,15,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,HttpConsumer,162,0,6,0,32,0,5,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,ThreadConsumer,105,0,6,0,27,0,5,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,ContainerConsumer,106,0,2,0,22,0,3,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,CPUTempConsumer,56,0,0,0,15,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,CPUUsageConsumer,56,0,0,0,15,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,RAMConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,NetworkConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,CPUCoresConsumer,56,0,0,0,15,0,2,0,2,0
 MonitoringServer,com.stackroute.monitoringserver.consumer,HttpConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
-MonitoringServer,com.stackroute.monitoringserver.consumer,HardDiskConsumer,43,6,0,0,12,3,1,1,1,1
-MonitoringServer,com.stackroute.monitoringserver.consumer,HealthConsumer,37,6,0,0,11,3,1,1,1,1
+MonitoringServer,com.stackroute.monitoringserver.consumer,HardDiskConsumer,89,0,0,0,25,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,HealthConsumer,57,0,0,0,15,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,RAMConsumer,70,0,0,0,15,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.consumer,NetworkConsumer,137,0,0,0,26,0,2,0,2,0
 MonitoringServer,com.stackroute.monitoringserver.consumer,ContainerConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
-MonitoringServer,com.stackroute.monitoringserver.service,MetricsService,112,33,3,1,26,8,6,1,4,1
-MonitoringServer,com.stackroute.monitoringserver.service,PollingService,33,3,2,0,10,1,4,1,3,1
+MonitoringServer,com.stackroute.monitoringserver.service,MetricsService,145,7,2,0,28,2,5,1,4,1
+MonitoringServer,com.stackroute.monitoringserver.service,PollingService,36,0,2,0,11,0,5,0,4,0
 MonitoringServer,com.stackroute.monitoringserver.service,PollingService.new TimerTask() {...},30,0,0,0,10,0,2,0,2,0
-MonitoringServer,com.stackroute.monitoringserver.service,QueryMapperService,233,0,12,0,33,0,9,0,3,0
-MonitoringServer,com.stackroute.monitoringserver,MonitoringServerApplication,9,3,0,0,3,1,1,1,1,1
+MonitoringServer,com.stackroute.monitoringserver.service,KafkaProducerService,11,0,0,0,3,0,2,0,2,0
+MonitoringServer,com.stackroute.monitoringserver.configuration,KakfaProducerConfiguration,30,3,0,0,6,1,2,1,2,1
+MonitoringServer,com.stackroute.monitoringserver.monitoringserver.configuration,KafkaConsumerConfiguration,87,0,0,0,19,0,5,0,5,0
+MonitoringServer,com.stackroute.monitoringserver,MonitoringServerApplication,145,3,0,0,37,1,1,1,1,1

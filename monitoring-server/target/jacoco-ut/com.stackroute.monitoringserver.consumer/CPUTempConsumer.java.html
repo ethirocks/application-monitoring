@@ -27,11 +27,15 @@ public class CPUTempConsumer implements IConsumer {
 <span class="nc" id="L27">                = restTemplate.getForEntity(url+&quot;/cputemp&quot;, Double.class);</span>
 <span class="nc" id="L28">        Logger.getLogger(&quot;cpuTemp &quot;+response.toString());</span>
 <span class="nc" id="L29">        Double cpuTemp= response.getBody();</span>
-<span class="nc" id="L30">        Point cpuTempPoint = Point.measurement(&quot;cputemp&quot;)</span>
-<span class="nc" id="L31">                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L32">                .addField(&quot;cpu_temp&quot;,cpuTemp)</span>
-<span class="nc" id="L33">                .build();</span>
-<span class="nc" id="L34">        metricsService.insertMetrics(cpuTempPoint);</span>
-<span class="nc" id="L35">    }</span>
+        try{
+<span class="nc" id="L31">            Point cpuTempPoint = Point.measurement(&quot;cputemp&quot;)</span>
+<span class="nc" id="L32">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L33">                    .addField(&quot;cpu_temp&quot;,cpuTemp)</span>
+<span class="nc" id="L34">                    .build();</span>
+<span class="nc" id="L35">            metricsService.insertMetrics(cpuTempPoint);</span>
+        }
+<span class="nc" id="L37">        catch (NullPointerException n){        }</span>
+
+<span class="nc" id="L39">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

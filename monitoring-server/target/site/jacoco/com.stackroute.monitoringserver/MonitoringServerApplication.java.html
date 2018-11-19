@@ -19,55 +19,63 @@ import java.net.URISyntaxException;
 
 <span class="nc" id="L20">        MetricsService metricsService=new MetricsService();</span>
 
+        //CPU Cores
+<span class="nc" id="L23">        IConsumer cpuCoreConsumer=new CPUCoresConsumer(metricsService);</span>
+<span class="nc" id="L24">        cpuCoreConsumer.consumeMetrics(&quot;http://client:8082&quot;);</span>
 
- //       HealthConsumer healthConsumer=new HealthConsumer();
- //       healthConsumer.start();
-//        healthConsumer.stop();
-//        ContainerConsumer containerConsumer=new ContainerConsumer();
-//        containerConsumer.start();
+        //ram
+<span class="nc" id="L27">        IConsumer ramConsumer=new RAMConsumer(metricsService);</span>
+<span class="nc" id="L28">        PollingService ramPoll=new PollingService();</span>
+<span class="nc" id="L29">        ramPoll.setTimerTask(ramConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L30">        ramPoll.start(20000);</span>
 
-//        //health
-//        IConsumer healthConsumer=new HealthConsumer(metricsService);
-//        PollingService healthPoll=new PollingService();
-//        healthPoll.setTimerTask(healthConsumer,&quot;http://172.23.239.167:8082&quot;);
-//        healthPoll.start(1000);
-//
-//        //disk
-//        IConsumer diskConsumer=new HardDiskConsumer(metricsService);
-//        PollingService diskPoll=new PollingService();
-//        diskPoll.setTimerTask(diskConsumer,&quot;http://172.23.239.167:8082&quot;);
-//        diskPoll.start(20000);
+        //Http
+<span class="nc" id="L33">        IConsumer httpConsumer=new HttpConsumer(metricsService);</span>
+<span class="nc" id="L34">        PollingService httpPoll=new PollingService();</span>
+<span class="nc" id="L35">        httpPoll.setTimerTask(httpConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L36">        httpPoll.start(10000);</span>
 
+        //health
+<span class="nc" id="L39">        IConsumer healthConsumer=new HealthConsumer(metricsService);</span>
+<span class="nc" id="L40">        PollingService healthPoll=new PollingService();</span>
+<span class="nc" id="L41">        healthPoll.setTimerTask(healthConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L42">        healthPoll.start(1000);</span>
 
-//        //CPU Usage
-//        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);
-//        PollingService cpuUsagePoll=new PollingService();
-//        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://172.23.239.167:8082&quot;);
-//        cpuUsagePoll.start(20000);
-//
-//        //CPU Temp
-//        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);
-//        PollingService cpuTempPoll=new PollingService();
-//        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://172.23.239.167:8082&quot;);
-//        cpuTempPoll.start(20000);
-
-//        IConsumer consumer=new HttpConsumer();
-//        poll.setTimerTask(consumer);
-//        poll.start(10000);
+        //disk
+<span class="nc" id="L45">        IConsumer diskConsumer=new HardDiskConsumer(metricsService);</span>
+<span class="nc" id="L46">        PollingService diskPoll=new PollingService();</span>
+<span class="nc" id="L47">        diskPoll.setTimerTask(diskConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L48">        diskPoll.start(20000);</span>
 
 
-//        consumer=new HttpConsumer(metricsService);
-// //       consumer.consumeMetrics();
+        //CPU Usage
+<span class="nc" id="L52">        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);</span>
+<span class="nc" id="L53">        PollingService cpuUsagePoll=new PollingService();</span>
+<span class="nc" id="L54">        cpuUsagePoll.setTimerTask(cpuUsageConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L55">        cpuUsagePoll.start(20000);</span>
+
+        //CPU Temp
+<span class="nc" id="L58">        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);</span>
+<span class="nc" id="L59">        PollingService cpuTempPoll=new PollingService();</span>
+<span class="nc" id="L60">        cpuTempPoll.setTimerTask(cpuTempConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L61">        cpuTempPoll.start(20000);</span>
+
 //
 //        //container
 ////        consumer=new ContainerConsumer(metricsService);
 ////        consumer.consumeMetrics();
-//
-//        //thread
-//        IConsumer threadConsumer=new ThreadConsumer(metricsService);
-//        threadConsumer=new ThreadConsumer(metricsService);
-//        threadConsumer.consumeMetrics(&quot;http://172.23.239.67:8084&quot;);
 
-<span class="nc" id="L71">    }</span>
+        //thread
+<span class="nc" id="L69">        IConsumer threadConsumer=new ThreadConsumer(metricsService);</span>
+<span class="nc" id="L70">        PollingService threadPoll=new PollingService();</span>
+<span class="nc" id="L71">        threadPoll.setTimerTask(threadConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L72">        threadPoll.start(10000);</span>
+
+        //network
+<span class="nc" id="L75">        IConsumer networkConsumer=new NetworkConsumer(metricsService);</span>
+<span class="nc" id="L76">        PollingService networkPoll=new PollingService();</span>
+<span class="nc" id="L77">        networkPoll.setTimerTask(networkConsumer,&quot;http://client:8082&quot;);</span>
+<span class="nc" id="L78">        networkPoll.start(10000);</span>
+<span class="nc" id="L79">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

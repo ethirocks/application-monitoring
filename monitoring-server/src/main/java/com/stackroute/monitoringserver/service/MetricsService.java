@@ -27,7 +27,7 @@ public class MetricsService{
 
     public MetricsService() throws IOException {
 
-        influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
+        influxDB = InfluxDBFactory.connect("http://influx:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
             log.error("Error pinging server.");
