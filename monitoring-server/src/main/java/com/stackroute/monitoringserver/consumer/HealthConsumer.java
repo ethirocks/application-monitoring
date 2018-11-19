@@ -28,10 +28,14 @@ public class HealthConsumer implements IConsumer{
                 = restTemplate.getForEntity(url+"/health", HealthMetrics.class);
         Logger.getLogger("health "+response.toString());
         HealthMetrics healthMetrics= response.getBody();
-        Point healthPoint = Point.measurement("health")
-                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                .addField("status",  healthMetrics.getStatus())
-                .build();
-        metricsService.insertMetrics(healthPoint);
+        try{
+            Point healthPoint = Point.measurement("health")
+                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                    .addField("status",  healthMetrics.getStatus())
+                    .build();
+            metricsService.insertMetrics(healthPoint);
+        }
+        catch (NullPointerException n){ }
+
     }
 }

@@ -29,10 +29,14 @@ public class CPUUsageConsumer implements IConsumer {
                 = restTemplate.getForEntity(url+"/cpuusage", Double.class);
         Logger.getLogger("health "+response.toString());
         Double cpuUsage= response.getBody();
-        Point cpuUsagePoint = Point.measurement("cpuusage")
-                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-                .addField("cpu_usage",cpuUsage)
-                .build();
-        metricsService.insertMetrics(cpuUsagePoint);
+        try{
+            Point cpuUsagePoint = Point.measurement("cpuusage")
+                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                    .addField("cpu_usage",cpuUsage)
+                    .build();
+            metricsService.insertMetrics(cpuUsagePoint);
+        }
+        catch (NullPointerException n){ }
+
     }
 }

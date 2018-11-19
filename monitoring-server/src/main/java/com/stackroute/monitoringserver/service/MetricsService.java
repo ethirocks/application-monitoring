@@ -1,6 +1,9 @@
 package com.stackroute.monitoringserver.service;
 
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,20 +25,27 @@ public class MetricsService{
     private InfluxDB influxDB;
     private ArrayList<String> databases=new ArrayList<>();
 
-    public MetricsService() {
-        influxDB = InfluxDBFactory.connect("http://10.20.1.218:8086","tanu","password");
+    public MetricsService() throws IOException {
+
+        influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
             log.error("Error pinging server.");
         }
-        //influxDB.createDatabase("cAdvisor");
+//        if (!influxDB.describeDatabases().contains("applicationMetrics")) {
+//            URL url = new URL("http://localhost:8086/query?q=CREATE DATABASE mydb");
+//            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+//            con.setRequestMethod("GET");
+//        }
+        databases.add("_internal");
+        databases.add("applicationMetrics");
         databases.add("cAdvisor");
         databases.add("metrics");
     }
 
     public void insertMetrics(Point point){
         BatchPoints batchPoints = BatchPoints
-                .database("cAdvisor")
+                .database(databases.get(0))
                 .build();
         batchPoints.point(point);
         influxDB.write(batchPoints);
@@ -57,6 +67,15 @@ public class MetricsService{
     public QueryResult searchMetrics(String metricsName) throws JSONException {
         Query query=new Query("select * from "+metricsName,databases.get(0));
         QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);
+        String timeAdded =queryResult.getResults().get(0).getSeries().get(0).getValues().get(0).get(0).toString();
+//        QueryMapperService queryMapper =new QueryMapperService();
+//        List<HealthMetrics> memoryPointList=queryMapper.healthMapper(queryResult);
+//        String result="";
+//        for (HealthMetrics memoryPoint:
+//                memoryPointList) {
+//            result=result.concat(memoryPoint.toString());
+//            result=result.concat("\n");
+//        }
         return queryResult;
     }
 
