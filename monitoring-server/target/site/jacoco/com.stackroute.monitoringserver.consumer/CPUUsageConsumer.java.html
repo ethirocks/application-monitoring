@@ -18,9 +18,9 @@ public class CPUUsageConsumer implements IConsumer {
     private MetricsService metricsService;
 
     @Autowired
-<span class="fc" id="L21">    public CPUUsageConsumer(MetricsService metricsService) {</span>
-<span class="fc" id="L22">        this.metricsService = metricsService;</span>
-<span class="fc" id="L23">    }</span>
+<span class="nc" id="L21">    public CPUUsageConsumer(MetricsService metricsService) {</span>
+<span class="nc" id="L22">        this.metricsService = metricsService;</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
     public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
@@ -29,11 +29,15 @@ public class CPUUsageConsumer implements IConsumer {
 <span class="nc" id="L29">                = restTemplate.getForEntity(url+&quot;/cpuusage&quot;, Double.class);</span>
 <span class="nc" id="L30">        Logger.getLogger(&quot;health &quot;+response.toString());</span>
 <span class="nc" id="L31">        Double cpuUsage= response.getBody();</span>
-<span class="nc" id="L32">        Point cpuUsagePoint = Point.measurement(&quot;cpuusage&quot;)</span>
-<span class="nc" id="L33">                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L34">                .addField(&quot;cpu_usage&quot;,cpuUsage)</span>
-<span class="nc" id="L35">                .build();</span>
-<span class="nc" id="L36">        metricsService.insertMetrics(cpuUsagePoint);</span>
-<span class="nc" id="L37">    }</span>
+        try{
+<span class="nc" id="L33">            Point cpuUsagePoint = Point.measurement(&quot;cpuusage&quot;)</span>
+<span class="nc" id="L34">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L35">                    .addField(&quot;cpu_usage&quot;,cpuUsage)</span>
+<span class="nc" id="L36">                    .build();</span>
+<span class="nc" id="L37">            metricsService.insertMetrics(cpuUsagePoint);</span>
+        }
+<span class="nc" id="L39">        catch (NullPointerException n){ }</span>
+
+<span class="nc" id="L41">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -5,19 +5,20 @@ services:
    volumes:
      - ./data/influxdb:/var/lib/influxdb
    ports:
-     - "8086:8086"
+     - 8086:8086
+   container_name: influx
 
  client:
    image: client
    build: client/.
    ports:
-     - "8082:8082"
+     - 8082:8082
    expose:
-     - "8082"
-   container_name: "client"
+     - 8082
+   container_name: client
 
  monitoring-server:
-   image:  spring
+   image:  monitoring-server
    build:  monitoring-server/.
    restart:  always
    #  network_mode:  host
@@ -31,11 +32,11 @@ services:
      -  8080
 
  angular:
-   image: ang-d3
-   build: ang-d3/.
+   image: front-end1
+   build: front-end1/.
    ports: 
-     - "4200:4200"
+     - 4200:4200
    expose: 
-     - "4200"
-   container_name: "angular"
+     - 4200
+   container_name: angular
 
