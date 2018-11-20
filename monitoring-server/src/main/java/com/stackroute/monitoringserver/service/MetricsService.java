@@ -25,15 +25,14 @@ public class MetricsService{
 
     public MetricsService() throws IOException, JSONException, URISyntaxException {
 
-        influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
+        influxDB = InfluxDBFactory.connect("http://influx:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
             log.error("Error pinging server.");
         }
         if (!influxDB.describeDatabases().contains("applicationMetrics")) {
             influxDB.query(new Query("create database applicationMetrics","_internal"),TimeUnit.MILLISECONDS);
-            System.out.println("going in doesn;t contain....");
-            URL url = new URL("http://localhost:8086/query?q=CREATE+DATABASE+applicationMetrics");
+            URL url = new URL("http://influx:8086/query?q=CREATE+DATABASE+applicationMetrics");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
         }
