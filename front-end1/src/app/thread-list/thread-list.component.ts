@@ -29,5 +29,13 @@ export class ThreadListComponent implements OnInit {
     this.atService.getDetails("thread").subscribe((data:any) =>{ this.thread = data
       this.res = this.thread.results;
     });
+<<<<<<< HEAD
 }
+=======
+
+
+
+  }
+
+>>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
 }

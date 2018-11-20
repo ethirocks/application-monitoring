@@ -20,9 +20,8 @@ public class CPUTempConsumer implements IConsumer {
     }
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://172.23.239.197:8889/health";
         ResponseEntity<Double> response
                 = restTemplate.getForEntity(url+"/cputemp", Double.class);
         Logger.getLogger("cpuTemp "+response.toString());
@@ -35,6 +34,6 @@ public class CPUTempConsumer implements IConsumer {
             metricsService.insertMetrics(cpuTempPoint);
         }
         catch (NullPointerException n){        }
-
+        return true;
     }
 }

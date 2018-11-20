@@ -2,20 +2,18 @@
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.stackroute.monitoringserver.domain.HealthMetrics;
-import com.stackroute.monitoringserver.domain.MemoryPoint;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.*;
 import org.influxdb.impl.InfluxDBResultMapper;
 import org.json.JSONException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import static org.apache.kafka.common.requests.FetchMetadata.log;
 
@@ -23,103 +21,55 @@ import static org.apache.kafka.common.requests.FetchMetadata.log;
 public class MetricsService{
 
     private InfluxDB influxDB;
-<span class="fc" id="L26">    private ArrayList&lt;String&gt; databases=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L24">    private ArrayList&lt;String&gt; databases=new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L28">    public MetricsService() throws IOException {</span>
+<span class="fc" id="L26">    public MetricsService() throws IOException, JSONException, URISyntaxException {</span>
 
-<span class="nc" id="L30">        influxDB = InfluxDBFactory.connect(&quot;http://influx:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
-<span class="nc" id="L31">        Pong response = this.influxDB.ping();</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (response.getVersion().equalsIgnoreCase(&quot;unknown&quot;)) {</span>
-<span class="nc" id="L33">            log.error(&quot;Error pinging server.&quot;);</span>
+<span class="nc" id="L28">        influxDB = InfluxDBFactory.connect(&quot;http://influxdb:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
+<span class="nc" id="L29">        Pong response = this.influxDB.ping();</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (response.getVersion().equalsIgnoreCase(&quot;unknown&quot;)) {</span>
+<span class="nc" id="L31">            log.error(&quot;Error pinging server.&quot;);</span>
         }
-//        if (!influxDB.describeDatabases().contains(&quot;applicationMetrics&quot;)) {
-//            URL url = new URL(&quot;http://localhost:8086/query?q=CREATE DATABASE mydb&quot;);
-//            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//            con.setRequestMethod(&quot;GET&quot;);
-//        }
-<span class="nc" id="L40">        databases.add(&quot;_internal&quot;);</span>
-<span class="nc" id="L41">        databases.add(&quot;applicationMetrics&quot;);</span>
-<span class="nc" id="L42">        databases.add(&quot;cAdvisor&quot;);</span>
-<span class="nc" id="L43">        databases.add(&quot;metrics&quot;);</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (!influxDB.describeDatabases().contains(&quot;applicationMetrics&quot;)) {</span>
+<span class="nc" id="L34">            influxDB.query(new Query(&quot;create database applicationMetrics&quot;,&quot;_internal&quot;),TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L35">            URL url = new URL(&quot;http://influxdb:8086/query?q=CREATE+DATABASE+applicationMetrics&quot;);</span>
+<span class="nc" id="L36">            HttpURLConnection con = (HttpURLConnection) url.openConnection();</span>
+<span class="nc" id="L37">            con.setRequestMethod(&quot;GET&quot;);</span>
+        }
+<span class="nc" id="L39">        databases.add(&quot;applicationMetrics&quot;);</span>
+<span class="nc" id="L40">        databases.add(&quot;cAdvisor&quot;);</span>
+<span class="nc" id="L41">        databases.add(&quot;_internal&quot;);</span>
+<span class="nc" id="L42">        databases.add(&quot;metrics&quot;);</span>
+<span class="nc" id="L43">    }</span>
 
     public void insertMetrics(Point point){
-<span class="nc" id="L47">        BatchPoints batchPoints = BatchPoints</span>
-<span class="nc" id="L48">                .database(databases.get(0))</span>
-<span class="nc" id="L49">                .build();</span>
-<span class="nc" id="L50">        batchPoints.point(point);</span>
-<span class="nc" id="L51">        influxDB.write(batchPoints);</span>
-<span class="nc" id="L52">    }</span>
+<span class="nc" id="L46">        BatchPoints batchPoints = BatchPoints</span>
+<span class="nc" id="L47">                .database(databases.get(0))</span>
+<span class="nc" id="L48">                .build();</span>
+<span class="nc" id="L49">        batchPoints.point(point);</span>
+<span class="nc" id="L50">        influxDB.write(batchPoints);</span>
+<span class="nc" id="L51">    }</span>
 
-//    
-//    public String streamMetrics(String input){
-//        return null;
-//    }
-
-//    
-//    public boolean deleteMetrics(String metricsName) {
-//        Query query=new Query(&quot;drop series from &quot;+metricsName,databases.get(0));
-//        QueryResult queryResult= influxDB.query(query,TimeUnit.MILLISECONDS);
-//        return !queryResult.hasError();
-//    }
-
-    
     public QueryResult searchMetrics(String metricsName) throws JSONException {
-<span class="nc" id="L68">        Query query=new Query(&quot;select * from &quot;+metricsName,databases.get(0));</span>
-<span class="nc" id="L69">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
-<span class="nc" id="L70">        String timeAdded =queryResult.getResults().get(0).getSeries().get(0).getValues().get(0).get(0).toString();</span>
-//        QueryMapperService queryMapper =new QueryMapperService();
-//        List&lt;HealthMetrics&gt; memoryPointList=queryMapper.healthMapper(queryResult);
-//        String result=&quot;&quot;;
-//        for (HealthMetrics memoryPoint:
-//                memoryPointList) {
-//            result=result.concat(memoryPoint.toString());
-//            result=result.concat(&quot;\n&quot;);
-//        }
-<span class="nc" id="L79">        return queryResult;</span>
+<span class="nc" id="L54">        Query query=new Query(&quot;select * from &quot;+metricsName,databases.get(0));</span>
+<span class="nc" id="L55">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+
+<span class="nc" id="L57">        return queryResult;</span>
     }
 
-    
     public QueryResult queryMetrics(String givenQuery) throws IOException, JSONException {
-<span class="nc" id="L84">        Query query=new Query(givenQuery,databases.get(0));</span>
-<span class="nc" id="L85">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L61">        Query query=new Query(givenQuery,databases.get(0));</span>
+<span class="nc" id="L62">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
 
-<span class="nc" id="L87">        InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();</span>
-<span class="nc" id="L88">        String memoryPointList = resultMapper.toString();</span>
-        //        .toPOJO(queryResult, String.class);
-<span class="nc" id="L90">        String result=&quot;&quot;;</span>
-//        for (MemoryPoint memoryPoint:
-//                memoryPointList) {
-//            result=result.concat(memoryPoint.toString());
-//            result=result.concat(&quot;\n&quot;);
-//        }
-<span class="nc" id="L96">        return queryResult;</span>
+<span class="nc" id="L64">        InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();</span>
+<span class="nc" id="L65">        return queryResult;</span>
     }
 
-    
-    public String getAllMetrics() throws IOException, JSONException {
-<span class="nc" id="L101">        Query query=new Query(&quot;show series&quot;,databases.get(0));</span>
-<span class="nc" id="L102">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
-<span class="nc" id="L103">        return queryResult.getResults().toString();</span>
+    public QueryResult getAllMetrics() throws IOException, JSONException {
+<span class="nc" id="L69">        Query query=new Query(&quot;show series&quot;,databases.get(0));</span>
+<span class="nc" id="L70">        QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L71">        return queryResult;</span>
     }
-
-//    public static String readFileToString(String filePathName) throws IOException {
-//        File dirs = new File(filePathName);
-//        String filePath = dirs.getCanonicalPath();
-//
-//        StringBuilder fileData = new StringBuilder(1000);//Constructs a string buffer with no characters in it and the specified initial capacity
-//        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-//
-//            char[] buf = new char[1024];
-//            int numRead = 0;
-//            while ((numRead = reader.read(buf)) != -1) {
-//                String readData = String.valueOf(buf, 0, numRead);
-//                fileData.append(readData);
-//                buf = new char[1024];
-//            }
-//        }
-//        return fileData.toString();
-//    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

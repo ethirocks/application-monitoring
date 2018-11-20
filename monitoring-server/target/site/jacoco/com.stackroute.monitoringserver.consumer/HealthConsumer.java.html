@@ -21,22 +21,21 @@ public class HealthConsumer implements IConsumer{
 <span class="nc" id="L21">    }</span>
 
     @Override
-    public void consumeMetrics(String url) {
+    public boolean consumeMetrics(String url) {
 <span class="nc" id="L25">        RestTemplate restTemplate = new RestTemplate();</span>
-        //String url = &quot;http://172.23.239.197:8889/health&quot;;
-<span class="nc" id="L27">        ResponseEntity&lt;HealthMetrics&gt; response</span>
-<span class="nc" id="L28">                = restTemplate.getForEntity(url+&quot;/health&quot;, HealthMetrics.class);</span>
-<span class="nc" id="L29">        Logger.getLogger(&quot;health &quot;+response.toString());</span>
-<span class="nc" id="L30">        HealthMetrics healthMetrics= response.getBody();</span>
+<span class="nc" id="L26">        ResponseEntity&lt;HealthMetrics&gt; response</span>
+<span class="nc" id="L27">                = restTemplate.getForEntity(url+&quot;/health&quot;, HealthMetrics.class);</span>
+<span class="nc" id="L28">        Logger.getLogger(&quot;health &quot;+response.toString());</span>
+<span class="nc" id="L29">        HealthMetrics healthMetrics= response.getBody();</span>
         try{
-<span class="nc" id="L32">            Point healthPoint = Point.measurement(&quot;health&quot;)</span>
-<span class="nc" id="L33">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L34">                    .addField(&quot;status&quot;,  healthMetrics.getStatus())</span>
-<span class="nc" id="L35">                    .build();</span>
-<span class="nc" id="L36">            metricsService.insertMetrics(healthPoint);</span>
+<span class="nc" id="L31">            Point healthPoint = Point.measurement(&quot;health&quot;)</span>
+<span class="nc" id="L32">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L33">                    .addField(&quot;status&quot;,  healthMetrics.getStatus())</span>
+<span class="nc" id="L34">                    .build();</span>
+<span class="nc" id="L35">            metricsService.insertMetrics(healthPoint);</span>
         }
-<span class="nc" id="L38">        catch (NullPointerException n){ }</span>
-
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L37">        catch (NullPointerException n){ }</span>
+<span class="nc" id="L38">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

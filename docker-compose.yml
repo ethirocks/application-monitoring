@@ -6,7 +6,7 @@ services:
      - ./data/influxdb:/var/lib/influxdb
    ports:
      - 8086:8086
-   container_name: influx
+   container_name: influxdb
 
  client:
    image: client
@@ -40,3 +40,11 @@ services:
      - 4200
    container_name: angular
 
+ agenttodocker:
+   image:  harsha7890/agenttomonitordocker:v04
+   restart: always
+   network_mode:  host
+   volumes:
+     -  /var/run/docker.sock:/var/run/docker.sock
+   ports:
+     -  9001:9001   

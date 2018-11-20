@@ -1,1 +1,4 @@
+/home/ubuntu/application-monitoring/monitoring-server/src/test/java/com/stackroute/monitoringserver/service/PollingServiceTest.java
+/home/ubuntu/application-monitoring/monitoring-server/src/test/java/com/stackroute/monitoringserver/consumer/HealthConsumerTest.java
+/home/ubuntu/application-monitoring/monitoring-server/src/test/java/com/stackroute/monitoringserver/service/MetricsServiceTest.java
 /home/ubuntu/application-monitoring/monitoring-server/src/test/java/com/stackroute/monitoringserver/AppMonitoringApplicationTests.java

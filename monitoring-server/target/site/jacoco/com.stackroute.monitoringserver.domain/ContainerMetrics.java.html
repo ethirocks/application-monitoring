@@ -3,12 +3,43 @@
 import lombok.Data;
 import org.influxdb.annotation.Measurement;
 
-<span class="nc bnc" id="L6" title="All 30 branches missed.">@Data</span>
+<span class="nc bnc" id="L6" title="All 70 branches missed.">@Data</span>
 @Measurement(name = &quot;container&quot;)
 public class ContainerMetrics {
 <span class="nc" id="L9">    private String container;</span>
-<span class="nc" id="L10">    private String cpu;</span>
-<span class="nc" id="L11">    private ContainerMetricsMemory memory;</span>
+<span class="nc" id="L10">    private String name;</span>
+<span class="nc" id="L11">    private String containerId;</span>
+<span class="nc" id="L12">    private String networkIO;</span>
+<span class="nc" id="L13">    private String blockIO;</span>
+<span class="nc" id="L14">    private String threads;</span>
+<span class="nc" id="L15">    private ContainerMetricsMemory memory;</span>
+<span class="nc" id="L16">    private String cpu;</span>
+//&quot;container&quot;: &quot;acc58a04d788&quot;,
+//        &quot;name&quot;: &quot;agentcontainerdocker_agenttodocker_1&quot;,
+//        &quot;containerId&quot;: &quot;acc58a04d788&quot;,
+//        &quot;networkIO&quot;: &quot;0B / 0B&quot;,
+//        &quot;blockIO&quot;: &quot;34.4MB / 0B&quot;,
+//        &quot;threads&quot;: &quot;54&quot;,
+//        &quot;memory&quot;: {
+//        &quot;raw&quot;: &quot;311.9MiB / 7.698GiB&quot;,
+//                &quot;percent&quot;: &quot;3.96%&quot;
+//    },
+//            &quot;cpu&quot;: &quot;0.26%&quot;
+
+
+//    jarUrl = http://52.66.184.4:8082
+//    containerUrl = &quot;http://172.23.239.222:9001&quot;
+//    cpuCoresInterval = 10000
+//    cpuTempInterval = 10000
+//    cpuUsageInterval = 10000
+//    networkInterval = 10000
+//    threadInterval = 10000
+//    diskInterval = 10000
+//    ramInterval = 10000
+//    healthInterval = 1000
+//    httpInterval = 10000
+//    containerInterval = 10000
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

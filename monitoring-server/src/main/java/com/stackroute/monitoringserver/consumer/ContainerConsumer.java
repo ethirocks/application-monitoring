@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,17 +26,21 @@ public class ContainerConsumer implements IConsumer{
     }
 
     @Override
-    public void consumeMetrics(String url) {
+    public boolean consumeMetrics(String url) throws URISyntaxException, MalformedURLException {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://172.23.239.222:8082/Container";
         ResponseEntity<List<ContainerMetrics>> response = restTemplate.exchange(
-                url+"/metr",
+                new URI(url+"/container/metrics"),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<ContainerMetrics>>(){});
         System.out.println("Container "+response.toString());
         List<ContainerMetrics> containerMetricsList= response.getBody();
         long time=System.currentTimeMillis();
+
+        ResponseEntity<Double> response1 = restTemplate.getForEntity(url + "/container/temperature", Double.class);
+        System.out.println("Container "+response.toString());
+        Double temperature= response1.getBody();
+
         for (ContainerMetrics containerMetrics :
                 containerMetricsList) {
             System.out.println(containerMetrics.toString());
@@ -40,12 +48,18 @@ public class ContainerConsumer implements IConsumer{
                     .time(time, TimeUnit.MILLISECONDS)
                     .tag("containerId",containerMetrics.getContainer())
                     .addField("container",  containerMetrics.getContainer())
+                    .addField("containerName",containerMetrics.getName())
+                    .addField("threads",containerMetrics.getThreads())
+                    .addField("networkIO",containerMetrics.getNetworkIO())
+                    .addField("blockIO",containerMetrics.getBlockIO())
                     .addField("memory_raw",  containerMetrics.getMemory().getRaw())
                     .addField("memory_percent",  containerMetrics.getMemory().getPercent())
                     .addField("cpu",containerMetrics.getCpu())
+                    .addField("cpuTemperature",temperature)
                     .build();
             metricsService.insertMetrics(point);
             System.out.println("point.......    "+point.toString());
         }
+        return true;
     }
 }

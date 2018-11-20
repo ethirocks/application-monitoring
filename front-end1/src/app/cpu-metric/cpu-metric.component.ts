@@ -35,8 +35,13 @@ export class CpuMetricComponent implements OnInit {
 
   ngOnInit() {
 
+<<<<<<< HEAD
     this.atService.getDetails("cputemp").subscribe((data:any) =>{ this.contain = data
       this.res = this.contain.results;
+=======
+    this.atService.getDetails("cputemp").subscribe((data:any) =>{ this.container = data
+      this.res = this.container.results;
+>>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
     });
   }
 }

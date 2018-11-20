@@ -1,0 +1,108 @@
+-------------------------------------------------------------------------------
+Test set: com.stackroute.monitoringserver.service.MetricsServiceTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 1.163 s <<< FAILURE! - in com.stackroute.monitoringserver.service.MetricsServiceTest
+insertMetricsTestFailure(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 1.022 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb: Temporary failure in name resolution
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb: Temporary failure in name resolution
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb: Temporary failure in name resolution
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+searchMetricsTestSuccess(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+getAllMetricsTestSuccess(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+searchMetricsTestFailure(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.009 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+getAllMetricsTestFailure(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.003 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+queryMetricsTestSuccess(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+queryMetricsTestFailure(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+
+insertMetricsTestSuccess(com.stackroute.monitoringserver.service.MetricsServiceTest)  Time elapsed: 0.002 s  <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+Cannot instantiate @InjectMocks field named 'metricsService' of type 'class com.stackroute.monitoringserver.service.MetricsService'.
+You haven't provided the instance at field declaration so I tried to construct the instance.
+However the constructor or the initialization block threw an exception : java.net.UnknownHostException: influxdb
+
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: org.influxdb.InfluxDBIOException: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+Caused by: java.net.UnknownHostException: influxdb
+	at com.stackroute.monitoringserver.service.MetricsServiceTest.setUp(MetricsServiceTest.java:41)
+

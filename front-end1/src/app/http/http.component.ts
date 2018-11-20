@@ -17,8 +17,13 @@ export class HttpComponent implements OnInit {
 
   ngOnInit() {
 
+<<<<<<< HEAD
     this.atService.getDetails("http_requests").subscribe((data:any) =>{ this.http_requests = data
       this.res = this.http_requests.results;
+=======
+    this.atService.getDetails("http_requests").subscribe((data:any) =>{ this.container = data
+      this.res = this.container.results;
+>>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
     });
   }
 

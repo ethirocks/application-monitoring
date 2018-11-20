@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -17,36 +21,46 @@ import java.util.concurrent.TimeUnit;
 public class ContainerConsumer implements IConsumer{
     private MetricsService metricsService;
     @Autowired
-<span class="nc" id="L20">    public ContainerConsumer(MetricsService metricsService) {</span>
-<span class="nc" id="L21">        this.metricsService = metricsService;</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L24">    public ContainerConsumer(MetricsService metricsService) {</span>
+<span class="nc" id="L25">        this.metricsService = metricsService;</span>
+<span class="nc" id="L26">    }</span>
 
     @Override
-    public void consumeMetrics(String url) {
-<span class="nc" id="L26">        RestTemplate restTemplate = new RestTemplate();</span>
-        //String url = &quot;http://172.23.239.222:8082/Container&quot;;
-<span class="nc" id="L28">        ResponseEntity&lt;List&lt;ContainerMetrics&gt;&gt; response = restTemplate.exchange(</span>
-                url+&quot;/metr&quot;,
+    public boolean consumeMetrics(String url) throws URISyntaxException, MalformedURLException {
+<span class="nc" id="L30">        RestTemplate restTemplate = new RestTemplate();</span>
+<span class="nc" id="L31">        ResponseEntity&lt;List&lt;ContainerMetrics&gt;&gt; response = restTemplate.exchange(</span>
+                new URI(url+&quot;/container/metrics&quot;),
                 HttpMethod.GET,
                 null,
-<span class="nc" id="L32">                new ParameterizedTypeReference&lt;List&lt;ContainerMetrics&gt;&gt;(){});</span>
-<span class="nc" id="L33">        System.out.println(&quot;Container &quot;+response.toString());</span>
-<span class="nc" id="L34">        List&lt;ContainerMetrics&gt; containerMetricsList= response.getBody();</span>
-<span class="nc" id="L35">        long time=System.currentTimeMillis();</span>
+<span class="nc" id="L35">                new ParameterizedTypeReference&lt;List&lt;ContainerMetrics&gt;&gt;(){});</span>
+<span class="nc" id="L36">        System.out.println(&quot;Container &quot;+response.toString());</span>
+<span class="nc" id="L37">        List&lt;ContainerMetrics&gt; containerMetricsList= response.getBody();</span>
+<span class="nc" id="L38">        long time=System.currentTimeMillis();</span>
+
+<span class="nc" id="L40">        ResponseEntity&lt;Double&gt; response1 = restTemplate.getForEntity(url + &quot;/container/temperature&quot;, Double.class);</span>
+<span class="nc" id="L41">        System.out.println(&quot;Container &quot;+response.toString());</span>
+<span class="nc" id="L42">        Double temperature= response1.getBody();</span>
+
         for (ContainerMetrics containerMetrics :
-<span class="nc bnc" id="L37" title="All 2 branches missed.">                containerMetricsList) {</span>
-<span class="nc" id="L38">            System.out.println(containerMetrics.toString());</span>
-<span class="nc" id="L39">            Point point = Point.measurement(&quot;Container&quot;)</span>
-<span class="nc" id="L40">                    .time(time, TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L41">                    .tag(&quot;containerId&quot;,containerMetrics.getContainer())</span>
-<span class="nc" id="L42">                    .addField(&quot;container&quot;,  containerMetrics.getContainer())</span>
-<span class="nc" id="L43">                    .addField(&quot;memory_raw&quot;,  containerMetrics.getMemory().getRaw())</span>
-<span class="nc" id="L44">                    .addField(&quot;memory_percent&quot;,  containerMetrics.getMemory().getPercent())</span>
-<span class="nc" id="L45">                    .addField(&quot;cpu&quot;,containerMetrics.getCpu())</span>
-<span class="nc" id="L46">                    .build();</span>
-<span class="nc" id="L47">            metricsService.insertMetrics(point);</span>
-<span class="nc" id="L48">            System.out.println(&quot;point.......    &quot;+point.toString());</span>
-<span class="nc" id="L49">        }</span>
-<span class="nc" id="L50">    }</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                containerMetricsList) {</span>
+<span class="nc" id="L46">            System.out.println(containerMetrics.toString());</span>
+<span class="nc" id="L47">            Point point = Point.measurement(&quot;Container&quot;)</span>
+<span class="nc" id="L48">                    .time(time, TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L49">                    .tag(&quot;containerId&quot;,containerMetrics.getContainer())</span>
+<span class="nc" id="L50">                    .addField(&quot;container&quot;,  containerMetrics.getContainer())</span>
+<span class="nc" id="L51">                    .addField(&quot;containerName&quot;,containerMetrics.getName())</span>
+<span class="nc" id="L52">                    .addField(&quot;threads&quot;,containerMetrics.getThreads())</span>
+<span class="nc" id="L53">                    .addField(&quot;networkIO&quot;,containerMetrics.getNetworkIO())</span>
+<span class="nc" id="L54">                    .addField(&quot;blockIO&quot;,containerMetrics.getBlockIO())</span>
+<span class="nc" id="L55">                    .addField(&quot;memory_raw&quot;,  containerMetrics.getMemory().getRaw())</span>
+<span class="nc" id="L56">                    .addField(&quot;memory_percent&quot;,  containerMetrics.getMemory().getPercent())</span>
+<span class="nc" id="L57">                    .addField(&quot;cpu&quot;,containerMetrics.getCpu())</span>
+<span class="nc" id="L58">                    .addField(&quot;cpuTemperature&quot;,temperature)</span>
+<span class="nc" id="L59">                    .build();</span>
+<span class="nc" id="L60">            metricsService.insertMetrics(point);</span>
+<span class="nc" id="L61">            System.out.println(&quot;point.......    &quot;+point.toString());</span>
+<span class="nc" id="L62">        }</span>
+<span class="nc" id="L63">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

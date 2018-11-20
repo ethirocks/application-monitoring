@@ -1,4 +1,4 @@
-package com.stackroute.monitoringserver.service;
+package com.stackroute.monitoringserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("kafka")
-public class KafkaProducerService {
+public class KafkaController {
 //    @Autowired
 //    private KafkaTemplate<String, T> kafkaTemplate;
 //

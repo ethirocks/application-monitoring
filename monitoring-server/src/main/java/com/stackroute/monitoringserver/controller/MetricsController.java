@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin
@@ -16,7 +17,6 @@ import java.io.IOException;
 public class MetricsController {
 
     private MetricsService metricsService;
-
     @Autowired
     public MetricsController(MetricsService metricsService) {
         this.metricsService = metricsService;
@@ -37,11 +37,11 @@ public class MetricsController {
 
     @GetMapping
     public ResponseEntity getAllMetrics(){
-        String metricsList = null;
+        QueryResult metricsList = null;
         ResponseEntity responseEntity;
         try {
             metricsList = metricsService.getAllMetrics();
-            responseEntity=new ResponseEntity<String>(metricsList, HttpStatus.OK);
+            responseEntity=new ResponseEntity<QueryResult>(metricsList, HttpStatus.OK);
         } catch (IOException e) {
             responseEntity=new ResponseEntity<String>("IO Exception", HttpStatus.CONFLICT);
         } catch (JSONException e) {
@@ -76,6 +76,12 @@ public class MetricsController {
             responseEntity=new ResponseEntity<String>("Json exception", HttpStatus.CONFLICT);
         }
         return responseEntity;
+    }
+
+    @GetMapping("poll")
+    public void poll() throws JSONException, IOException, URISyntaxException {
+        PollingController pollingConfiguration=new PollingController();
+        pollingConfiguration.poll();
     }
 
 //    @DeleteMapping()

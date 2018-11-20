@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KafkaConsumerConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MonitoringServer</a> &gt; <a href="index.source.html" class="el_package">com.stackroute.monitoringserver.configuration</a> &gt; <span class="el_source">KafkaConsumerConfiguration.java</span></div><h1>KafkaConsumerConfiguration.java</h1><pre class="source lang-java linenums">package com.stackroute.monitoringserver.configuration;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@EnableKafka
+@Configuration
+<span class="fc" id="L18">public class KafkaConsumerConfiguration {</span>
+
+    @Bean
+    public ConsumerFactory&lt;String, String&gt; consumerFactory() {
+<span class="nc" id="L22">        Map&lt;String, Object&gt; config = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L24">        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, &quot;localhost:9092&quot;);</span>
+<span class="nc" id="L25">        config.put(ConsumerConfig.GROUP_ID_CONFIG, &quot;group_id&quot;);</span>
+<span class="nc" id="L26">        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);</span>
+<span class="nc" id="L27">        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);</span>
+
+
+<span class="nc" id="L30">        return new DefaultKafkaConsumerFactory&lt;&gt;(config);</span>
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory&lt;String, String&gt; kafkaListenerContainerFactory() {
+<span class="nc" id="L35">        ConcurrentKafkaListenerContainerFactory&lt;String, String&gt; factory = new ConcurrentKafkaListenerContainerFactory();</span>
+<span class="nc" id="L36">        factory.setConsumerFactory(consumerFactory());</span>
+<span class="nc" id="L37">        return factory;</span>
+    }
+
+    @Bean
+    public &lt;T&gt; ConsumerFactory&lt;String, T&gt; metricsConsumerFactory() {
+<span class="nc" id="L42">        Map&lt;String, Object&gt; config = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L44">        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, &quot;localhost:9092&quot;);</span>
+<span class="nc" id="L45">        config.put(ConsumerConfig.GROUP_ID_CONFIG, &quot;group_json&quot;);</span>
+<span class="nc" id="L46">        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);</span>
+<span class="nc" id="L47">        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);</span>
+<span class="nc" id="L48">        return new DefaultKafkaConsumerFactory&lt;&gt;(config, new StringDeserializer(),</span>
+                new JsonDeserializer&lt;T&gt;());
+    }
+
+    @Bean
+    public &lt;T&gt; ConcurrentKafkaListenerContainerFactory&lt;String, T&gt; metricsKafkaListenerFactory() {
+<span class="nc" id="L54">        ConcurrentKafkaListenerContainerFactory&lt;String, T&gt; factory = new ConcurrentKafkaListenerContainerFactory&lt;&gt;();</span>
+<span class="nc" id="L55">        factory.setConsumerFactory(metricsConsumerFactory());</span>
+<span class="nc" id="L56">        return factory;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -29,9 +29,8 @@ public class HttpConsumer implements IConsumer{
     }
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        //URI url = new URI("http://172.23.239.108:8081/httpMetrics");
         ResponseEntity<List<HttpMetrics>> response = restTemplate.exchange(
                 url+"/httpMetrics",
                 HttpMethod.GET,
@@ -71,5 +70,6 @@ public class HttpConsumer implements IConsumer{
         catch (NullPointerException n){
             System.out.println("http null.... "+response.getBody());
         }
+        return true;
     }
 }

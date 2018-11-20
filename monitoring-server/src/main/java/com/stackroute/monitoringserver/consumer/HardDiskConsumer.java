@@ -23,9 +23,8 @@ public class HardDiskConsumer implements IConsumer {
     }
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://172.23.239.197:8889/health";
         ResponseEntity<HealthMetrics> response
                 = restTemplate.getForEntity(url+"/health", HealthMetrics.class);
         HealthMetrics healthMetrics= response.getBody();
@@ -49,5 +48,6 @@ public class HardDiskConsumer implements IConsumer {
         catch (NullPointerException n){
             System.out.println("disk null.... "+healthMetrics);
         }
+        return true;
     }
 }

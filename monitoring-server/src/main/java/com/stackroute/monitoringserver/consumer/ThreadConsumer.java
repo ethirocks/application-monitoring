@@ -25,17 +25,12 @@ public class ThreadConsumer implements IConsumer {
     }
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://172.23.239.67:8081/threads";
         ResponseEntity<ThreadMetrics> response
                 = restTemplate.getForEntity(url+"/threads", ThreadMetrics.class);
         Logger.getLogger("ThreadDetails "+response.toString());
         ThreadMetrics threadMetrics= response.getBody();
-//        Point point = Point.measurement("thread")
-//                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-//                .tag("total_Threads",String.valueOf(threadMetrics.getTotal_Threads()))
-//                  .build();
         try{
             long time=System.currentTimeMillis();
             if (threadMetrics!=null && threadMetrics.getType_Of_threads()!=null){
@@ -53,12 +48,11 @@ public class ThreadConsumer implements IConsumer {
                             .addField("thread_status",threadEntry.getValue().toString())
                             .build();
                     metricsService.insertMetrics(point);
-//                it.remove(); // avoids a ConcurrentModificationException
                 }
             }
         }
         catch (NullPointerException n){ }
-
+        return true;
     }
 
 

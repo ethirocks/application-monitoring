@@ -4,30 +4,13 @@
 import lombok.Data;
 import org.influxdb.annotation.Measurement;
 
-<span class="nc bnc" id="L7" title="All 94 branches missed.">@Data</span>
+import java.util.HashMap;
+
+<span class="nc bnc" id="L9" title="All 14 branches missed.">@Data</span>
 @Measurement(name = &quot;networkMetrics&quot;)
 public class NetworkMetrics {
-    //            linkedHashMap.put(&quot;IPv4addr : &quot;,netIF.getIPv4addr());
-//            linkedHashMap.put(&quot;IPv6addr&quot;,netIF.getIPv6addr());
-//            linkedHashMap.put(&quot;Interface_Name&quot;,netIF.getName());
-//            linkedHashMap.put(&quot;Macaddr&quot;,netIF.getMacaddr());
-//            linkedHashMap.put(&quot;Maximum_Transmission_Unit&quot;,netIF.getMTU());
-//            linkedHashMap.put(&quot;DownLoad_Speed&quot;,download_Speed);
-//            linkedHashMap.put(&quot;Upload_Speed&quot;,upload_Speed);
-//            linkedHashMap.put(&quot;Data_In_Rate&quot;,data_In_Rate);
-//            linkedHashMap.put(&quot;Data_Out_Rate&quot;,data_Out_Rate);
-//            linkedHashMap.put(&quot;Error_In_Rate&quot;,error_In_Rate);
-//            linkedHashMap.put(&quot;Error_Out_Rate&quot;,error_Out_Rate);
-<span class="nc" id="L21">    private String IPv4addr;</span>
-<span class="nc" id="L22">    private String IPv6addr;</span>
-<span class="nc" id="L23">    private String Interface_Name;</span>
-<span class="nc" id="L24">    private String Macaddr;</span>
-<span class="nc" id="L25">    private String Maximum_Transmission_Unit;</span>
-<span class="nc" id="L26">    private String DownLoad_Speed;</span>
-<span class="nc" id="L27">    private String Upload_Speed;</span>
-<span class="nc" id="L28">    private String Data_In_Rate;</span>
-<span class="nc" id="L29">    private String Data_Out_Rate;</span>
-<span class="nc" id="L30">    private String Error_In_Rate;</span>
-<span class="nc" id="L31">    private String Error_Out_Rate;</span>
+///    String number;
+//    NetworkMetricsMap networkMetricsMap;
+<span class="nc" id="L14">    HashMap&lt;String,NetworkMetricsMap&gt; networkMetrics;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -33,16 +33,18 @@ public class PollingService {
         };
     }
 
-    public void start(long interval) {
+    public boolean start(long interval) {
         if(timer != null) {
-            return;
+            return false;
         }
         timer = new Timer();
         timer.scheduleAtFixedRate(this.timerTask, 0, interval);
+        return true;
     }
 
-    public void stop() {
+    public boolean stop() {
         timer.cancel();
         timer = null;
+        return true;
     }
 }

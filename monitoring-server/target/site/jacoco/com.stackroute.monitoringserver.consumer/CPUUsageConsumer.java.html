@@ -23,7 +23,7 @@ public class CPUUsageConsumer implements IConsumer {
 <span class="nc" id="L23">    }</span>
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
 <span class="nc" id="L27">        RestTemplate restTemplate = new RestTemplate();</span>
 <span class="nc" id="L28">        ResponseEntity&lt;Double&gt; response</span>
 <span class="nc" id="L29">                = restTemplate.getForEntity(url+&quot;/cpuusage&quot;, Double.class);</span>
@@ -37,7 +37,7 @@ public class CPUUsageConsumer implements IConsumer {
 <span class="nc" id="L37">            metricsService.insertMetrics(cpuUsagePoint);</span>
         }
 <span class="nc" id="L39">        catch (NullPointerException n){ }</span>
-
-<span class="nc" id="L41">    }</span>
+<span class="nc" id="L40">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
