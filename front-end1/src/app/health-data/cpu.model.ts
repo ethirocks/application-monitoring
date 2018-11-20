@@ -1,6 +1,6 @@
 export interface threadValues{
    
-  
+    time : number;
     temp: number;
     usage: number;
     cores: number;
@@ -21,3 +21,9 @@ export interface CpuDataModel{
     ],
     error: string
   }
+
+  
+export interface LineData{
+  date : number;
+  total : number;
+}

@@ -7,8 +7,6 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 import { Observable } from 'rxjs';
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/delay';
 import { CHARACTERS } from './data1';
 
 @Injectable()
@@ -17,7 +15,7 @@ export class AdventureTimeService {
   constructor(private http: HttpClient) { }
 
 
-  private _url : string = "http://52.66.184.4:8080/api/v1/metrics/";
+  private _url : string = "http://52.66.184.4:8082/api/v1/metrics/";
   data : any = {};
   health : HealthModel;
 
@@ -27,13 +25,6 @@ export class AdventureTimeService {
     console.log("raed"+this.http.get<any>(this._url+metricsName));
       return this.http.get<any>(this._url+metricsName);
   }
-
-//  getFunc(){
-//   var str = this.health.results.map(d3 => d3.series.map(d3 => d3.values));
-//   var ud= str[0][0][0][3];
-//   console.log(ud);
-//   return ud;
-//  } 
 
   getCharacters(): Observable<any[]>{
     return of(CHARACTERS);

@@ -13,7 +13,18 @@ import { CpuCoresComponent } from './cpu-cores/cpu-cores.component';
 import { RamComponent } from './ram/ram.component';
 import { HttpComponent } from './http/http.component';
 import { NetworkComponent } from './network/network.component';
+import { FusionChartsModule } from 'angular-fusioncharts';
 
+// Load FusionCharts
+import * as FusionCharts from 'fusioncharts';
+// Load Charts module
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+// Load fusion theme
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme)
 
 @NgModule({
   declarations: [

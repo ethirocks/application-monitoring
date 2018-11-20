@@ -1,7 +1,7 @@
 <div class="component-style table-component">
 
   <div class="component-tag">
-    <span>app-table</span>
+    <h2>CPU-CORES</h2>
   </div>
 
   <br>
@@ -14,7 +14,7 @@
             {{e}}
           </th>
           <br>
-          <div class="array" *ngFor="let f of d.values">
+          <div class="array" *ngFor="let f of d.values | slice:0:5">
             <table>
               <tr> <td class="results_values" *ngFor="let s of f">{{s}}</td></tr>
                 <br>
