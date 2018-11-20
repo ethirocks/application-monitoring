@@ -17,15 +17,7 @@ export class HttpComponent implements OnInit {
   ngOnInit() {
 
     this.atService.getDetails("http_requests").subscribe((data:any) =>{ this.container = data
-      // console.log("error msg " + this.errorMsg);
-      //  console.log("kkkkk..  "+this.container);
-      // console.log(this.container);
       this.res = this.container.results;
-      //this.myFunction();
-       //this.r = this.res.series;
-      // this.s = this.r.values;
-      
-      //console.log("results"+this.res);
     });
   }
 
