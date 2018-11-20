@@ -16,15 +16,7 @@ export class CpuUsageComponent implements OnInit {
 
   ngOnInit() {
     this.atService.getDetails("cpuusage").subscribe((data:any) =>{ this.container = data
-      // console.log("error msg " + this.errorMsg);
-      //  console.log("usage  "+this.container);
-      // console.log(this.container);
       this.res = this.container.results;
-      //this.myFunction();
-       //this.r = this.res.series;
-      // this.s = this.r.values;
-      
-      //console.log("results"+this.res);
     });
   }
 
