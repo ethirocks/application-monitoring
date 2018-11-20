@@ -17,13 +17,15 @@ export class CpuCoresComponent implements OnInit {
   ngOnInit() {
 
     this.atService.getDetails("cpuCores").subscribe((data:any) =>{ this.container = data
-<<<<<<< HEAD
+      // console.log("error msg " + this.errorMsg);
+      //  console.log("kkkkk..  "+this.container);
+      // console.log(this.container);
       this.res = this.container.results;
-=======
-     
-      this.res = this.container.results;
-     
->>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
+      //this.myFunction();
+       //this.r = this.res.series;
+      // this.s = this.r.values;
+      
+      //console.log("results"+this.res);
     });
   }
 

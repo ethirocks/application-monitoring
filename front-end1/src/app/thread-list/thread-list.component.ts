@@ -25,17 +25,23 @@ export class ThreadListComponent implements OnInit {
   res : any;
 
   ngOnInit() {
+    // this.columns = this.atService.getColumns();
+    // //["name", "age", "species", "occupation"]
+    // this.characters = this.atService.getCharacters();
+    // //all data in mock-data.ts
 
     this.atService.getDetails("thread").subscribe((data:any) =>{ this.thread = data
+      console.log("error msg " + this.errorMsg);
+      console.log("theraasds..  "+this.thread);
+      console.log(this.thread);
       this.res = this.thread.results;
     });
-<<<<<<< HEAD
-}
-=======
 
 
+    //  this.atService.getDetails()
+    //       .pipe(map((data : any) => data.results.values))
+    //       .subscribe((data:any) => this.atService = data)
 
   }
 
->>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
 }
