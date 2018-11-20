@@ -21,9 +21,8 @@ public class HealthConsumer implements IConsumer{
     }
 
     @Override
-    public void consumeMetrics(String url) {
+    public boolean consumeMetrics(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://172.23.239.197:8889/health";
         ResponseEntity<HealthMetrics> response
                 = restTemplate.getForEntity(url+"/health", HealthMetrics.class);
         Logger.getLogger("health "+response.toString());
@@ -36,6 +35,6 @@ public class HealthConsumer implements IConsumer{
             metricsService.insertMetrics(healthPoint);
         }
         catch (NullPointerException n){ }
-
+        return true;
     }
 }

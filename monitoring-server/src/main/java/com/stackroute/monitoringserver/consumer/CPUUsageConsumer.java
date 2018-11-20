@@ -23,7 +23,7 @@ public class CPUUsageConsumer implements IConsumer {
     }
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Double> response
                 = restTemplate.getForEntity(url+"/cpuusage", Double.class);
@@ -37,6 +37,6 @@ public class CPUUsageConsumer implements IConsumer {
             metricsService.insertMetrics(cpuUsagePoint);
         }
         catch (NullPointerException n){ }
-
+        return true;
     }
 }

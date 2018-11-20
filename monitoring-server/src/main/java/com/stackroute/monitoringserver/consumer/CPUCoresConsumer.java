@@ -21,9 +21,8 @@ public class CPUCoresConsumer implements IConsumer {
         }
 
         @Override
-        public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+        public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
             RestTemplate restTemplate = new RestTemplate();
-            //String url = "http://172.23.239.197:8889/health";
             ResponseEntity<Double> response
                     = restTemplate.getForEntity(url + "/cpucores", Double.class);
             Logger.getLogger("cpuCores " + response.toString());
@@ -36,5 +35,6 @@ public class CPUCoresConsumer implements IConsumer {
                 metricsService.insertMetrics(cpuCoresPoint);
             }
             catch (NullPointerException n){}
+            return true;
         }
 }
