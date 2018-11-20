@@ -50,12 +50,12 @@
 	</dependencies>
 
 	<distributionManagement>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>0742930caa80-snapshots</name>
-			<url>http://52.66.184.4:8081/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
+              <snapshotRepository>
+               <id>snapshots</id>
+                 <name>e8c44ebf2442-snapshots</name>
+                 <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+               </snapshotRepository>
+        </distributionManagement>
 
 	<build>
 		<plugins>
