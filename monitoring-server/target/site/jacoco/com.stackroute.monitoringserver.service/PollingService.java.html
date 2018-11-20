@@ -33,17 +33,19 @@ import java.util.TimerTask;
         };
 <span class="nc" id="L34">    }</span>
 
-    public void start(long interval) {
+    public boolean start(long interval) {
 <span class="nc bnc" id="L37" title="All 2 branches missed.">        if(timer != null) {</span>
-<span class="nc" id="L38">            return;</span>
+<span class="nc" id="L38">            return false;</span>
         }
 <span class="nc" id="L40">        timer = new Timer();</span>
 <span class="nc" id="L41">        timer.scheduleAtFixedRate(this.timerTask, 0, interval);</span>
-<span class="nc" id="L42">    }</span>
+<span class="nc" id="L42">        return true;</span>
+    }
 
-    public void stop() {
-<span class="nc" id="L45">        timer.cancel();</span>
-<span class="nc" id="L46">        timer = null;</span>
-<span class="nc" id="L47">    }</span>
+    public boolean stop() {
+<span class="nc" id="L46">        timer.cancel();</span>
+<span class="nc" id="L47">        timer = null;</span>
+<span class="nc" id="L48">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

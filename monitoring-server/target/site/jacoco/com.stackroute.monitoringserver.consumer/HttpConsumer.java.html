@@ -29,48 +29,48 @@ public class HttpConsumer implements IConsumer{
 <span class="nc" id="L29">    }</span>
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
 <span class="nc" id="L33">        RestTemplate restTemplate = new RestTemplate();</span>
-        //URI url = new URI(&quot;http://172.23.239.108:8081/httpMetrics&quot;);
-<span class="nc" id="L35">        ResponseEntity&lt;List&lt;HttpMetrics&gt;&gt; response = restTemplate.exchange(</span>
+<span class="nc" id="L34">        ResponseEntity&lt;List&lt;HttpMetrics&gt;&gt; response = restTemplate.exchange(</span>
                 url+&quot;/httpMetrics&quot;,
                 HttpMethod.GET,
                 null,
-<span class="nc" id="L39">                new ParameterizedTypeReference&lt;List&lt;HttpMetrics&gt;&gt;(){});</span>
+<span class="nc" id="L38">                new ParameterizedTypeReference&lt;List&lt;HttpMetrics&gt;&gt;(){});</span>
 
         try {
-<span class="nc" id="L42">            QueryResult queryResult=metricsService.queryMetrics(&quot;show series&quot;);</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">            for (int i = 0; i &lt; queryResult.getResults().get(0).getSeries().size(); i++) {</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">                if(queryResult.getResults().get(0).getSeries().get(i).getName().equals(&quot;http_requests&quot;)){</span>
-<span class="nc" id="L45">                    metricsService.queryMetrics(&quot;drop measurement http_requests&quot;);</span>
+<span class="nc" id="L41">            QueryResult queryResult=metricsService.queryMetrics(&quot;show series&quot;);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            for (int i = 0; i &lt; queryResult.getResults().get(0).getSeries().size(); i++) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">                if(queryResult.getResults().get(0).getSeries().get(i).getName().equals(&quot;http_requests&quot;)){</span>
+<span class="nc" id="L44">                    metricsService.queryMetrics(&quot;drop measurement http_requests&quot;);</span>
                 }
             }
 
-<span class="nc" id="L49">            System.out.println(&quot;inside http &quot;+response.getBody());</span>
+<span class="nc" id="L48">            System.out.println(&quot;inside http &quot;+response.getBody());</span>
 
-<span class="nc" id="L51">            List&lt;HttpMetrics&gt; httpMetricsList=response.getBody();</span>
+<span class="nc" id="L50">            List&lt;HttpMetrics&gt; httpMetricsList=response.getBody();</span>
             for (HttpMetrics httpMetrics :
-<span class="nc bnc" id="L53" title="All 2 branches missed.">                    httpMetricsList) {</span>
-<span class="nc" id="L54">                org.influxdb.dto.Point point = Point.measurement(&quot;http_requests&quot;)</span>
-<span class="nc" id="L55">                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L56">                        .addField(&quot;RequestCount&quot;,  httpMetrics.getRequestCount())</span>
-<span class="nc" id="L57">                        .addField(&quot;RequestId&quot;,  httpMetrics.getRequestId())</span>
-<span class="nc" id="L58">                        .addField(&quot;RequestMethod&quot;,  httpMetrics.getRequestMethod())</span>
-<span class="nc" id="L59">                        .addField(&quot;RequestUrl&quot;,httpMetrics.getRequestUrl())</span>
-<span class="nc" id="L60">                        .addField(&quot;ResponseStatus&quot;,httpMetrics.getResponseStatus())</span>
-<span class="nc" id="L61">                        .addField(&quot;ResponseTime&quot;,httpMetrics.getResponseTime())</span>
-<span class="nc" id="L62">                        .addField(&quot;ServerName&quot;,httpMetrics.getServerName())</span>
-<span class="nc" id="L63">                        .addField(&quot;ServerPort&quot;,httpMetrics.getServerPort())</span>
-<span class="nc" id="L64">                        .addField(&quot;SessionCreationTime&quot;,httpMetrics.getSessionCreationTime())</span>
-<span class="nc" id="L65">                        .addField(&quot;SessionId&quot;,httpMetrics.getSessionId())</span>
-<span class="nc" id="L66">                        .addField(&quot;SessionLastAccessedTime&quot;,httpMetrics.getSessionLastAccessedTime())</span>
-<span class="nc" id="L67">                        .build();</span>
-<span class="nc" id="L68">                metricsService.insertMetrics(point);</span>
-<span class="nc" id="L69">            }</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">                    httpMetricsList) {</span>
+<span class="nc" id="L53">                org.influxdb.dto.Point point = Point.measurement(&quot;http_requests&quot;)</span>
+<span class="nc" id="L54">                        .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L55">                        .addField(&quot;RequestCount&quot;,  httpMetrics.getRequestCount())</span>
+<span class="nc" id="L56">                        .addField(&quot;RequestId&quot;,  httpMetrics.getRequestId())</span>
+<span class="nc" id="L57">                        .addField(&quot;RequestMethod&quot;,  httpMetrics.getRequestMethod())</span>
+<span class="nc" id="L58">                        .addField(&quot;RequestUrl&quot;,httpMetrics.getRequestUrl())</span>
+<span class="nc" id="L59">                        .addField(&quot;ResponseStatus&quot;,httpMetrics.getResponseStatus())</span>
+<span class="nc" id="L60">                        .addField(&quot;ResponseTime&quot;,httpMetrics.getResponseTime())</span>
+<span class="nc" id="L61">                        .addField(&quot;ServerName&quot;,httpMetrics.getServerName())</span>
+<span class="nc" id="L62">                        .addField(&quot;ServerPort&quot;,httpMetrics.getServerPort())</span>
+<span class="nc" id="L63">                        .addField(&quot;SessionCreationTime&quot;,httpMetrics.getSessionCreationTime())</span>
+<span class="nc" id="L64">                        .addField(&quot;SessionId&quot;,httpMetrics.getSessionId())</span>
+<span class="nc" id="L65">                        .addField(&quot;SessionLastAccessedTime&quot;,httpMetrics.getSessionLastAccessedTime())</span>
+<span class="nc" id="L66">                        .build();</span>
+<span class="nc" id="L67">                metricsService.insertMetrics(point);</span>
+<span class="nc" id="L68">            }</span>
         }
-<span class="nc" id="L71">        catch (NullPointerException n){</span>
-<span class="nc" id="L72">            System.out.println(&quot;http null.... &quot;+response.getBody());</span>
-<span class="nc" id="L73">        }</span>
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L70">        catch (NullPointerException n){</span>
+<span class="nc" id="L71">            System.out.println(&quot;http null.... &quot;+response.getBody());</span>
+<span class="nc" id="L72">        }</span>
+<span class="nc" id="L73">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

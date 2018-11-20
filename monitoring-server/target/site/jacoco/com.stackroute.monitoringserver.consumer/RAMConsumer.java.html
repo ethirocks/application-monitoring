@@ -25,25 +25,25 @@ public class RAMConsumer implements IConsumer {
 <span class="nc" id="L25">    }</span>
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
 <span class="nc" id="L29">        RestTemplate restTemplate = new RestTemplate();</span>
-        //String url = &quot;http://172.23.239.197:8889/health&quot;;
-<span class="nc" id="L31">        ResponseEntity&lt;ArrayList&lt;Long&gt;&gt; response = restTemplate.exchange(</span>
+<span class="nc" id="L30">        ResponseEntity&lt;ArrayList&lt;Long&gt;&gt; response = restTemplate.exchange(</span>
                 url+&quot;/memory&quot;,
                 HttpMethod.GET,
                 null,
-<span class="nc" id="L35">                new ParameterizedTypeReference&lt;ArrayList&lt;Long&gt;&gt;(){});</span>
-<span class="nc" id="L36">        Logger.getLogger(&quot;memory &quot; + response.toString());</span>
-<span class="nc" id="L37">        ArrayList&lt;Long&gt; memory = response.getBody();</span>
+<span class="nc" id="L34">                new ParameterizedTypeReference&lt;ArrayList&lt;Long&gt;&gt;(){});</span>
+<span class="nc" id="L35">        Logger.getLogger(&quot;memory &quot; + response.toString());</span>
+<span class="nc" id="L36">        ArrayList&lt;Long&gt; memory = response.getBody();</span>
         try {
-<span class="nc" id="L39">            Point cpuCoresPoint = Point.measurement(&quot;memory&quot;)</span>
-<span class="nc" id="L40">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L41">                    .addField(&quot;free_physical_memory&quot;, memory.get(1))</span>
-<span class="nc" id="L42">                    .addField(&quot;total_physical_memory&quot;, memory.get(0))</span>
-<span class="nc" id="L43">                    .build();</span>
-<span class="nc" id="L44">            metricsService.insertMetrics(cpuCoresPoint);</span>
+<span class="nc" id="L38">            Point cpuCoresPoint = Point.measurement(&quot;memory&quot;)</span>
+<span class="nc" id="L39">                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L40">                    .addField(&quot;free_physical_memory&quot;, memory.get(1))</span>
+<span class="nc" id="L41">                    .addField(&quot;total_physical_memory&quot;, memory.get(0))</span>
+<span class="nc" id="L42">                    .build();</span>
+<span class="nc" id="L43">            metricsService.insertMetrics(cpuCoresPoint);</span>
         }
-<span class="nc" id="L46">        catch (NullPointerException n){}</span>
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L45">        catch (NullPointerException n){}</span>
+<span class="nc" id="L46">        return true;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin
@@ -16,7 +17,6 @@ import java.io.IOException;
 public class MetricsController {
 
     private MetricsService metricsService;
-
     @Autowired
 <span class="nc" id="L21">    public MetricsController(MetricsService metricsService) {</span>
 <span class="nc" id="L22">        this.metricsService = metricsService;</span>
@@ -37,11 +37,11 @@ public class MetricsController {
 
     @GetMapping
     public ResponseEntity getAllMetrics(){
-<span class="nc" id="L40">        String metricsList = null;</span>
+<span class="nc" id="L40">        QueryResult metricsList = null;</span>
         ResponseEntity responseEntity;
         try {
 <span class="nc" id="L43">            metricsList = metricsService.getAllMetrics();</span>
-<span class="nc" id="L44">            responseEntity=new ResponseEntity&lt;String&gt;(metricsList, HttpStatus.OK);</span>
+<span class="nc" id="L44">            responseEntity=new ResponseEntity&lt;QueryResult&gt;(metricsList, HttpStatus.OK);</span>
 <span class="nc" id="L45">        } catch (IOException e) {</span>
 <span class="nc" id="L46">            responseEntity=new ResponseEntity&lt;String&gt;(&quot;IO Exception&quot;, HttpStatus.CONFLICT);</span>
 <span class="nc" id="L47">        } catch (JSONException e) {</span>
@@ -77,6 +77,12 @@ public class MetricsController {
 <span class="nc" id="L77">        }</span>
 <span class="nc" id="L78">        return responseEntity;</span>
     }
+
+    @GetMapping(&quot;poll&quot;)
+    public void poll() throws JSONException, IOException, URISyntaxException {
+<span class="nc" id="L83">        PollingController pollingConfiguration=new PollingController();</span>
+<span class="nc" id="L84">        pollingConfiguration.poll();</span>
+<span class="nc" id="L85">    }</span>
 
 //    @DeleteMapping()
 //    public ResponseEntity deleteMetrics(String metricsName){

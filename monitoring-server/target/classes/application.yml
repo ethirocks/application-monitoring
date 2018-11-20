@@ -8,7 +8,7 @@ spring:
         password: password
         database: metricsData
 
-clientUrl: http://localhost:8089
+clientUrl: http://client:8082
 containerUrl: "http://172.23.239.222:9001"
 cpuCoresInterval: 10000
 cpuTempInterval: 10000

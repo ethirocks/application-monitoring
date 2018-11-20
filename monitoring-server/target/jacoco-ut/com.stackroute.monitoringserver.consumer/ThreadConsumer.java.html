@@ -25,41 +25,35 @@ public class ThreadConsumer implements IConsumer {
 <span class="nc" id="L25">    }</span>
 
     @Override
-    public void consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
 <span class="nc" id="L29">        RestTemplate restTemplate = new RestTemplate();</span>
-        //String url = &quot;http://172.23.239.67:8081/threads&quot;;
-<span class="nc" id="L31">        ResponseEntity&lt;ThreadMetrics&gt; response</span>
-<span class="nc" id="L32">                = restTemplate.getForEntity(url+&quot;/threads&quot;, ThreadMetrics.class);</span>
-<span class="nc" id="L33">        Logger.getLogger(&quot;ThreadDetails &quot;+response.toString());</span>
-<span class="nc" id="L34">        ThreadMetrics threadMetrics= response.getBody();</span>
-//        Point point = Point.measurement(&quot;thread&quot;)
-//                .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
-//                .tag(&quot;total_Threads&quot;,String.valueOf(threadMetrics.getTotal_Threads()))
-//                  .build();
+<span class="nc" id="L30">        ResponseEntity&lt;ThreadMetrics&gt; response</span>
+<span class="nc" id="L31">                = restTemplate.getForEntity(url+&quot;/threads&quot;, ThreadMetrics.class);</span>
+<span class="nc" id="L32">        Logger.getLogger(&quot;ThreadDetails &quot;+response.toString());</span>
+<span class="nc" id="L33">        ThreadMetrics threadMetrics= response.getBody();</span>
         try{
-<span class="nc" id="L40">            long time=System.currentTimeMillis();</span>
-<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (threadMetrics!=null &amp;&amp; threadMetrics.getType_Of_threads()!=null){</span>
-<span class="nc" id="L42">                Iterator it = threadMetrics.getType_Of_threads().entrySet().iterator();</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">                while (it.hasNext()) {</span>
-<span class="nc" id="L44">                    Map.Entry threadEntry = (Map.Entry)it.next();</span>
-<span class="nc" id="L45">                    Thread thread= (Thread) threadEntry.getKey();</span>
-<span class="nc" id="L46">                    Point point = Point.measurement(&quot;thread&quot;)</span>
-<span class="nc" id="L47">                            .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
-<span class="nc" id="L48">                            .tag(&quot;timeStamp&quot;,String.valueOf(time))</span>
-<span class="nc" id="L49">                            .tag(&quot;total_Threads&quot;,String.valueOf(threadMetrics.getTotal_Threads()))</span>
-<span class="nc" id="L50">                            .addField(&quot;thread_name&quot;,thread.getName())</span>
-<span class="nc" id="L51">                            .addField(&quot;thread_priority&quot;,thread.getPriority())</span>
-<span class="nc" id="L52">                            .addField(&quot;thread_group&quot;,thread.getThreadGroup().getName())</span>
-<span class="nc" id="L53">                            .addField(&quot;thread_status&quot;,threadEntry.getValue().toString())</span>
-<span class="nc" id="L54">                            .build();</span>
-<span class="nc" id="L55">                    metricsService.insertMetrics(point);</span>
-//                it.remove(); // avoids a ConcurrentModificationException
-<span class="nc" id="L57">                }</span>
+<span class="nc" id="L35">            long time=System.currentTimeMillis();</span>
+<span class="nc bnc" id="L36" title="All 4 branches missed.">            if (threadMetrics!=null &amp;&amp; threadMetrics.getType_Of_threads()!=null){</span>
+<span class="nc" id="L37">                Iterator it = threadMetrics.getType_Of_threads().entrySet().iterator();</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                while (it.hasNext()) {</span>
+<span class="nc" id="L39">                    Map.Entry threadEntry = (Map.Entry)it.next();</span>
+<span class="nc" id="L40">                    Thread thread= (Thread) threadEntry.getKey();</span>
+<span class="nc" id="L41">                    Point point = Point.measurement(&quot;thread&quot;)</span>
+<span class="nc" id="L42">                            .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)</span>
+<span class="nc" id="L43">                            .tag(&quot;timeStamp&quot;,String.valueOf(time))</span>
+<span class="nc" id="L44">                            .tag(&quot;total_Threads&quot;,String.valueOf(threadMetrics.getTotal_Threads()))</span>
+<span class="nc" id="L45">                            .addField(&quot;thread_name&quot;,thread.getName())</span>
+<span class="nc" id="L46">                            .addField(&quot;thread_priority&quot;,thread.getPriority())</span>
+<span class="nc" id="L47">                            .addField(&quot;thread_group&quot;,thread.getThreadGroup().getName())</span>
+<span class="nc" id="L48">                            .addField(&quot;thread_status&quot;,threadEntry.getValue().toString())</span>
+<span class="nc" id="L49">                            .build();</span>
+<span class="nc" id="L50">                    metricsService.insertMetrics(point);</span>
+<span class="nc" id="L51">                }</span>
             }
         }
-<span class="nc" id="L60">        catch (NullPointerException n){ }</span>
-
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L54">        catch (NullPointerException n){ }</span>
+<span class="nc" id="L55">        return true;</span>
+    }
 
 
 }
