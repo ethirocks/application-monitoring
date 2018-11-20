@@ -15,7 +15,7 @@ export class AdventureTimeService {
   constructor(private http: HttpClient) { }
 
 
-  private _url : string = "http://52.66.184.4:8082/api/v1/metrics/";
+  private _url : string = "http://52.66.184.4:8080/api/v1/metrics/";
   data : any = {};
   health : HealthModel;
 
