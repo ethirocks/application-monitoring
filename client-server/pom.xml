@@ -17,13 +17,7 @@
     <version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<!--<parent>-->
-		<!--<groupId>com.stackroute</groupId>-->
-		<!--<artifactId>application-monitoring</artifactId>-->
-		<!--<version>0.0.1-SNAPSHOT</version>-->
-		<!--<relativePath>../pom.xml</relativePath>-->
-	<!--</parent>-->
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
