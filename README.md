@@ -1,6 +1,7 @@
 <<<<<MonitorHub>>>>>
 To start monitoring your application (here a spring-boot application) following needs to be done:
 > Add this agent as a dependency in your pom.xml file for maven dependency
+
 					<dependency>
 			         <groupId>com.stackroute</groupId>
 						<artifactId>agent</artifactId>
