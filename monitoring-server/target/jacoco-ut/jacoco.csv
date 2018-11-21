@@ -26,7 +26,7 @@ MonitoringServer,com.stackroute.monitoringserver.consumer,HealthConsumer,58,0,0,
 MonitoringServer,com.stackroute.monitoringserver.consumer,RAMConsumer,71,0,0,0,15,0,2,0,2,0
 MonitoringServer,com.stackroute.monitoringserver.consumer,NetworkConsumer,142,0,2,0,34,0,3,0,2,0
 MonitoringServer,com.stackroute.monitoringserver.consumer,ContainerConsumer.new ParameterizedTypeReference() {...},6,0,0,0,1,0,1,0,1,0
-MonitoringServer,com.stackroute.monitoringserver.service,MetricsService,143,13,4,0,29,3,6,1,4,1
+MonitoringServer,com.stackroute.monitoringserver.service,MetricsService,149,7,4,0,30,2,6,1,4,1
 MonitoringServer,com.stackroute.monitoringserver.service,PollingService,39,0,2,0,11,0,5,0,4,0
 MonitoringServer,com.stackroute.monitoringserver.service,PollingService.new TimerTask() {...},31,0,0,0,10,0,2,0,2,0
 MonitoringServer,com.stackroute.monitoringserver.configuration,KakfaProducerConfiguration,30,3,0,0,6,1,2,1,2,1
