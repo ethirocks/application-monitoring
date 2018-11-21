@@ -32,16 +32,6 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.cloud</groupId>-->
-        <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-        <!--<version>2.0.1.RELEASE</version>-->
-        <!--</dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -75,7 +65,6 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.3.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
@@ -108,7 +97,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.21.0</version>
                 <configuration><testFailureIgnore>true</testFailureIgnore></configuration>
-                <!--<type>maven-plugin</type>-->
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -135,19 +123,12 @@
                             <goal>report</goal>
                         </goals>
                         <configuration>
-                            <!-- Sets the path to the file which contains the execution data. -->
 
                             <dataFile>target/jacoco.exec</dataFile>
-                            <!-- Sets the output directory for the code coverage report. -->
                             <outputDirectory>target/jacoco-ut</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
-                <!--<configuration>-->
-                <!--<systemPropertyVariables>-->
-                <!--<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>-->
-                <!--</systemPropertyVariables>-->
-                <!--</configuration>-->
             </plugin>
 
         </plugins>
