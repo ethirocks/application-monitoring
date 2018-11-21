@@ -16,9 +16,14 @@ import java.net.URISyntaxException;
 @SpringBootApplication
 public class MonitoringServerApplication {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws JSONException, IOException, URISyntaxException {
 
         SpringApplication.run(MonitoringServerApplication.class, args);
+        MetricsService metricsService= new MetricsService();
+        IConsumer httpConsumer=new HttpConsumer(metricsService);
+        PollingService httpPoll=new PollingService();
+        httpPoll.setTimerTask(httpConsumer,"http://52.66.184.4:8082");
+        httpPoll.start(4000);
 
     }
 }

@@ -38,12 +38,12 @@ public class HttpConsumer implements IConsumer{
                 new ParameterizedTypeReference<List<HttpMetrics>>(){});
 
         try {
-            QueryResult queryResult=metricsService.queryMetrics("show series");
-            for (int i = 0; i < queryResult.getResults().get(0).getSeries().size(); i++) {
-                if(queryResult.getResults().get(0).getSeries().get(i).getName().equals("http_requests")){
-                    metricsService.queryMetrics("drop measurement http_requests");
-                }
-            }
+//            QueryResult queryResult=metricsService.queryMetrics("show series");
+//            for (int i = 0; i < queryResult.getResults().get(0).getSeries().size(); i++) {
+//                if(queryResult.getResults().get(0).getSeries().get(i).getName().equals("http_requests")){
+//                    metricsService.queryMetrics("drop measurement http_requests");
+//                }
+//            }
 
             System.out.println("inside http "+response.getBody());
 
