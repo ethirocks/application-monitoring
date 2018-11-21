@@ -8,14 +8,14 @@ services:
      - 8086:8086
    container_name: influxdb
 
- client:
-   image: client
-   build: client/.
+ client-server:
+   image: client-server
+   build: client-server/.
    ports:
      - 8082:8082
    expose:
      - 8082
-   container_name: client
+   container_name: client-server
 
  monitoring-server:
    image:  monitoring-server
@@ -25,15 +25,15 @@ services:
    container_name:  monitoring-server
    depends_on:
      -  influxdb
-     -  client
+     -  client-server
    ports:
      -  8080:8080
    expose:
      -  8080
 
  angular:
-   image: front-end1
-   build: front-end1/.
+   image: app-monitor-ui
+   build: app-monitor-ui/.
    ports: 
      - 4200:4200
    expose: 

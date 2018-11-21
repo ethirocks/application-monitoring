@@ -25,7 +25,7 @@ public class MetricsService{
 
 <span class="fc" id="L26">    public MetricsService() throws IOException, JSONException, URISyntaxException {</span>
 
-<span class="nc" id="L28">        influxDB = InfluxDBFactory.connect(&quot;http://influxdb:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
+<span class="fc" id="L28">        influxDB = InfluxDBFactory.connect(&quot;http://influxdb:8086&quot;,&quot;tanu&quot;,&quot;password&quot;);</span>
 <span class="nc" id="L29">        Pong response = this.influxDB.ping();</span>
 <span class="nc bnc" id="L30" title="All 2 branches missed.">        if (response.getVersion().equalsIgnoreCase(&quot;unknown&quot;)) {</span>
 <span class="nc" id="L31">            log.error(&quot;Error pinging server.&quot;);</span>

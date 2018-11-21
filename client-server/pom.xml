@@ -49,8 +49,6 @@
 		</dependency>
 	</dependencies>
 
-<<<<<<< HEAD
-=======
 	<distributionManagement>
               <snapshotRepository>
                <id>snapshots</id>
@@ -58,7 +56,6 @@
                  <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
                </snapshotRepository>
         </distributionManagement>
->>>>>>> 43e94e3a0bcfdd3c4a3fc814337586a2a947fdee
 
 	<build>
 		<plugins>
