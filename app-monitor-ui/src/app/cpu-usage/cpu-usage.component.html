@@ -1,0 +1,35 @@
+<!-- <div #chart id="chart" (window:resize)="onResize($event)"></div> -->
+
+
+<div class="component-style table-component">
+
+  <div class="component-tag">
+    <h2>CPU-USAGE</h2>
+  </div>
+
+  <br>
+
+  <table>
+    <tr>
+      <div *ngFor="let c of res">
+        <div *ngFor="let d of c.series">
+          <th class = "head" *ngFor="let e of d.columns">
+            {{e}}
+          </th>
+          <br>
+          <div class="array" *ngFor="let f of d.values | slice:0:5">
+            <table>
+              <tr> <td class="results_values" *ngFor="let s of f">{{s}}</td></tr>
+                <br>
+            </table>
+          </div>
+        </div>
+      </div>
+    </tr>
+    <tr class="component-style table-row-component" *ngFor="let ch of characters | async" app-table-row [character]="ch" [columns]="columns">
+    </tr>
+    <!-- <app-table-row-incorrect *ngFor="let ch of characters | async" [ch]="ch" [keys]="columns"></app-table-row-incorrect> -->
+  </table>
+</div>
+
+
