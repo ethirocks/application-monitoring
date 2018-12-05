@@ -58,10 +58,6 @@ services:
     restart: always
     container_name: zuul-container
   #  network_mode: host
-    depends_on:
-    - influxdb
-    - eureka
-    - config-server
     ports:
     - 9008:9008
     expose:
