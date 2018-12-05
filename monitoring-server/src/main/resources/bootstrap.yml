@@ -1,0 +1,55 @@
+server:
+    port: 8188
+    
+spring:
+    application:
+     name: monitoring-server
+    cloud:
+     config:
+      uri: http://config-server:8891 
+   
+#eureka:
+#    client:
+#        serviceUrl:
+#            defaultZone: http://eureka:8095/eureka/
+#        register-with-eureka: true
+#        fetch-registry: true
+      
+#spring:
+#    application:
+#     name: monitoring-server
+#    cloud:
+#     config:
+#      uri: http://config-server:8891
+    
+
+#    application:
+#        name: application
+#    cloud:
+#      config:
+#        url: 172.23.239.222:8891
+#management:
+#  security:
+#    enabled: false
+
+#clientUrl: http://client-server:8082
+#containerUrl: http://agenttodocker:9001
+#warUrl: http://war-client:8081
+#
+#cpuCoresInterval: 10000
+#cpuTempInterval: 10000
+#cpuUsageInterval: 10000
+#networkInterval: 10000
+#threadInterval: 10000
+#diskInterval: 10000
+#ramInterval: 10000
+#healthInterval: 1000
+#httpInterval: 10000
+#containerInterval: 10000
+#
+#warCpuCoresInterval: 10000
+#warCpuTempInterval: 10000
+#warCpuUsageInterval: 10000
+#warNetworkInterval: 10000
+#warThreadInterval: 10000
+#warRamInterval: 10000

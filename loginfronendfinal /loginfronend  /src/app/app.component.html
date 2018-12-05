@@ -1,0 +1,17 @@
+<div class="container">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+          <li><a class="logo" routerLink="home"><img src="src/assets/img/logo.png" height="50" width="50"></a></li>
+        <div class="menubar">
+          <li><a class="logo" routerLink="home">MonitorHub</a></li>
+        <li><a class="nav-link" routerLink="logout">Logout</a></li>
+        <li><a class="nav-link" routerLink="auth/login">Login</a></li>
+        <!-- <li><a class="nav-link" routerLink="dashboard">Dashboard</a></li> -->
+        </div>
+      </ul>
+    </div>
+  </nav>
+    <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

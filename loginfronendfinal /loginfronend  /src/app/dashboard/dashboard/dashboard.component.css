@@ -1,0 +1,22 @@
+.application{
+    margin-top:15vh;
+    display: flex;
+    justify-content: center;
+}
+.content1{
+    display: flex;
+    margin-left: 10vw;
+    
+}
+.card2{
+    text-align:center;
+}
+.card3{
+
+    text-align:right;
+    
+}
+.content3{
+    margin-right: 10vw;;
+    
+}

@@ -1,0 +1,182 @@
+http - metrics - format
+
+//    {
+//        "name":"http.server.requests",
+//        "description":null,
+//        "baseUnit":"milliseconds",
+//        "measurements":[{"statistic":"COUNT","value":0.0},
+//                        {"statistic":"TOTAL_TIME","value":0.0},
+//                        {"statistic":"MAX","value":20.05443}],
+//        "availableTags":[{"tag":"exception","values":["None"]},
+//                         {"tag":"method","values":["GET"]},
+//                         {"tag":"uri","values":["/actuator/metrics/{requiredMetricName}","/actuator/metrics"]},
+//                         {"tag":"outcome","values":["CLIENT_ERROR","SUCCESS"]},
+//                         {"tag":"status","values":["404","200"]}]
+//    }
+...........................................................................................................
+Point in influx
+
+@Data
+@Measurement(name = "memory")
+public class MemoryPoint {
+
+    @Column(name = "time")
+    private Instant time;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "free")
+    private Long free;
+
+    @Column(name = "used")
+    private Long used;
+
+    @Column(name = "buffer")
+    private Long buffer;
+}
+
+............................................................................................................
+
+polling in main
+
+//        MetricsService metricsService=new MetricsService();
+//
+//        //CPU Cores
+//        IConsumer cpuCoreConsumer=new CPUCoresConsumer(metricsService);
+//        PollingService cpuCoresPoll=new PollingService();
+//    //    cpuCoresPoll.setTimerTask(cpuCoreConsumer,this.url);
+//        cpuCoreConsumer.consumeMetrics("http://localhost:8089");
+//
+//        //ram
+//        IConsumer ramConsumer=new RAMConsumer(metricsService);
+//        PollingService ramPoll=new PollingService();
+//        ramPoll.setTimerTask(ramConsumer,"http://localhost:8089");
+//        ramPoll.start(20000);
+//
+//        //Http
+//        IConsumer httpConsumer=new HttpConsumer(metricsService);
+//        PollingService httpPoll=new PollingService();
+//        httpPoll.setTimerTask(httpConsumer,"http://localhost:8089");
+//        httpPoll.start(10000);
+//
+//        //health
+//        IConsumer healthConsumer=new HealthConsumer(metricsService);
+//        PollingService healthPoll=new PollingService();
+//        healthPoll.setTimerTask(healthConsumer,"http://localhost:8089");
+//        healthPoll.start(1000);
+//
+//        //disk
+//        IConsumer diskConsumer=new HardDiskConsumer(metricsService);
+//        PollingService diskPoll=new PollingService();
+//        diskPoll.setTimerTask(diskConsumer,"http://localhost:8089");
+//        diskPoll.start(20000);
+//
+//
+//        //CPU Usage
+//        IConsumer cpuUsageConsumer=new CPUUsageConsumer(metricsService);
+//        PollingService cpuUsagePoll=new PollingService();
+//        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://localhost:8089");
+//        cpuUsagePoll.start(20000);
+//
+//        //CPU Temp
+//        IConsumer cpuTempConsumer=new CPUTempConsumer(metricsService);
+//        PollingService cpuTempPoll=new PollingService();
+//        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://localhost:8089");
+//        cpuTempPoll.start(20000);
+//
+//
+////        //container
+////        IConsumer containerConsumer=new ContainerConsumer(metricsService);
+////
+////        containerConsumer.consumeMetrics("http:172.23.239.222:9001");
+//
+//        //thread
+//        IConsumer threadConsumer=new ThreadConsumer(metricsService);
+//        PollingService threadPoll=new PollingService();
+//        threadPoll.setTimerTask(threadConsumer,"http://localhost:8089");
+//        threadPoll.start(10000);
+//
+//        //network
+//        IConsumer networkConsumer=new NetworkConsumer(metricsService);
+//        PollingService networkPoll=new PollingService();
+//        networkPoll.setTimerTask(networkConsumer,"http://localhost:8089");
+//        networkPoll.start(10000);
+
+.....................................................
+
+kjafka consumer code
+
+//package com.monitoringserver.monitoringserver.consumer;
+//
+//import MetricsService;
+//import Metrics;
+//import org.springframework.kafka.annotation.KafkaListener;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.logging.Logger;
+//
+//@Service
+//public class KafkaConsumer {
+//    private MetricsService metricsService;
+//
+//    public KafkaConsumer(MetricsService metricsService) {
+//        this.metricsService=metricsService;
+//    }
+//
+//    String input;
+//
+//    @KafkaListener(topics = "Hello-Kafka", groupId = "group_id")
+//    public void consume(String message) {
+//        this.input=message;
+//        Logger.getLogger("Consumed message: " + message);
+//        String response=metricsService.streamMetrics(message);
+//        Logger.getLogger("response message: " + response);
+//    }
+//
+//    @KafkaListener(topics = "Hello-Kafka-Json", groupId = "group_json",
+//            containerFactory = "metricsKafkaListenerFactory")
+//    public void consumeJson(Metrics metrics) {
+//        Logger.getLogger("Consumed JSON Message: " + metrics.toString());
+//    }
+//}
+
+
+
+......................................................................................
+
+       //WarCpu Cores
+        IConsumer cpuCoreConsumer=new WarCpuCoresConsumer(metricsService);
+        PollingService cpuCoresPoll=new PollingService();
+        cpuCoresPoll.setTimerTask(cpuCoreConsumer,"http://172.23.239.155:8081");
+        cpuCoresPoll.start(10000);
+
+        //ram
+        IConsumer ramConsumer=new WarRAMConsumer(metricsService);
+        PollingService ramPoll=new PollingService();
+        ramPoll.setTimerTask(ramConsumer,"http://172.23.239.155:8081");
+        ramPoll.start(20000);
+
+        //WarCpu Usage
+        IConsumer cpuUsageConsumer=new WarCpuUsageConsumer(metricsService);
+        PollingService cpuUsagePoll=new PollingService();
+        cpuUsagePoll.setTimerTask(cpuUsageConsumer,"http://172.23.239.155:8081");
+        cpuUsagePoll.start(20000);
+
+        //WarCpu Temp
+        IConsumer cpuTempConsumer=new WarCpuTempConsumer(metricsService);
+        PollingService cpuTempPoll=new PollingService();
+        cpuTempPoll.setTimerTask(cpuTempConsumer,"http://172.23.239.155:8081");
+        cpuTempPoll.start(20000);
+
+        //thread
+        IConsumer threadConsumer=new WarThreadConsumer(metricsService);
+        PollingService threadPoll=new PollingService();
+        threadPoll.setTimerTask(threadConsumer,"http://172.23.239.155:8081");
+        threadPoll.start(10000);
+
+        //network
+        IConsumer networkConsumer=new WarNetworkConsumer(metricsService);
+        PollingService networkPoll=new PollingService();
+        networkPoll.setTimerTask(networkConsumer,"http://172.23.239.155:8081");
+        networkPoll.start(10000);

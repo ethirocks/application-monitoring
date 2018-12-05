@@ -1,0 +1,248 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    hostname: zookeeper
+  #  network_mode:  host
+    ports:
+    - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  #  restart: always
+
+  kafka:
+    image: wurstmeister/kafka:0.10.2.0
+    container_name: kafka
+    ports:
+    - "9092:9092"
+  #  network_mode:  host
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      #KAFKA_CREATE_TOPICS: "test5:1:1"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+    - zookeeper
+   # restart: always
+
+  eureka:
+    image: eureka:v1
+    build: eureka-registry/
+ #   network_mode:  host
+   # restart: always
+    container_name: eureka-container
+#    network_mode: host
+    ports:
+    - 8095:8095
+  
+
+  config-server:
+    image: config-server:v1
+    build: config-server/
+   # restart: always
+    container_name: config-container
+#    network_mode: host
+    depends_on:
+     - eureka
+    ports:
+     - 8891:8891
+  
+
+  gateway:
+    image: zuulgateway:v1
+    build: apigateway-server/
+    restart: always
+    container_name: zuul-container
+  #  network_mode: host
+    depends_on:
+    - influxdb
+    - eureka
+    - config-server
+    ports:
+    - 9008:9008
+    expose:
+    - 9008
+
+  influxdb:
+   image: influxdb:0.13
+ #  network_mode:  host
+   volumes:
+     - ../data/influxdb:/var/lib/influxdb
+   ports:
+     - 8086:8086
+   container_name: influxdb
+
+  client-server:
+   image: client-server
+   build: client-server/.
+  # network_mode:  host
+   depends_on:
+     - eureka
+     - config-server
+   ports:
+     - 8082:8082
+   expose:
+     - 8082
+   container_name: client-server
+   restart: always
+
+  monitoring-server:
+   image:  monitoring-server
+   build:  monitoring-server/.
+   restart:  always
+ #  network_mode:  host
+   container_name:  monitoring-server
+   depends_on:
+     -  influxdb
+     -  client-server
+     -  eureka
+     -  config-server
+#     -  user-authentication
+   ports:
+     -  8188:8188
+ 
+
+  sampling-server:
+    image: sampling-server
+    build: samplingserver/.
+    restart: always
+  #  network_mode:  host
+    container_name: sampling-server
+    depends_on:
+      - monitoring-server
+      - eureka
+      - config-server
+    ports:
+      - 8084:8084
+    expose:
+      - 8084
+
+  alert-manager:
+    image: alert-manager
+    build: alert-manager/.
+  #  network_mode:  host
+    depends_on:
+      - influxdb
+      - monitoring-server
+      - eureka
+      - config-server
+      - sampling-server
+      - kafka
+    ports:
+      - 8087:8087
+    expose:
+      - 8087
+    container_name: alert-manager
+
+  notification-server:
+    image: notification-server
+    build: notificationServer/.
+   # network_mode:  host
+    depends_on:
+      - alert-manager
+      - eureka
+      - config-server
+      - kafka
+      - mongodb
+    ports:
+      - 8083:8083
+    expose:
+      - 8083
+    container_name: notification-server
+
+  user-authentication:
+    image: user-authentication
+    build: userAuthentication/.
+   # network_mode: host
+    depends_on:
+      - eureka
+      - config-server
+      - mysql
+      - kafka
+    ports:
+      - 8088:8088
+    expose:
+      - 8088
+    container_name: user-authentication
+
+  user-profile:
+    image: user-profile
+    build: userprofile/.
+    depends_on:
+    - eureka
+    - config-server
+    - mongodb
+    ports:
+    - 9095:9095
+    expose:
+    - 9095
+    container_name: user-profile
+
+  dashboard:
+    image: dashboard
+    build: dashboard/.
+    depends_on:
+    - eureka
+    - config-server
+    - mongodb
+    - user-authentication
+    ports:
+    - 8094:8094
+    expose:
+    - 8094
+    container_name: dashboard
+
+  war-client:
+    image: war-client
+    build: warclient/.
+    ports:
+      - 8085:8080
+    expose:
+      - 8085
+    container_name: war-client
+
+  mongodb:
+    image: mongo
+    ports:
+    - 27017:27017
+    container_name: mongo
+#    network_mode: host
+    volumes:
+    - ../data/mongodb:/var/lib/mongodb
+
+
+  mysql:
+    image: mysql:5.7
+    command: "--innodb_use_native_aio=0"
+    container_name: mysql
+ #   network_mode: host
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "12345"
+      MYSQL_DATABASES: login
+#    volumes:
+#    - ../data/mysql:/var/lib/mysql
+
+  angular:
+   image: app-monitor-ui
+   build: front-end1/.
+ #  network_mode:  host
+   ports:
+     - 4200:4200
+   expose:
+     - 4200
+   container_name: angular_graph
+
+  agenttodocker:
+   image:  harsha7890/agenttomonitordocker:v06
+   restart: always
+  # network_mode:  host
+   volumes:
+     -  /var/run/docker.sock:/var/run/docker.sock
+   ports:
+     -  9001:9001
