@@ -1,4 +1,4 @@
-FROM openjdk:10-jdk
+FROM openjdk:8
 
 ADD ./target/apigateway-server-0.0.1-SNAPSHOT.jar /usr/app/apigateway-server-0.0.1-SNAPSHOT.jar
 

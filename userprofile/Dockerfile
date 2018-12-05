@@ -4,7 +4,7 @@ ADD ./target/userprofile-0.0.1-SNAPSHOT.jar     /usr/src/userprofile-0.0.1-SNAPS
 
 
 # We state that we want to open port 9095 on the container
-EXPOSE 9095
+#EXPOSE 9095
 
 WORKDIR usr/src
 
