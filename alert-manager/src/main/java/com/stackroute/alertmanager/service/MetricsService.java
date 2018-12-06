@@ -14,7 +14,6 @@ import org.influxdb.impl.InfluxDBResultMapper;
 import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
-import static org.apache.kafka.common.requests.FetchMetadata.log;
 
 @Service
 public class MetricsService{
@@ -27,7 +26,6 @@ public class MetricsService{
         influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
-            log.error("Error pinging server.");
         }
         if (!influxDB.describeDatabases().contains("samplingMetrics")) {
             influxDB.query(new Query("create database samplingMetrics","_internal"),TimeUnit.MILLISECONDS);
