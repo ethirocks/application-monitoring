@@ -36,20 +36,20 @@ spring:
 #containerUrl: http://agenttodocker:9001
 #warUrl: http://war-client:8081
 #
-#cpuCoresInterval: 10000
-#cpuTempInterval: 10000
-#cpuUsageInterval: 10000
-#networkInterval: 10000
-#threadInterval: 10000
-#diskInterval: 10000
-#ramInterval: 10000
-#healthInterval: 1000
-#httpInterval: 10000
-#containerInterval: 10000
-#
-#warCpuCoresInterval: 10000
-#warCpuTempInterval: 10000
-#warCpuUsageInterval: 10000
-#warNetworkInterval: 10000
-#warThreadInterval: 10000
-#warRamInterval: 10000
+cpuCoresInterval: 10000
+cpuTempInterval: 10000
+cpuUsageInterval: 10000
+networkInterval: 10000
+threadInterval: 10000
+diskInterval: 10000
+ramInterval: 10000
+healthInterval: 1000
+httpInterval: 10000
+containerInterval: 10000
+
+warCpuCoresInterval: 10000
+warCpuTempInterval: 10000
+warCpuUsageInterval: 10000
+warNetworkInterval: 10000
+warThreadInterval: 10000
+warRamInterval: 10000

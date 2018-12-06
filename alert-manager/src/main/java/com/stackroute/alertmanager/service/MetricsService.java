@@ -23,19 +23,19 @@ public class MetricsService{
 
     public MetricsService() throws IOException, JSONException, URISyntaxException {
 
-        influxDB = InfluxDBFactory.connect("http://localhost:8086","tanu","password");
+        influxDB = InfluxDBFactory.connect("http://influxdb:8086","tanu","password");
         Pong response = this.influxDB.ping();
         if (response.getVersion().equalsIgnoreCase("unknown")) {
         }
         if (!influxDB.describeDatabases().contains("samplingMetrics")) {
             influxDB.query(new Query("create database samplingMetrics","_internal"),TimeUnit.MILLISECONDS);
-            URL url = new URL("http://localhost:8086/query?q=CREATE+DATABASE+samplingMetrics");
+            URL url = new URL("http://influxdb:8086/query?q=CREATE+DATABASE+samplingMetrics");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
         }
         if (!influxDB.describeDatabases().contains("threshold")) {
             influxDB.query(new Query("create database threshold","_internal"),TimeUnit.MILLISECONDS);
-            URL url = new URL("http://localhost:8086/query?q=CREATE+DATABASE+samplingMetrics");
+            URL url = new URL("http://influxdb:8086/query?q=CREATE+DATABASE+samplingMetrics");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
         }
