@@ -174,8 +174,14 @@ services:
     - mongodb
     ports:
     - 9095:9095
+    - 23456:28017
     expose:
     - 9095
+    environment:
+    - SERVER_PORT=9095
+    - MONGODB_URI=mongodb://mongodb:27017/test
+    - MONGODB_STATUS_HOST=mongodb
+    - MONGODB_STATUS_PORT=28017
     container_name: user-profile
 
   dashboard:
@@ -202,13 +208,14 @@ services:
     container_name: war-client
 
   mongodb:
-    image: mongo
+    image: mongodb
     ports:
     - 27017:27017
-    container_name: mongo
+    container_name: mongodb
 #    network_mode: host
     volumes:
     - ../data/mongodb:/var/lib/mongodb
+    command: ["mongod", "--rest"]
 
 
   mysql:
