@@ -8,4 +8,4 @@ ADD ./target/userprofile-0.0.1-SNAPSHOT.jar     /usr/src/userprofile-0.0.1-SNAPS
 
 WORKDIR usr/src
 
-ENTRYPOINT ["java", "-jar","userprofile-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://mongodb:27017/test","-Djava.security.egd=file:/dev/./urandom","-jar","userprofile-0.0.1-SNAPSHOT.jar"]
