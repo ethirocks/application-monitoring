@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+@CrossOrigin("*")
 @RestController
 public class PollingController {
 

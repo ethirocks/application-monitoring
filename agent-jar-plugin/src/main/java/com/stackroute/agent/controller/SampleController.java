@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.SocketException;
 import java.util.Map;
 
+@CrossOrigin("*")
 @RestController
 public class SampleController {
 	@Autowired

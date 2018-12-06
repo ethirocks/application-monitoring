@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("api/v1/samplingserver")
 public class JobController {
 

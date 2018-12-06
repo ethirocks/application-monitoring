@@ -20,7 +20,7 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 public class applicationcontroller {
 
