@@ -20,7 +20,6 @@ services:
   #  network_mode:  host
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka
-      #KAFKA_CREATE_TOPICS: "test5:1:1"
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
