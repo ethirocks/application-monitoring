@@ -4,7 +4,6 @@ import com.stackroute.alertmanager.comparator.TempComparator;
 import com.stackroute.domain.Alert;
 import com.stackroute.domain.KafkaDomain;
 import com.stackroute.alertmanager.service.MetricsService;
-//import com.stackroute.alertmanager.service.RedisService;
 import org.influxdb.dto.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
