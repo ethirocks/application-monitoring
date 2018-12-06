@@ -74,7 +74,7 @@ public class ContainerConsumer {
         return true;
     }
 
-    @KafkaListener(topics = "containerMetricsLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "containerMetricsLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId = inputLive.getUserId();
@@ -94,26 +94,30 @@ public class ContainerConsumer {
 
                 System.out.println("AlertLevel = " + alertLevel);
 
-                Alert alert = new Alert();
-                alert.setApplicationId(applicationId);
-                alert.setUserId(userId);
-                alert.setTime(timeLive);
-                alert.setMetricsName("ramUsageContainer");
-                alert.setAlertLevel(alertLevel);
-                kafkaTemplate.send(TOPIC, alert);
+                if (alertLevel>0){
+                    Alert alert = new Alert();
+                    alert.setApplicationId(applicationId);
+                    alert.setUserId(userId);
+                    alert.setTime(timeLive);
+                    alert.setMetricsName("ramUsageContainer");
+                    alert.setAlertLevel(alertLevel);
+                    kafkaTemplate.send(TOPIC, alert);
+                }
 
                 double cpuPercentLive = Double.parseDouble(containerMetrics.getCpu());
                 int alertLevel1 = cpuComparatorContainer.compareValues(cpuPercentLive);
 
                 System.out.println("AlertLevel = " + alertLevel);
 
-                Alert alert1 = new Alert();
-                alert1.setApplicationId(applicationId);
-                alert1.setUserId(userId);
-                alert1.setTime(timeLive);
-                alert1.setMetricsName("cpuUsageContainer");
-                alert1.setAlertLevel(alertLevel1);
-                kafkaTemplate.send(TOPIC, alert1);
+                if (alertLevel1>0){
+                    Alert alert1 = new Alert();
+                    alert1.setApplicationId(applicationId);
+                    alert1.setUserId(userId);
+                    alert1.setTime(timeLive);
+                    alert1.setMetricsName("cpuUsageContainer");
+                    alert1.setAlertLevel(alertLevel1);
+                    kafkaTemplate.send(TOPIC, alert1);
+                }
             }
         }  catch (NullPointerException n){        }
         return true;

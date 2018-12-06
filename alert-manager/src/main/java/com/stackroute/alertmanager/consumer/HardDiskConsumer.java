@@ -62,7 +62,7 @@ public class HardDiskConsumer {
                     .time(timeSample, TimeUnit.MILLISECONDS)
                     .tag("userID",String.valueOf(userId))
                     .tag("applicationID",String.valueOf(applicationId))
-                    .addField("details_diskFree",  healthMetrics.getDetails().getDiskFree())
+                    .addField("details_diskFree",  Long.parseLong(healthMetrics.getDetails().getDiskFree()))
                     .addField("details_diskTotal",  healthMetrics.getDetails().getDiskTotal())
                     .build();
             metricsService.insertMetrics(diskPoint,"samplingMetrics");
@@ -89,7 +89,7 @@ public class HardDiskConsumer {
         return "";
     }
 
-    @KafkaListener(topics = "hardDiskLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "hardDiskLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId = inputLive.getUserId();
@@ -111,13 +111,15 @@ public class HardDiskConsumer {
 
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("diskUsage");
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("diskUsage");
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
         return true;

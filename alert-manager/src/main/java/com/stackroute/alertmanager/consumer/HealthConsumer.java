@@ -61,7 +61,7 @@ public class HealthConsumer {
         return true;
     }
 
-    @KafkaListener(topics = "healthLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "healthLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId = inputLive.getUserId();

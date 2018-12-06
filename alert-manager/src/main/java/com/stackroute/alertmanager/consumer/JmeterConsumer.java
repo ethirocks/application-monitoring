@@ -100,13 +100,15 @@ public class JmeterConsumer {
             int alertLevel = httpComparator.compareValues(httpMetrics.getResponseTime(), jmeterThreshold);
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("responseTime for url: "+httpMetrics.getRequestUrl()+" port: "+httpMetrics.getServerPort()+" requestMethod: "+httpMetrics.getRequestMethod());
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("responseTime for url: "+httpMetrics.getRequestUrl()+" port: "+httpMetrics.getServerPort()+" requestMethod: "+httpMetrics.getRequestMethod());
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
 

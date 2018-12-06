@@ -88,13 +88,15 @@ public class WarCpuTempConsumer {
             int alertLevel = tempComparator.compareValues(cpuTempLive, tempThreshold);
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("warCpuTemperature");
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("warCpuTemperature");
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
         return true;

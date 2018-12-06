@@ -1,8 +1,7 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.GenericMetrics;
-import com.stackroute.monitoringserver.domain.HealthMetrics;
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
+import com.stackroute.domain.HealthMetrics;
 import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
@@ -17,7 +16,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 @Service
 public class HardDiskConsumer implements IConsumer {
@@ -31,13 +29,13 @@ public class HardDiskConsumer implements IConsumer {
     public boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GenericMetrics<HealthMetrics>> response
-                = restTemplate.exchange(url+"/health?userID=0&applicationID=0",
+                = restTemplate.exchange(url+"/health?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<HealthMetrics>>(){});
         HealthMetrics healthMetrics= response.getBody().getMetrics();
         KafkaService kafkaService=new KafkaService();
-        kafkaService.produce(response.getBody().getMetrics(),"hardDiskLive",userID,applicationID);
+        kafkaService.produce(response.getBody().getMetrics(),"hardDiskLive1",userID,applicationID);
         long startTime = System.currentTimeMillis();
 //        Point diskPoint = Point.measurement("disk_utilization")
 //                .time(startTime, TimeUnit.MILLISECONDS)

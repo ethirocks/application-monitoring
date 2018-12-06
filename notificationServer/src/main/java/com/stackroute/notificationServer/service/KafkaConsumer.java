@@ -5,6 +5,7 @@ import com.stackroute.domain.Application;
 import com.stackroute.domain.Mail;
 import com.stackroute.domain.User;
 import com.stackroute.notificationServer.exception.ApplicationAlreadyExistsException;
+import com.stackroute.notificationServer.exception.UserAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -33,18 +34,18 @@ public class KafkaConsumer {
         this.emailService = emailService;
     }
 
-//    @KafkaListener(topics = "user", containerFactory = "userKafkaListenerContainerFactory")
-//    public void consumeUser(User user) throws UserAlreadyExistsException {
-//        System.out.println(user.toString());
-//        userService.insertUser(user);
-//    }
+    @KafkaListener(topics = "user1", containerFactory = "userKafkaListenerContainerFactory")
+    public void consumeUser(User user) throws UserAlreadyExistsException {
+        System.out.println(user.toString());
+        userService.insertUser(user);
+    }
 
     @KafkaListener(topics = "application2", containerFactory = "applicationKafkaListenerContainerFactory")
     public void consumeApplication(Application application) throws ApplicationAlreadyExistsException {
         System.out.println(application.toString());
         applicationService.insertApplication(application);
     }
-//    @KafkaListener(topics = "alert", containerFactory = "alertKafkaListenerContainerFactory")
+    @KafkaListener(topics = "alert", containerFactory = "alertKafkaListenerContainerFactory")
     public void consumeAlert(Alert alert) throws Exception {
 
         String to = "";
@@ -109,14 +110,13 @@ public class KafkaConsumer {
             //    //    String to = "divyatejaswinivengada@gmail.com";
             to = "tanushareddy182@gmail.com";
             text = "heyy...!!" +
-                    "\n\n\tThis mail is to inform you that there is an abnormality in your \" +\n" +
-                    "                        \"application\"";
-            subject = "URGENT!! Critical issue in your Application ";
+                    "\n\n\tThis mail is to inform you that there is an abnormality in your application. Mails are not going to clients";
+            subject = "URGENT!! Critical issue in your Notification Server Application ";
 
         }
         if (alert.getAlertLevel() < 2) {
             Mail mail = new Mail(to, subject, text);
-            kafkaTemplate.send("notification", mail);
+//            kafkaTemplate.send("notification", mail);
         } else {
             emailService.sendSimpleMessage(to, subject, text);
         }

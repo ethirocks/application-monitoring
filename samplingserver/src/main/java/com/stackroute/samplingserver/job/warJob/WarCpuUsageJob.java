@@ -40,7 +40,7 @@ public class WarCpuUsageJob implements Job {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         ResponseEntity<GenericMetrics<Double>> response
-                = restTemplate.exchange(dataMap.getString("warUrl")+"/cpuusage"+
+                = restTemplate.exchange(dataMap.getString("url")+"/cpuusage"+
                         "?userID="+dataMap.get("userID").toString()+"&applicationID="+dataMap.get("applicationID").toString(),
                 HttpMethod.GET,
                 null,

@@ -1,8 +1,7 @@
 package com.stackroute.monitoringserver.consumer.warConsumer;
 
 import com.stackroute.monitoringserver.consumer.IConsumer;
-import com.stackroute.monitoringserver.domain.GenericMetrics;
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
 import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
@@ -30,7 +29,7 @@ public class WarRAMConsumer implements IConsumer {
     public boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GenericMetrics<ArrayList<Long>>> response = restTemplate.exchange(
-                url+"/memory?userID=0&applicationID=0",
+                url+"/memory?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<ArrayList<Long>>>(){});

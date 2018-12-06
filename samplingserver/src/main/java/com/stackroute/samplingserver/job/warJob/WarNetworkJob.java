@@ -43,7 +43,7 @@ public class WarNetworkJob implements Job {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         ResponseEntity<GenericMetrics<LinkedHashMap<String, LinkedHashMap<String, Object>>>> response = restTemplate.exchange(
-                dataMap.getString("warUrl")+"/network"+
+                dataMap.getString("url")+"/network"+
                         "?userID="+dataMap.get("userID").toString()+"&applicationID="+dataMap.get("applicationID").toString(),
                 HttpMethod.GET,
                 null,

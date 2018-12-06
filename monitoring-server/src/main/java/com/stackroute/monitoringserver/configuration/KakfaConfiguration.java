@@ -1,6 +1,6 @@
 package com.stackroute.monitoringserver.configuration;
 
-import com.stackroute.monitoringserver.domain.KafkaDomain;
+import com.stackroute.domain.KafkaDomain;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ public class KakfaConfiguration {
     public ProducerFactory<String, KafkaDomain> producerFactory() {
         Map<String, Object> config = new HashMap<>();
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.23.239.108:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(config);

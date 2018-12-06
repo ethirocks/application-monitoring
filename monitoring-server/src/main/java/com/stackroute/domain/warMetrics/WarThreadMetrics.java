@@ -1,4 +1,4 @@
-package com.stackroute.monitoringserver.domain.warMetrics;
+package com.stackroute.domain.warMetrics;
 
 import lombok.Data;
 import org.influxdb.annotation.Measurement;

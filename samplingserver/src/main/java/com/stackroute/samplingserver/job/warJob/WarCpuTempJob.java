@@ -40,7 +40,7 @@ public class WarCpuTempJob implements Job {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         ResponseEntity<GenericMetrics<Double>> response
-                = restTemplate.exchange(dataMap.getString("warUrl")+"/cputemp"+
+                = restTemplate.exchange(dataMap.getString("url")+"/cputemp"+
                         "?userID="+dataMap.get("userID").toString()+"&applicationID="+dataMap.get("applicationID").toString(),
                 HttpMethod.GET,
                 null,

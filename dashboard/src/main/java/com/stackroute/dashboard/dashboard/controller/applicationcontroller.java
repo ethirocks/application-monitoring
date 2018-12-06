@@ -7,11 +7,15 @@ import com.stackroute.domain.ApplicationDomain;
 import com.stackroute.domain.SendKafkaDomain;
 import com.stackroute.domain.Application;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -19,6 +23,9 @@ import static java.lang.Integer.parseInt;
 @CrossOrigin
 @RestController
 public class applicationcontroller {
+
+    @Value("${monitoringServerUrl}")
+    String monitoringServerUrl;
 
     @Autowired
     private ApplicationgeneratorService applicationgeneratorService;
@@ -35,9 +42,11 @@ public class applicationcontroller {
             List<Application> applicationList = applicationgeneratorService.sendingkafka(applicationDomain.getUid());
 
             for (Application application : applicationList) {
-//                System.out.println(application+"............");
                 if (application.getApplicationName().equals(applicationDomain.getAppname())) {
-//                    System.out.println(application+"............");
+                    System.out.println(application+"............");
+                    HttpEntity<Application> request=new HttpEntity<>(application);
+                    RestTemplate restTemplate=new RestTemplate();
+                    ResponseEntity<Application> response1 = restTemplate.postForEntity(monitoringServerUrl ,application ,Application.class);
                     kafkaTemplate.send("application2", application);
                 }
             }
@@ -56,7 +65,18 @@ public class applicationcontroller {
         int y = 0;
         for (SendKafkaDomain a : sendKafkaDomains) {
             if (a.getCid() == i) {
-                responseEntity = new ResponseEntity<List<AppDetails>>(a.getAppDetails(), HttpStatus.OK);
+                List<Application> applications = new ArrayList<>();
+                for(int j=0;j<a.getAppDetails().size();j++){
+                Application application=new Application();
+                application.setUserId(i);
+                application.setId(a.getAppDetails().get(j).getAid());
+                application.setAddress(a.getAppDetails().get(j).getIpaddress());
+                application.setApplicationName(a.getAppDetails().get(j).getApplicationName());
+                application.setDependency(a.getAppDetails().get(j).getDependency());
+                applications.add(application);
+
+               }
+                responseEntity = new ResponseEntity<List<Application>>(applications, HttpStatus.OK);
                 return responseEntity;
             } else {
                 y++;
@@ -70,4 +90,8 @@ public class applicationcontroller {
         }
 return responseEntity;
     }
+//    @PostMapping("/updateapplication")
+//    public ResponseEntity<String> updateapplication(@RequestParam Integer UserID,@RequestParam Integer ApplicationID,@RequestBody ){
+//
+//    }
 }

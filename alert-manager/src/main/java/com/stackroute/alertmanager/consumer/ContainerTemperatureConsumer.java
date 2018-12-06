@@ -2,6 +2,7 @@ package com.stackroute.alertmanager.consumer;
 
 import com.stackroute.alertmanager.comparator.TempComparator;
 import com.stackroute.alertmanager.service.MetricsService;
+//import com.stackroute.alertmanager.service.RedisService;
 import com.stackroute.domain.Alert;
 import com.stackroute.domain.KafkaDomain;
 import org.influxdb.dto.Point;
@@ -16,6 +17,7 @@ public class ContainerTemperatureConsumer {
     private static KafkaTemplate<String, Alert> kafkaTemplate;
     private static String TOPIC;
     private TempComparator tempComparator;
+    //private RedisService redisService;
     private MetricsService metricsService;
     @Autowired
     public ContainerTemperatureConsumer(MetricsService metricsService, TempComparator tempComparator, KafkaTemplate<String, Alert> kafkaTemplate) {
@@ -70,7 +72,7 @@ public class ContainerTemperatureConsumer {
             return true;
     }
 
-    @KafkaListener(topics = "containerTemperatureLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "containerTemperatureLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId= inputLive.getUserId();
@@ -87,13 +89,15 @@ public class ContainerTemperatureConsumer {
             int alertLevel = tempComparator.compareValues(containerTempLive, tempThreshold);
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("containerTemperature");
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("containerTemperature");
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
         return true;

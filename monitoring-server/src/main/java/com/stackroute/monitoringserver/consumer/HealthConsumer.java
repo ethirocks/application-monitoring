@@ -1,8 +1,7 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.GenericMetrics;
-import com.stackroute.monitoringserver.domain.HealthMetrics;
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
+import com.stackroute.domain.HealthMetrics;
 import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -29,14 +27,14 @@ public class HealthConsumer implements IConsumer{
     public boolean consumeMetrics(String url, Integer userID, Integer applicationID) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GenericMetrics<HealthMetrics>> response
-                = restTemplate.exchange(url+"/health?userID=0&applicationID=0",
+                = restTemplate.exchange(url+"/health?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<HealthMetrics>>(){});
         Logger.getLogger("health "+response.toString());
         HealthMetrics healthMetrics= response.getBody().getMetrics();
         KafkaService kafkaService=new KafkaService();
-        kafkaService.produce(response.getBody().getMetrics(),"healthLive",userID,applicationID);
+        kafkaService.produce(response.getBody().getMetrics(),"healthLive1",userID,applicationID);
         try{
             Point healthPoint = Point.measurement("health")
                     .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)

@@ -26,7 +26,7 @@ public class NetworkConsumer {
     KafkaDomain inputLive;
     long timeSample;
     long timeLive;
-    @KafkaListener(topics = "network", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "network",containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetrics(@Payload KafkaDomain message){
         this.inputSample=message;
         this.userId= inputSample.getUserId();
@@ -45,17 +45,19 @@ public class NetworkConsumer {
                 System.out.println("Inside try");
                 Point point = Point.measurement("networkMetricsSample")
                         .time(timeSample, TimeUnit.MILLISECONDS)
-                        .addField("IPv4addr", metric.get("IPv4addr").toString())
-                        .addField("IPv6addr", metric.get("IPv6addr").toString())
-                        .addField("Interface_Name", metric.get("Interface_Name").toString())
-                        .addField("Macaddr", metric.get("Macaddr").toString())
-                        .addField("Maximum_Transmission_Unit", metric.get("Maximum_Transmission_Unit").toString())
-                        .addField("DownLoad_Speed", metric.get("DownLoad_Speed").toString())
-                        .addField("Upload_Speed", metric.get("Upload_Speed").toString())
-                        .addField("Data_In_Rate", metric.get("Data_In_Rate").toString())
-                        .addField("Data_Out_Rate", metric.get("Data_Out_Rate").toString())
-                        .addField("Error_In_Rate", metric.get("Error_In_Rate").toString())
-                        .addField("Error_Out_Rate", metric.get("Error_Out_Rate").toString())
+                        .tag("userID",String.valueOf(userId))
+                        .tag("applicationID",String.valueOf(applicationId))
+                        .addField("IPv4addr", (metric.get("IPv4addr").toString()))
+                        .addField("IPv6addr", (metric.get("IPv6addr").toString()))
+                        .addField("Interface_Name", (metric.get("Interface_Name").toString()))
+                        .addField("Macaddr", (metric.get("Macaddr").toString()))
+                        .addField("Maximum_Transmission_Unit", (metric.get("Maximum_Transmission_Unit").toString()))
+                        .addField("DownLoad_Speed", Long.parseLong(metric.get("DownLoad_Speed").toString()))
+                        .addField("Upload_Speed", Long.parseLong(metric.get("Upload_Speed").toString()))
+                        .addField("Data_In_Rate", Long.parseLong(metric.get("Data_In_Rate").toString()))
+                        .addField("Data_Out_Rate", Long.parseLong(metric.get("Data_Out_Rate").toString()))
+                        .addField("Error_In_Rate", Long.parseLong(metric.get("Error_In_Rate").toString()))
+                        .addField("Error_Out_Rate", Long.parseLong(metric.get("Error_Out_Rate").toString()))
                         .build();
                 metricsService.insertMetrics(point,"samplingMetrics");
                 i++;

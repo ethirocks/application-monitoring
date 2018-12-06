@@ -51,7 +51,7 @@ public class ContainerJob implements Job {
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
 
         ResponseEntity<GenericMetrics<List<ContainerMetrics>>> response = restTemplate.exchange(
-                dataMap.get("containerUrl")+"/container/metrics"+
+                dataMap.get("url")+"/container/metrics"+
                         "?userID="+dataMap.get("userID")+"&applicationID="+dataMap.get("applicationID"),
                         HttpMethod.GET,
                 null,
@@ -59,7 +59,7 @@ public class ContainerJob implements Job {
 //            Map<Long,KafkaDomain> responseMap=new HashMap<>();
 //            responseMap.put(System.currentTimeMillis(),response.getBody());
 //            kafkaTemplate.send(metricsTOPIC, responseMap);
-
+        System.out.println("...."+response.getBody().toString());
         KafkaDomain kafkaDomain=new KafkaDomain();
         kafkaDomain.setApplicationId(response.getBody().getApplicationID());
         kafkaDomain.setUserId(response.getBody().getUserID());
@@ -67,7 +67,7 @@ public class ContainerJob implements Job {
         kafkaDomain.setMetrics(response.getBody().getMetrics());
         kafkaTemplate.send(metricsTOPIC,kafkaDomain);
 
-        ResponseEntity<GenericMetrics<String>> response1 = restTemplate.exchange(dataMap.get("warUrl") + "/container/temperature"+
+        ResponseEntity<GenericMetrics<String>> response1 = restTemplate.exchange(dataMap.get("url") + "/container/temperature"+
                         "?userID="+dataMap.get("userID")+"&applicationID="+dataMap.get("applicationID"),
                 HttpMethod.GET,
                 null,
@@ -77,14 +77,14 @@ public class ContainerJob implements Job {
 //            kafkaTemplate.send(temperatureTOPIC, responseMap1);
 
         KafkaDomain kafkaDomain2=new KafkaDomain();
-        kafkaDomain.setApplicationId(response.getBody().getApplicationID());
-        kafkaDomain.setUserId(response.getBody().getUserID());
-        kafkaDomain.setTime(System.currentTimeMillis());
-        kafkaDomain.setMetrics(response1.getBody().getMetrics());
+        kafkaDomain2.setApplicationId(response1.getBody().getApplicationID());
+        kafkaDomain2.setUserId(response1.getBody().getUserID());
+        kafkaDomain2.setTime(System.currentTimeMillis());
+        kafkaDomain2.setMetrics(response1.getBody().getMetrics());
         kafkaTemplate.send(temperatureTOPIC,kafkaDomain2);
 
         ResponseEntity<GenericMetrics<ContainerMetricsSystemUsage>> response2 =
-                restTemplate.exchange(dataMap.get("warUrl") + "/container/systemusage"+
+                restTemplate.exchange(dataMap.get("url") + "/container/systemusage"+
                                 "?userID="+dataMap.get("userID")+"&applicationID="+dataMap.get("applicationID"),
                         HttpMethod.GET,
                 null,
@@ -94,10 +94,10 @@ public class ContainerJob implements Job {
 //            kafkaTemplate.send(systemUsageTOPIC, responseMap2);
 
         KafkaDomain kafkaDomain3=new KafkaDomain();
-        kafkaDomain.setApplicationId(response2.getBody().getApplicationID());
-        kafkaDomain.setUserId(response.getBody().getUserID());
-        kafkaDomain.setTime(System.currentTimeMillis());
-        kafkaDomain.setMetrics(response.getBody().getMetrics());
+        kafkaDomain3.setApplicationId(response2.getBody().getApplicationID());
+        kafkaDomain3.setUserId(response2.getBody().getUserID());
+        kafkaDomain3.setTime(System.currentTimeMillis());
+        kafkaDomain3.setMetrics(response2.getBody().getMetrics());
         kafkaTemplate.send(systemUsageTOPIC,kafkaDomain3);
 
 

@@ -45,6 +45,8 @@ public class HttpConsumer {
 
                 Point point = Point.measurement("http_requests_agent_Sample")
                         .time(timeSample, TimeUnit.MILLISECONDS)
+                        .tag("userID",String.valueOf(userId))
+                        .tag("applicationID",String.valueOf(applicationId))
                         .addField("RequestCount",  httpMetrics.getRequestCount())
                         .addField("RequestId",  httpMetrics.getRequestId())
                         .addField("RequestMethod",  httpMetrics.getRequestMethod())

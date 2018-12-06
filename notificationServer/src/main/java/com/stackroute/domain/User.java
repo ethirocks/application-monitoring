@@ -22,4 +22,7 @@ public class User {
         this.email = email;
         this.phonenumber = phonenumber;
     }
+
+    public User() {
+    }
 }

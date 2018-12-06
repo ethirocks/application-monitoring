@@ -1,7 +1,6 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.GenericMetrics;
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
 import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
@@ -16,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 @Service
 public class CPUUsageConsumer implements IConsumer {
@@ -32,14 +30,14 @@ public class CPUUsageConsumer implements IConsumer {
         try{
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GenericMetrics<Double>> response
-                = restTemplate.exchange(url+"/cpuusage?userID=0&applicationID=0",
+                = restTemplate.exchange(url+"/cpuusage?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<Double>>(){});
     //    System.out.println("cpu usage "+response.toString());
         Double cpuUsage= response.getBody().getMetrics();
         KafkaService kafkaService=new KafkaService();
-        kafkaService.produce(response.getBody().getMetrics(),"cpuUsageLive",userID,applicationID);
+        kafkaService.produce(response.getBody().getMetrics(),"cpuUsageLive1",userID,applicationID);
 
             Point cpuUsagePoint = Point.measurement("cpuusage")
                     .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)

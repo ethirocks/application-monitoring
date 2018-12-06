@@ -2,23 +2,19 @@ package com.stackroute.samplingserver.scheduler;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Service
 public class JobScheduler {
 
-    public void trigger(List<Class> classNames, double interval, Map<String,String> urlMap,Integer userID,Integer applicationID) throws Exception
+    public void trigger(List<Class> classNames, double interval, String url,Integer userID,Integer applicationID) throws Exception
     {
     	JobDataMap jobDataMap=new JobDataMap();
-    	jobDataMap.put("url",urlMap.get("url"));
-    	jobDataMap.put("containerUrl",urlMap.get("containerUrl"));
-    	jobDataMap.put("warUrl",urlMap.get("warUrl"));
+    	jobDataMap.put("url",url);
     	jobDataMap.put("userID",userID);
     	jobDataMap.put("applicationID",applicationID);
 

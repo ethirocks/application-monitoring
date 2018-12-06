@@ -41,7 +41,7 @@ public class WarThreadJob implements Job {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         ResponseEntity<GenericMetrics<WarThreadMetrics>> response
-                = restTemplate.exchange(dataMap.getString("warUrl")+"/threads?"+
+                = restTemplate.exchange(dataMap.getString("url")+"/threads?"+
                         "?userID="+dataMap.get("userID").toString()+"&applicationID="+dataMap.get("applicationID").toString(),
                 HttpMethod.GET,
                 null,

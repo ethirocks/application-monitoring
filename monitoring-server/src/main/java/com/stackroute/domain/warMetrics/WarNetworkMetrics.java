@@ -1,7 +1,7 @@
-package com.stackroute.monitoringserver.domain.warMetrics;
+package com.stackroute.domain.warMetrics;
 
 
-import com.stackroute.monitoringserver.domain.NetworkMetricsMap;
+import com.stackroute.domain.NetworkMetricsMap;
 import lombok.Data;
 import org.influxdb.annotation.Measurement;
 
@@ -12,5 +12,5 @@ import java.util.HashMap;
 public class WarNetworkMetrics {
 ///    String number;
 //    WarNetworkMetricsMap networkMetricsMap;
-    HashMap<String,NetworkMetricsMap> networkMetrics;
+    HashMap<String, NetworkMetricsMap> networkMetrics;
 }

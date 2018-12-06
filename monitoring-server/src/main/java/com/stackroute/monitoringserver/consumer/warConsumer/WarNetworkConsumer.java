@@ -1,8 +1,7 @@
 package com.stackroute.monitoringserver.consumer.warConsumer;
 
 import com.stackroute.monitoringserver.consumer.IConsumer;
-import com.stackroute.monitoringserver.domain.GenericMetrics;
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
 import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
@@ -28,7 +27,7 @@ public class WarNetworkConsumer implements IConsumer{
     public boolean consumeMetrics(String url, Integer userID, Integer applicationID) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GenericMetrics<LinkedHashMap<String, LinkedHashMap<String, Object>>>> response = restTemplate.exchange(
-                url+"/network?userID=0&applicationID=0",
+                url+"/network?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<LinkedHashMap<String,LinkedHashMap<String,Object>>>>(){});

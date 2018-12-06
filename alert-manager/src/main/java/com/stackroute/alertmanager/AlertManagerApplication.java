@@ -8,13 +8,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
 
 @EnableEurekaClient
-
 @SpringBootApplication
 public class AlertManagerApplication {
-
 
 	public static void main(String[] args)throws JSONException, IOException, URISyntaxException {
 		SpringApplication.run(AlertManagerApplication.class, args);

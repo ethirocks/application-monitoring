@@ -74,7 +74,7 @@ public class CPUUsageConsumer  {
         System.out.println("usagethresh"+usageThreshold);
         return true;
     }
-    @KafkaListener(topics = "cpuUsageLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "cpuUsageLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId= inputLive.getUserId();
@@ -91,13 +91,15 @@ public class CPUUsageConsumer  {
 
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("cpuUsage");
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("cpuUsage");
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
         return true;

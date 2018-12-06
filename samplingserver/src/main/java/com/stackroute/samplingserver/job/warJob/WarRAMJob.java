@@ -43,7 +43,7 @@ public class WarRAMJob implements Job {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         JobDataMap dataMap = jobExecutionContext.getJobDetail().getJobDataMap();
         ResponseEntity<GenericMetrics<ArrayList<Long>>> response = restTemplate.exchange(
-                dataMap.getString("warUrl")+"/memory"+
+                dataMap.getString("url")+"/memory"+
                         "?userID="+dataMap.get("userID").toString()+"&applicationID="+dataMap.get("applicationID").toString(),
                 HttpMethod.GET,
                 null,

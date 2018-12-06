@@ -1,4 +1,4 @@
-package com.stackroute.monitoringserver.domain;
+package com.stackroute.domain;
 
 import lombok.Data;
 

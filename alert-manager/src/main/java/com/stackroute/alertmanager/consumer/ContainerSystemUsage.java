@@ -70,7 +70,7 @@ public class ContainerSystemUsage {
 
     }
 
-    @KafkaListener(topics = "containerSystemUsageLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "containerSystemUsageLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId = inputLive.getUserId();
@@ -88,13 +88,15 @@ public class ContainerSystemUsage {
 
         System.out.println("AlertLevel = " + alertLevel);
 
-        Alert alert = new Alert();
-        alert.setApplicationId(applicationId);
-        alert.setUserId(userId);
-        alert.setTime(timeLive);
-        alert.setMetricsName("ramUsageSystem");
-        alert.setAlertLevel(alertLevel);
-        kafkaTemplate.send(TOPIC, alert);
+        if (alertLevel>0){
+            Alert alert = new Alert();
+            alert.setApplicationId(applicationId);
+            alert.setUserId(userId);
+            alert.setTime(timeLive);
+            alert.setMetricsName("ramUsageSystem");
+            alert.setAlertLevel(alertLevel);
+            kafkaTemplate.send(TOPIC, alert);
+        }
 
         long inputSystemCpu = Long.parseLong(containerMetricsSystemUsage.getSystemcpu().split(":")[0]);
         long totalSystemCpu = Long.parseLong(containerMetricsSystemUsage.getSystemcpu().split(":")[1]);
@@ -104,13 +106,15 @@ public class ContainerSystemUsage {
 
         System.out.println("AlertLevel = " + alertLevel);
 
-        Alert alert1 = new Alert();
-        alert1.setApplicationId(applicationId);
-        alert1.setUserId(userId);
-        alert1.setTime(timeLive);
-        alert1.setMetricsName("cpuUsageSystem");
-        alert1.setAlertLevel(alertLevel1);
-        kafkaTemplate.send(TOPIC, alert1);
+        if (alertLevel1>0){
+            Alert alert1 = new Alert();
+            alert1.setApplicationId(applicationId);
+            alert1.setUserId(userId);
+            alert1.setTime(timeLive);
+            alert1.setMetricsName("cpuUsageSystem");
+            alert1.setAlertLevel(alertLevel1);
+            kafkaTemplate.send(TOPIC, alert1);
+        }
 
 
         return true;

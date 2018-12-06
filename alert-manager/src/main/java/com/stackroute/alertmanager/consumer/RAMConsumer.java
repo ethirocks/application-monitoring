@@ -49,6 +49,8 @@ public class RAMConsumer {
         try {
             Point cpuCoresPoint = Point.measurement("memory")
                     .time(timeSample, TimeUnit.MILLISECONDS)
+                    .tag("userID",String.valueOf(userId))
+                    .tag("applicationID",String.valueOf(applicationId))
                     .addField("free_physical_memory", memory.get(1))
                     .addField("total_physical_memory", memory.get(0))
                     .build();
@@ -71,7 +73,7 @@ public class RAMConsumer {
         return true;
     }
 
-    @KafkaListener(topics = "ramLive", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "ramLive1", containerFactory = "kafkaListenerContainerFactory")
     public boolean consumeMetricsLive ( KafkaDomain message) {
         this.inputLive = message;
         this.userId = inputLive.getUserId();
@@ -89,13 +91,15 @@ public class RAMConsumer {
 
             System.out.println("AlertLevel = " + alertLevel);
 
-            Alert alert = new Alert();
-            alert.setApplicationId(applicationId);
-            alert.setUserId(userId);
-            alert.setTime(timeLive);
-            alert.setMetricsName("ramUsage");
-            alert.setAlertLevel(alertLevel);
-            kafkaTemplate.send(TOPIC,alert);
+            if (alertLevel>0){
+                Alert alert = new Alert();
+                alert.setApplicationId(applicationId);
+                alert.setUserId(userId);
+                alert.setTime(timeLive);
+                alert.setMetricsName("ramUsage");
+                alert.setAlertLevel(alertLevel);
+                kafkaTemplate.send(TOPIC,alert);
+            }
 
         }  catch (NullPointerException n){        }
         return true;

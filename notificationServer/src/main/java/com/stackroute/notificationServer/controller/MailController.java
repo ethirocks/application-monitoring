@@ -22,16 +22,16 @@ public class MailController {
     @Autowired
     ApplicationService applicationService;
 
-    @GetMapping("hello")
-    public String s() throws UserAlreadyExistsException, Exception {
-//        User user=new User(0,"tanusha","yu","tanushareddy182@gmail.com","098765");
-//        Application application=new Application(0,0,"monitorHub","jar","locgassdah");
-//        userService.insertUser(user);
-//        applicationService.insertApplication(application);
-        KafkaConsumer kafkaConsumer=new KafkaConsumer(userService,applicationService,emailService);
-        Alert alert=new Alert(0,0,1543340000,"cpu temp",3);
-        kafkaConsumer.consumeAlert(alert);
-        return "hello";
-    }
+//    @GetMapping("hello")
+//    public String s() throws UserAlreadyExistsException, Exception {
+////        User user=new User(0,"tanusha","yu","tanushareddy182@gmail.com","098765");
+////        Application application=new Application(0,0,"monitorHub","jar","locgassdah");
+////        userService.insertUser(user);
+////        applicationService.insertApplication(application);
+//        KafkaConsumer kafkaConsumer=new KafkaConsumer(userService,applicationService,emailService);
+//        Alert alert=new Alert(0,0,1543340000,"cpu temp",3);
+//        kafkaConsumer.consumeAlert(alert);
+//        return "hello";
+//    }
 
 }

@@ -30,4 +30,31 @@ public class RamComparator {
             return 0;
         }
     }
+
+    public int compareValues(double ramTotalLive, double ramFree, double ramTotalSample){
+        double total;
+        if(ramTotalLive == ramTotalSample){
+            total = ramTotalSample;
+        }else{
+            total = ramTotalLive;
+        }
+        double ramUsed = total - ramFree;
+        int ramUsedPercent = (int) ((ramUsed/total)*100);
+
+        if(ramUsedPercent >= 95){
+            return 4;
+        }
+        else if (ramUsedPercent >= 90){
+            return 3;
+        }
+        else if (ramUsedPercent >= 85){
+            return 2;
+        }
+        else if (ramUsedPercent >= 80){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
 }
