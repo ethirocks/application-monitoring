@@ -37,6 +37,7 @@
 		<module>dashboard</module>
 		<module>userAuthentication</module>
 		<module>userprofile</module>
+		<module>warclient</module>
 
 	</modules>
 
