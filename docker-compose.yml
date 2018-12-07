@@ -238,7 +238,7 @@ services:
       MYSQL_ROOT_PASSWORD: "12345"
       MYSQL_DATABASE: login
     volumes:
-    - ../data/mysql:/var/lib/mysql
+    - /data/mysql_data:/var/lib/mysql
 
   angular:
    image: app-monitor-ui
@@ -251,13 +251,14 @@ services:
    container_name: angular_graph
 
   agenttodocker:
-   image:  harsha7890/agenttomonitordocker:v08
+   image:  harsha7890/agenttomonitordocker:v10
    restart: always
   # network_mode:  host
    volumes:
      -  /var/run/docker.sock:/var/run/docker.sock
    ports:
      -  9001:9001
+   container_name: dockeragent
 
   nodejs:
     image: nodejs-client

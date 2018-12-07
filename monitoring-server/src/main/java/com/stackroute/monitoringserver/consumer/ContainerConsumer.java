@@ -48,7 +48,7 @@ public class ContainerConsumer implements IConsumer{
         System.out.println("Container "+response.toString());
         String temperature= response1.getBody().getMetrics();
         kafkaService.produce(response1.getBody().getMetrics(),"containerTemperatureLive1",userID,applicationID);
-        if(temperature==null){
+        if(temperature.equals(null)){
             temperature="0";
         }
         ResponseEntity<GenericMetrics<ContainerMetricsSystemUsage>> response2 = restTemplate.exchange(url + "/container/systemusage?userID="+userID+"&applicationID="+applicationID,
