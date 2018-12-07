@@ -193,8 +193,14 @@ services:
     - user-authentication
     ports:
     - 8094:8094
+    - 23456:28017
     expose:
     - 8094
+    environment:
+    - SERVER_PORT=8094
+    - MONGODB_URI=mongodb://mongodb:27017/test
+    - MONGODB_STATUS_HOST=mongodb
+    - MONGODB_STATUS_PORT=28017
     container_name: dashboard
 
   war-client:
