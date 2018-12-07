@@ -193,7 +193,7 @@ services:
     - user-authentication
     ports:
     - 8094:8094
-    - 23456:28017
+    - 23457:28017
     expose:
     - 8094
     environment:
