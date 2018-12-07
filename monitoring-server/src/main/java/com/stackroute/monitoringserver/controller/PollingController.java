@@ -100,59 +100,59 @@ public class PollingController {
             long healthInterval = Long.parseLong(health);
             long httpInterval = Long.parseLong(http);
 
-            //CPU Cores
-            IConsumer cpuCoresConsumer = new CPUCoresConsumer(metricsService);
-            PollingService cpuCoresPoll = new PollingService();
-            cpuCoresPoll.setTimerTask(cpuCoresConsumer, url, application.getUserId(), application.getId());
-            cpuCoresPoll.start(cpuCoresInterval);
-
-            //ram
-            IConsumer ramConsumer = new RAMConsumer(metricsService);
-            PollingService ramPoll = new PollingService();
-            ramPoll.setTimerTask(ramConsumer, url, application.getUserId(), application.getId());
-            ramPoll.start(ramInterval);
+//            //CPU Cores
+//            IConsumer cpuCoresConsumer = new CPUCoresConsumer(metricsService);
+//            PollingService cpuCoresPoll = new PollingService();
+//            cpuCoresPoll.setTimerTask(cpuCoresConsumer, url, application.getUserId(), application.getId());
+//            cpuCoresPoll.start(cpuCoresInterval);
+//
+//            //ram
+//            IConsumer ramConsumer = new RAMConsumer(metricsService);
+//            PollingService ramPoll = new PollingService();
+//            ramPoll.setTimerTask(ramConsumer, url, application.getUserId(), application.getId());
+//            ramPoll.start(ramInterval);
 
             //Http
             IConsumer httpConsumer = new HttpConsumer(metricsService);
             PollingService httpPoll = new PollingService();
             httpPoll.setTimerTask(httpConsumer, url, application.getUserId(), application.getId());
             httpPoll.start(httpInterval);
-
-            //health
-            IConsumer healthConsumer = new HealthConsumer(metricsService);
-            PollingService healthPoll = new PollingService();
-            healthPoll.setTimerTask(healthConsumer, url, application.getUserId(), application.getId());
-            healthPoll.start(healthInterval);
-
-            //disk
-            IConsumer diskConsumer = new HardDiskConsumer(metricsService);
-            PollingService diskPoll = new PollingService();
-            diskPoll.setTimerTask(diskConsumer, url, application.getUserId(), application.getId());
-            diskPoll.start(diskInterval);
-
-            //CPU Usage
-            IConsumer cpuUsageConsumer = new CPUUsageConsumer(metricsService);
-            PollingService cpuUsagePoll = new PollingService();
-            cpuUsagePoll.setTimerTask(cpuUsageConsumer, url, application.getUserId(), application.getId());
-            cpuUsagePoll.start(cpuUsageInterval);
-
-            //CPU Temp
-            IConsumer cpuTempConsumer = new CPUTempConsumer(metricsService);
-            PollingService cpuTempPoll = new PollingService();
-            cpuTempPoll.setTimerTask(cpuTempConsumer, url, application.getUserId(), application.getId());
-            cpuTempPoll.start(cpuTempInterval);
-
-            //thread
-            IConsumer threadConsumer = new ThreadConsumer(metricsService);
-            PollingService threadPoll = new PollingService();
-            threadPoll.setTimerTask(threadConsumer, url, application.getUserId(), application.getId());
-            threadPoll.start(threadInterval);
-
-            //network
-            IConsumer networkConsumer = new NetworkConsumer(metricsService);
-            PollingService networkPoll = new PollingService();
-            networkPoll.setTimerTask(networkConsumer, url, application.getUserId(), application.getId());
-            networkPoll.start(networkInterval);
+//
+//            //health
+//            IConsumer healthConsumer = new HealthConsumer(metricsService);
+//            PollingService healthPoll = new PollingService();
+//            healthPoll.setTimerTask(healthConsumer, url, application.getUserId(), application.getId());
+//            healthPoll.start(healthInterval);
+//
+//            //disk
+//            IConsumer diskConsumer = new HardDiskConsumer(metricsService);
+//            PollingService diskPoll = new PollingService();
+//            diskPoll.setTimerTask(diskConsumer, url, application.getUserId(), application.getId());
+//            diskPoll.start(diskInterval);
+//
+//            //CPU Usage
+//            IConsumer cpuUsageConsumer = new CPUUsageConsumer(metricsService);
+//            PollingService cpuUsagePoll = new PollingService();
+//            cpuUsagePoll.setTimerTask(cpuUsageConsumer, url, application.getUserId(), application.getId());
+//            cpuUsagePoll.start(cpuUsageInterval);
+//
+//            //CPU Temp
+//            IConsumer cpuTempConsumer = new CPUTempConsumer(metricsService);
+//            PollingService cpuTempPoll = new PollingService();
+//            cpuTempPoll.setTimerTask(cpuTempConsumer, url, application.getUserId(), application.getId());
+//            cpuTempPoll.start(cpuTempInterval);
+//
+//            //thread
+//            IConsumer threadConsumer = new ThreadConsumer(metricsService);
+//            PollingService threadPoll = new PollingService();
+//            threadPoll.setTimerTask(threadConsumer, url, application.getUserId(), application.getId());
+//            threadPoll.start(threadInterval);
+//
+//            //network
+//            IConsumer networkConsumer = new NetworkConsumer(metricsService);
+//            PollingService networkPoll = new PollingService();
+//            networkPoll.setTimerTask(networkConsumer, url, application.getUserId(), application.getId());
+//            networkPoll.start(networkInterval);
 
         }
         else if (application.getDependency().equals("war")){

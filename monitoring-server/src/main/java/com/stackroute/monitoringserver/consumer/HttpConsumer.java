@@ -31,12 +31,14 @@ public class HttpConsumer implements IConsumer{
     @Override
     public boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
+        System.out.println("request to "+url+"/httpMetrics?userID="+userID+"&applicationID="+applicationID);
         ResponseEntity<GenericMetrics<List<HttpMetrics>>> response = restTemplate.exchange(
                 url+"/httpMetrics?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<GenericMetrics<List<HttpMetrics>>>(){});
         KafkaService kafkaService=new KafkaService();
+        System.out.println("kafka... sending "+response.getBody().getMetrics());
         kafkaService.produce(response.getBody().getMetrics(),"HttpLive1",userID,applicationID);
 
         try {
@@ -68,7 +70,9 @@ public class HttpConsumer implements IConsumer{
                         .addField("SessionId",httpMetrics.getSessionId())
                         .addField("SessionLastAccessedTime",httpMetrics.getSessionLastAccessedTime())
                         .build();
+                System.out.println("inserting point "+point);
                 metricsService.insertMetrics(point);
+                System.out.println("point inserted");
             }
         }
         catch (NullPointerException n){
