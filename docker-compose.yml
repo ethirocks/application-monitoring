@@ -143,6 +143,11 @@ services:
       - config-server
       - kafka
       - mongodb
+    environment:
+    - SERVER_PORT=8083
+    - MONGODB_URI=mongodb://mongodb:27017/test
+    - MONGODB_STATUS_HOST=mongodb
+    - MONGODB_STATUS_PORT=28017
     ports:
       - 8083:8083
     expose:
@@ -219,7 +224,7 @@ services:
     container_name: mongodb
 #    network_mode: host
     volumes:
-    - ../data/mongodb:/var/lib/mongodb
+    - ../data/mongodb:/data/db
 
   mysql:
     image: mysql:5.7
