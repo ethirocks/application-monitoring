@@ -1,4 +1,3 @@
-import { map, switchMap } from 'rxjs/operators';
 // import { threadValues } from './../data/data.model';
 // import { threadValues, results } from './../thread-data/thread-data.model';
 import { LineData, threadValues ,bar} from './../health-data/cpu.model';

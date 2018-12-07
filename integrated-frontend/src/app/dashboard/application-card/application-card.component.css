@@ -63,3 +63,6 @@ button{
 *{
     text-decoration-color: antiquewhite;
 }
+.mat-input-underline {
+    background-color: white;    /* replace this color with your accent color hex code */
+}

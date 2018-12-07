@@ -1,0 +1,17 @@
+.heading{
+    color: blueviolet;
+}
+.dependency{
+    color: cadetblue;
+    padding-left: 5%;
+}
+.indent{
+    padding-left: 5%;
+}
+#infopara{
+    color: black;
+}
+h3{
+    text-align: center;
+    text-decoration: underline;
+}

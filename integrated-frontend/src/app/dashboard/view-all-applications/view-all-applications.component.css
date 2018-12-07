@@ -22,12 +22,10 @@
     background: url('../../../assets/img/back1.png');
     /* overflow: scroll; */
     display: flex;
+    height: 100%;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-around;
-    height: 100%;
-
 }
 .content{
     bottom: 10px;

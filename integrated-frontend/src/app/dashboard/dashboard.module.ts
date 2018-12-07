@@ -7,7 +7,7 @@ import { StaticDataComponent } from './static-data/static-data.component';
 import { ApplicationCardComponent } from './application-card/application-card.component';
 import { SamplingComponent } from './sampling/sampling.component';
 import { SampleDialogComponent } from './sample-dialog/sample-dialog.component';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule, MatSelect, MatSelectModule } from '@angular/material';
 import { MyDialogComponent } from '../modals/my-dialog/my-dialog.component';
 import { MyDialog1Component } from '../modals/my-dialog1/my-dialog1.component';
 import { MyDialog2Component } from '../modals/my-dialog2/my-dialog2.component';
@@ -33,7 +33,8 @@ import { MyDialog3Component } from '../modals/my-dialog3/my-dialog3.component';
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   exports: [
     DashboardComponent,

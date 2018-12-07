@@ -16,13 +16,13 @@
 
     
    <div class="container"> -->
-    
-    
-  
-       
-      
-         
-          <!-- <canvas baseChart height =1 width=2
+
+
+
+
+
+
+<!-- <canvas baseChart height =1 width=2
                       [datasets]="barChartData"
                       [labels]="barChartLabels"
                       [options]="barChartOptions"
@@ -41,8 +41,9 @@
 
 
 
-          <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -54,125 +55,32 @@
 
 
 
-    <body>
+<body>
 
   <div class="container">
-  <nav>
-    <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-metric',userID,appID]"
-        routerLinkActive="active">Cpu-metric</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/thread-list',userID,appID]"
-        routerLinkActive="active">Thread-List</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/network',userID,appID]"
-        routerLinkActive="active">Network</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/http',userID,appID]"
-        routerLinkActive="active">Http</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-usage',userID,appID]"
-        routerLinkActive="active">Cpu-usage</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/ram',userID,appID]"
-        routerLinkActive="active">Ram</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/bar-chart',userID,appID]"
-        routerLinkActive="active">Disk-Utilization</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-cores',userID,appID]"
-        routerLinkActive="active">Cpu-cores</button>
-      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/health-metric',userID,appID]"
-        routerLinkActive="active">Health</button>
-  </nav>
-  
-  <router-outlet></router-outlet> 
-</div>
+    <nav>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-metric',userID,appID]" routerLinkActive="active">Cpu-metric</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/thread-list',userID,appID]" routerLinkActive="active">Thread-List</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/network',userID,appID]" routerLinkActive="active">Network</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/http',userID,appID]" routerLinkActive="active">Http</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-usage',userID,appID]" routerLinkActive="active">Cpu-usage</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/ram',userID,appID]" routerLinkActive="active">Ram</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/bar-chart',userID,appID]" routerLinkActive="active">Disk-Utilization</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-cores',userID,appID]" routerLinkActive="active">Cpu-cores</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/health-metric',userID,appID]" routerLinkActive="active">Health</button>
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>
+
+
+  <div>
+    <p>X-axis - TIME</p>
+    <p>Y-axis - TEMPERATURE</p>
+    <canvas baseChart height=1 width=2 [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+      [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+  </div>
 
 </body>
+
 </html>
-
-     <div>
-        <p>X-axis - TIME</p>
-       <p>Y-axis  -  TEMPERATURE</p>
-    <canvas baseChart height =1 width=2
-                [datasets]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-              </div>
-    
-  
-
-
-  
-          
-    <!-- <div>   
-       <canvas baseChart width="100" height="100"
-                  [datasets]="lineChartData1"
-                  [labels]="lineChartLabels1"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors1"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas> 
-                </div>
-   -->
-  
-  
-
-
-    
-          
-   
-      <!-- <div> 
-      <canvas baseChart height =1 width=2
-                  [datasets]="lineChartData2"
-                  [labels]="lineChartLabels2"
-                  [options]="lineChartOptions"
-                  [colors]="lineChartColors2"
-                  [legend]="lineChartLegend"
-                  [chartType]="lineChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
-      </div> -->
-   
-  
-    
-
-
-  
-  <!-- <div>
-     
-    <canvas baseChart width="100" height="100"
-                [datasets]="lineChartData5"
-                [labels]="lineChartLabels5"
-                [options]="lineChartOptions"
-                [colors]="lineChartColors5"
-                [legend]="lineChartLegend"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-     
-  </div> -->
-   
-
-  
-  
-        <!-- <canvas baseChart width="100" height="100"
-                    [datasets]="lineChartData7"
-                    [labels]="lineChartLabels7"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors7"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas> -->
-  
-    <!-- <p>Hello</p> -->
-   
-  
-       
-  
-  <!-- </body>
-
-</html> -->
-
-

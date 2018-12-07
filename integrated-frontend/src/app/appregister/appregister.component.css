@@ -1,6 +1,14 @@
 .container{
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    text-align: center;
+}
+
+.btn{
+    background-color: blue;
+}
+
+.mat-raised-button{
+    width: 100%;
 }
     
 

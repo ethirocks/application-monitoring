@@ -11,7 +11,7 @@ import { WarinfoComponent } from './info/warinfo/warinfo.component';
 import { JarinfoComponent } from './info/jarinfo/jarinfo.component';
 import { DockerinfoComponent } from './info/dockerinfo/dockerinfo.component';
 import { ViewAllApplicationsComponent } from './dashboard/view-all-applications/view-all-applications.component';
-import { StaticComponent } from './static-graph/static/static.component';
+import { StaticComponent } from './real-time/front-end1/static/static.component';
 import { DisplayComponent } from './real-time/front-end1/display/display.component';
 import { ChartsModule } from 'ng2-charts';
 import { AdventureTimeService } from './real-time/front-end1/services/adventure-time.service';
@@ -30,70 +30,58 @@ import { HealthMetricStatComponent } from './static-graph/health-metric-stat/hea
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
+      path: 'home',
+      component: HomeComponent
   },
   {
     path: 'auth/login',
     component: LoginComponent
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'appregister',
-    component: AppregisterComponent
-  },
-  {
-    path: 'footer',
-    component: FooterComponent
-  },
-  {
-    path: 'warinfo',
-    component: WarinfoComponent
-  },
-  {
-    path: 'jarinfo',
-    component: JarinfoComponent
-  },
-  {
-    path: 'dockerinfo',
-    component: DockerinfoComponent
-  },
-  { path: 'YourApplications', component: ViewAllApplicationsComponent },
-  { path: 'static/:userID/:appID', component: StaticComponent },
-  { path: 'display/:userID/:appID', component: DisplayComponent },
-  { path: 'sampling', component: SamplingComponent },
-  { path: 'static1/:userID/:applicationID', component: DockerComponent },
-  { path: 'static2/:userID/:applicationID', component: NodejsComponent },
-  { path: 'network-stat/:date/:date1/:from/:to', component: NetworkStatComponent },
-  { path: 'thread-list-stat/:date/:date1/:from/:to', component: ThreadListStatComponent },
-  { path: 'http-stat/:date/:date1/:from/:to', component: HttpStatComponent },
-  { path: 'cpuusage-stat/:date/:date1/:from/:to', component: CpuUsageStatComponent },
-  { path: 'cputemp-stat/:date/:date1/:from/:to', component: CpuMetricStatComponent },
-  { path: 'memory-stat/:date/:date1/:from/:to', component: RamStatComponent },
-  { path: 'disk_utilization-stat/:date/:date1/:from/:to', component: BarChartStatComponent },
-  { path: 'cpucores-stat/:date/:date1/:from/:to', component: CpuCoresStatComponent },
-  { path: 'health-stat/:date/:date1/:from/:to', component: HealthMetricStatComponent }
-  // {path: 'network/:date/:date1/:from/:to', component:NetworkStatComponent},
-  //     {path: 'thread/:date/:date1/:from/:to', component:ThreadListStatComponent},
-  //     {path: 'http/:date/:date1/:from/:to', component:HttpStatComponent},
-  //     {path: 'cpuusage/:date/:date1/:from/:to', component:CpuUsageStatComponent},
-  //     {path: 'cputemp/:date/:date1/:from/:to', component:CpuMetricStatComponent},
-  //     {path: 'memory/:date/:date1/:from/:to', component:RamStatComponent},
-  //     {path: 'disk_utilization/:date/:date1/:from/:to', component:BarChartStatComponent},
-  //     {path: 'cpucores/:date/:date1/:from/:to', component:CpuCoresStatComponent},
-  //     {path: 'health/:date/:date1/:from/:to', component:HealthMetricStatComponent}
+},
+{
+  path: '',
+  redirectTo: 'home',
+  pathMatch: 'full'
+},
+{
+ path: 'dashboard',
+ component: DashboardComponent 
+},
+{ 
+path: 'register',
+component: RegisterComponent
+ },
+{path: 'appregister',
+component: AppregisterComponent
+},
+{path: 'footer',
+component: FooterComponent
+},
+{path: 'warinfo',
+component: WarinfoComponent
+},
+{
+path: 'jarinfo',
+component: JarinfoComponent
+},
+{
+path: 'dockerinfo',
+component: DockerinfoComponent
+},
+{ path: 'YourApplications', component: ViewAllApplicationsComponent },
+{ path: 'static/:userID/:appID', component: StaticComponent },
+{ path: 'display/:userID/:appID', component: DisplayComponent },
+{ path: 'sampling', component: SamplingComponent },
+{ path: 'static1/:userID/:applicationID', component: DockerComponent },
+{ path: 'static2/:userID/:applicationID', component: NodejsComponent },
+{ path: 'network-stat/:date/:date1/:from/:to', component: NetworkStatComponent },
+{ path: 'thread-list-stat/:date/:date1/:from/:to', component: ThreadListStatComponent },
+{ path: 'http-stat/:date/:date1/:from/:to', component: HttpStatComponent },
+{ path: 'cpuusage-stat/:date/:date1/:from/:to', component: CpuUsageStatComponent },
+{ path: 'cputemp-stat/:date/:date1/:from/:to', component: CpuMetricStatComponent },
+{ path: 'memory-stat/:date/:date1/:from/:to', component: RamStatComponent },
+{ path: 'disk_utilization-stat/:date/:date1/:from/:to', component: BarChartStatComponent },
+{ path: 'cpucores-stat/:date/:date1/:from/:to', component: CpuCoresStatComponent },
+{ path: 'health-stat/:date/:date1/:from/:to', component: HealthMetricStatComponent }
 ];
 @NgModule({
   imports: [

@@ -12,7 +12,7 @@ import { CpuCoresComponent } from '../cpu-cores/cpu-cores.component';
 import { RamComponent } from '../ram/ram.component';
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { HealthMetricComponent } from '../health-metric/health-metric.component';
-// import { StaticComponent } from '../static/static.component';
+import { StaticComponent } from '../static/static.component';
 import { DisplayComponent } from '../display/display.component';
 
 const childroutes:Routes = [

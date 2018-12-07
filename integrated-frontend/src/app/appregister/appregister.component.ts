@@ -6,6 +6,10 @@ import { TokenStorageService } from '../login/auth/token-storage.service';
 import { Router } from "@angular/router";
 import { ApplicationServiceService } from '../application-service.service';
 
+export interface Dependency {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-appregister',
@@ -13,6 +17,13 @@ import { ApplicationServiceService } from '../application-service.service';
   styleUrls: ['./appregister.component.css']
 })
 export class AppregisterComponent implements OnInit {
+
+  dependencies: Dependency[] = [
+    {value: 'jar', viewValue: 'JAR'},
+    {value: 'war', viewValue: 'WAR'},
+    {value: 'docker', viewValue: 'DOCKER'},
+    {value: 'nodeJs', viewValue: 'NodeJS'}
+  ];
 
   dash: Dash = new Dash();
 
@@ -35,14 +46,19 @@ export class AppregisterComponent implements OnInit {
     }
   }
 
+dashCast:Dash=new Dash();
+
+type: string;
+
   addapplicationregister(dash: Dash) {
-    var dashCast = {
+    this.dashCast = {
       "uid": Number(this.tokenstorageservice.getUid()),
-      "dependency": this.dash.dependency,
+      "dependency": this.type,
       "appname": this.dash.appname,
       "ipaddress": this.dash.ipaddress
     }
-    this.dashBack.addDashboard(dashCast).subscribe();
+    console.log(this.dashCast)
+    this.dashBack.addDashboard(this.dashCast).subscribe();
   }
 
   applicationregisterform = new FormGroup({
@@ -50,5 +66,10 @@ export class AppregisterComponent implements OnInit {
     ipadressform: new FormControl(),
     dependencyform: new FormControl()
   });
+
+  storeDependency(value: string){
+    this.type=value;
+    console.log(this.type);
+  }
 
 }

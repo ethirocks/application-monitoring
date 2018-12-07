@@ -11,7 +11,7 @@
         <div class="buttons" fxLayout="column" fxLayoutGap="1%" FxLayoutWrap fxLayoutAlign="center">
             <div class="sampling" *ngIf="item==='sample'">
                 <mat-form-field>
-                    <input matInput [(ngModel)]="samplingPeriod" placeholder="Enter the duration for Sampling">
+                    <input matInput style="color:whitesmoke;" [(ngModel)]="samplingPeriod" placeholder="Enter the duration for Sampling">
                 </mat-form-field>
                 <div>{{over}}</div>
                 <button mat-raised-button (click)="sample(samplingPeriod)">Sample Application</button>
@@ -19,27 +19,21 @@
             </div>
 
             <div class="view" *ngIf="item ==='view'">
-                
-
                 <div *ngIf="application.dependency==='jar'">
-                    <button mat-raised-button [routerLink]="['../','static',application.userId,application.id]">Historic
-                        Data</button>
+                    <button mat-raised-button [routerLink]="['../','static',application.userId,application.id]">Historic Data
+                    </button>
                     <button mat-raised-button [routerLink]="['../','display',application.userId,application.id]">Monitor
-                        Application</button>
+                        Application
+                    </button>
                 </div>
-
                 <div *ngIf="application.dependency==='docker'">
-                    <button mat-raised-button [routerLink]="['../','static1',application.userId,application.id]">View
-                        Previous Monitored Data</button>
-            
+                    <button mat-raised-button [routerLink]="['../','static1',application.userId,application.id]">Historic Data
+                    </button>
                 </div>
-
                 <div *ngIf="application.dependency==='nodeJs'">
-                    
-                    <button mat-raised-button [routerLink]="['../','static2',application.userId,application.id]">View
-                        Previous Monitored Data</button>
+                    <button mat-raised-button [routerLink]="['../','static2',application.userId,application.id]">Historic Data
+                    </button>
                 </div>
-
                 <!-- <button mat-raised-button>Historic Data </button>
                 <button mat-raised-button>Monitor Application</button> -->
             </div>

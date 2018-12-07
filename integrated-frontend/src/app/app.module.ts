@@ -13,6 +13,7 @@ import { AppregisterComponent } from './appregister/appregister.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WarinfoComponent } from './info/warinfo/warinfo.component';
@@ -34,7 +35,7 @@ import { RamComponent } from './real-time/front-end1/ram/ram.component';
 import { HttpComponent } from './real-time/front-end1/http/http.component';
 import { NetworkComponent } from './real-time/front-end1/network/network.component';
 import { routingComponent, DisplayRoutingModule } from './real-time/front-end1/display/display.module';
-import { StaticComponent } from './static-graph/static/static.component';
+import { StaticComponent } from './real-time/front-end1/static/static.component';
 import { DisplayComponent } from './real-time/front-end1/display/display.component';
 import { ChartsModule } from 'ng2-charts';
 import { AdventureTimeService } from './real-time/front-end1/services/adventure-time.service';
@@ -58,7 +59,6 @@ import { RamStatComponent } from '../app/static-graph/ram-stat/ram-stat.componen
 import { CpuMetricStatComponent } from '../app/static-graph/cpu-metric-stat/cpu-metric-stat.component';
 import { DockerComponent } from './docker/docker.component';
 import { NodejsComponent } from './nodejs/nodejs.component';
-import { routingComponents1 } from './static-graph/static/static-routing.module';
 
 @NgModule({
   declarations: [
@@ -99,7 +99,6 @@ import { routingComponents1 } from './static-graph/static/static-routing.module'
     HttpComponent,
     NetworkComponent,
     routingComponent,
-    routingComponents1,
     StaticComponent,
     DisplayComponent,
     SamplingComponent,
@@ -131,7 +130,8 @@ import { routingComponents1 } from './static-graph/static/static-routing.module'
     MatInputModule,
     MatRippleModule,
     MatIconModule,
-    ModalsModule
+    ModalsModule,
+    MatSelectModule
   ],
   entryComponents: [
     MyDialogComponent,

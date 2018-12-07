@@ -1,3 +1,8 @@
+.container{
+    height: 100%;
+    background: url("../../../assets/img/back1.png")
+}
+
 .application{
     margin-top:25vh;
     display: flex;
@@ -7,12 +12,20 @@
     display: flex;
     margin-left: 10vw;
 }
+.card1{
+    text-align:center;
+}
 .card2{
     text-align:center;
 }
 .card3{
-    text-align:right;
+    text-align:center;
 }
 .content3{
     margin-right: 10vw;;
+}
+
+.buttons{
+    margin-left: 5px;
+    margin-right: 5px;
 }

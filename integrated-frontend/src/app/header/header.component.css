@@ -1,11 +1,6 @@
 .container{
-    /* background-image:url('src/assets/img/background.jpg'); */
-    background-repeat: no-repeat;
-    height: 100vh;
     text-decoration-color: antiquewhite;
     margin-top:-5vh;
-    height: 100%; 
-    background-size: cover;
     margin-bottom: 0px;
 }
 
