@@ -1,0 +1,49 @@
+<!-- <div #chart id="chart" (window:resize)="onResize($event)"></div> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+    <body>
+
+  <div class="container">
+  <nav>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/cpu-metric" routerLinkActive="active">Cpu-metric</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/thread-list" routerLinkActive="active">Thread-List</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/network" routerLinkActive="active">Network</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/http" routerLinkActive="active">Http</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/cpu-usage" routerLinkActive="active">Cpu-usage</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/ram" routerLinkActive="active">Ram</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/bar-chart" routerLinkActive="active">Disk-Utilization</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/cpu-cores" routerLinkActive="active">Cpu-cores</button>
+    <button type="button" class="btn btn-success" style="margin:10px" routerLink="/health-metric" routerLinkActive="active">Health</button>
+
+  </nav>
+  
+  <router-outlet></router-outlet> 
+</div>
+
+</body>
+</html> -->
+
+
+<div>
+    <p>X-axis - TIME</p>
+    <p>Y-axis - USAGE</p>
+<canvas baseChart height =1 width=2
+                  [datasets]="lineChartData1"
+                  [labels]="lineChartLabels1"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors1"
+                  [legend]="lineChartLegend"
+                  [chartType]="lineChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas></div>

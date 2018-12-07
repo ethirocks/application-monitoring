@@ -96,6 +96,7 @@ services:
      -  client-server
      -  eureka
      -  config-server
+     -  nodejs
 #     -  user-authentication
    ports:
      -  8188:8188
@@ -241,7 +242,7 @@ services:
 
   angular:
    image: app-monitor-ui
-   build: front-end1/.
+   build: integrated-frontend/.
  #  network_mode:  host
    ports:
      - 4200:4200
@@ -257,3 +258,12 @@ services:
      -  /var/run/docker.sock:/var/run/docker.sock
    ports:
      -  9001:9001
+
+  nodejs:
+    image: nodejs-client
+    build: nodefinal/.
+    ports:
+      - 8501:8501
+    expose:
+      - 8501
+    container_name: nodejs

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <nav>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-metric',userID,appID]"
+        routerLinkActive="active">Cpu-metric</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/thread-list',userID,appID]"
+        routerLinkActive="active">Thread-List</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/network',userID,appID]"
+        routerLinkActive="active">Network</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/http',userID,appID]"
+        routerLinkActive="active">Http</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-usage',userID,appID]"
+        routerLinkActive="active">Cpu-usage</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/ram',userID,appID]"
+        routerLinkActive="active">Ram</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/bar-chart',userID,appID]"
+        routerLinkActive="active">Disk-Utilization</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-cores',userID,appID]"
+        routerLinkActive="active">Cpu-cores</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/health-metric',userID,appID]"
+        routerLinkActive="active">Health</button>
+
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>
+
+</body>
+
+</html>

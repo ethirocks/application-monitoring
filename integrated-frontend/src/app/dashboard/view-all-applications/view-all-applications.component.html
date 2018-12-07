@@ -1,0 +1,23 @@
+<div class="container-wrap">
+  <div>
+    <h4>APPLICATIONS LIST</h4>
+  </div>
+  <div *ngIf="applicationsList ; else elseBlock">
+    <div class="container">
+      <div *ngFor="let application of applicationsList">
+        <div>
+          <app-application-card [item]="item" [application]="application">
+          </app-application-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <p>No applications available</p>
+  </ng-template>
+</div>
+<div class=content>
+  <mat-card-content>
+    <button mat-fab color="primary" (click)="openDialog()"><strong>+</strong></button>
+  </mat-card-content>
+</div>

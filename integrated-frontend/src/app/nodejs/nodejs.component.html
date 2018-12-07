@@ -1,0 +1,209 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+    <body> -->
+       
+      <div class="component-style table-component">
+        <div class="component-style">
+        
+            <div class="component-tag">
+              <h2>CPU-CORES</h2>
+              
+            </div>
+        <!--   
+            
+        <div>
+          <div *ngFor="let c of res">
+            <div *ngFor="let e of c.series">
+              <th class = "head" *ngFor="let p of e.columns"> 
+                {{p}}
+              </th>
+            </div>
+          </div>
+        <p>askjcnaksjcnkajs</p> -->
+                <!-- <ul>
+                  
+                  
+                            <div *ngFor="let itemresults of res">
+                              
+                              <div *ngFor="let itemseries of itemresults.series">
+                               
+                                <div *ngFor="let itemvalues of itemseries.values">
+                                
+                                  {{itemvalues}}
+        
+                                </div>
+        
+                              </div>
+                            </div>
+                         </div> 
+                    
+                  </ul> -->
+                <!-- </div>
+              
+          </div>
+          
+        </body>
+        </html> -->
+        
+        
+        
+        <!-- <div class="component-style table-component">
+        
+          <div class="component-tag">
+            <h2>CPU-CORES</h2>
+          </div>
+        
+          <br>
+        -->
+        
+         
+            
+            <div style="width:100%; border-right: 10px;border-left: 10px">
+                <table>
+              <div *ngFor="let c of cpu">
+                <div *ngFor="let d of c.series">
+                  
+                  
+                  <th  class = "head" *ngFor="let e of d.columns | slice:1:2">
+                    {{"CPU"}}
+                  </th>
+                  
+                  <tr class="array" *ngFor="let f of d.values">
+                     
+                       <td class="results_values" *ngFor="let s of f | slice:1:2">
+                        {{s}}
+                      </td>
+        
+                  </tr>
+                      
+                      
+                     
+                   
+                 
+                </div>
+              </div>
+
+
+
+
+              <div *ngFor="let c of systemcpu">
+                  <div *ngFor="let d of c.series">
+                    
+                    
+                    <th  class = "head" *ngFor="let e of d.columns | slice:1:2">
+                      {{"systemCPU"}}
+                    </th>
+                    
+                    <tr class="array" *ngFor="let f of d.values">
+                       
+                         <td class="results_values" *ngFor="let s of f | slice:1:2">
+                          {{s}}
+                        </td>
+          
+                    </tr>
+                        
+                        
+                       
+                     
+                   
+                  </div>
+                </div>
+
+
+
+
+
+                <div *ngFor="let c of mem">
+                    <div *ngFor="let d of c.series">
+                      
+                      
+                      <th  class = "head" *ngFor="let e of d.columns | slice:1:2">
+                        {{"Memory"}}
+                      </th>
+                      
+                      <tr class="array" *ngFor="let f of d.values">
+                         
+                           <td class="results_values" *ngFor="let s of f | slice:1:2">
+                            {{s}}
+                          </td>
+            
+                      </tr>
+                          
+                          
+                         
+                       
+                     
+                    </div>
+                  </div>
+
+
+
+
+                  <div *ngFor="let c of totalmem">
+                      <div *ngFor="let d of c.series">
+                        
+                        
+                        <th  class = "head" *ngFor="let e of d.columns | slice:1:2">
+                          {{"Total Memory"}}
+                        </th>
+                        
+                        <tr class="array" *ngFor="let f of d.values">
+                           
+                             <td class="results_values" *ngFor="let s of f | slice:1:2">
+                              {{s}}
+                            </td>
+              
+                        </tr>
+                            
+                            
+                           
+                         
+                       
+                      </div>
+                    </div>
+
+
+
+
+                    <div *ngFor="let c of temp">
+                        <div *ngFor="let d of c.series">
+                          
+                          
+                          <th  class = "head" *ngFor="let e of d.columns | slice:1:2">
+                            {{"Temperature"}}
+                          </th>
+                          
+                          <tr class="array" *ngFor="let f of d.values">
+                             
+                               <td class="results_values" *ngFor="let s of f | slice:1:2">
+                                {{s}}
+                              </td>
+                
+                          </tr>
+                              
+                              
+                             
+                           
+                         
+                        </div>
+                      </div>
+            </table>
+              </div>
+          
+            
+            
+            
+        
+        </div>
+        

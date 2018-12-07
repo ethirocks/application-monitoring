@@ -1,0 +1,35 @@
+<div class="container">
+  <h3>Register Application</h3>
+</div>
+<div class="container">
+  <form [formGroup]="applicationregisterform" (ngSubmit)="onSubmit() && addapplicationregister()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name"><h4>Application-Name</h4></label>
+      <input type="text" class="form-control" id="applicationid" 
+      [(ngModel)]="dash.appname"
+      formControlName="applicationnameform" required/>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="alterEgo"><h4>Url</h4></label>
+      <input type="url" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?|^((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9][0-9][0-9][0-9]$" class="form-control" id="ipadressid"
+      [(ngModel)]="dash.ipaddress"
+      formControlName="ipadressform" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo"><h4>Dependency</h4></label>
+      <input type="text" class="form-control" id="dependencyid"
+      [(ngModel)]="dash.dependency"
+      formControlName="dependencyform" required/>
+    </div>     
+
+<div class="button">
+    <button type="submit" class="btn btn-success" [disabled]="!applicationregisterform.valid"  (click)="addapplicationregister()" >Submit</button>
+    <!-- <button type="submit" class="btn btn-success" routerLink="/view-all-applications" >Cancel</button>   -->
+</div> 
+
+  </form>
+</div>

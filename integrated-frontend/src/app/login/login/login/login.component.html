@@ -1,0 +1,53 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+</div>
+<ng-template #loggedOut>
+  <div class="container">
+    <div class="inner-container">
+    <div class="title">
+      <img src="../../../../assets/img/logo1.png">
+    </div>
+    <h3 style="
+    text-align: center;
+    background-color: whitesmoke;
+    margin: 0px;">Login</h3>
+    <div class="loginform">
+    <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" #f="ngForm" novalidate> 
+          <div>
+          <mat-form-field>
+            <input id="email"
+                   matInput
+                   formControlName="email"
+                   [(ngModel)]="user.email"
+                   placeholder="Enter your Email" />
+          </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   [(ngModel)]="user.password"
+                   placeholder="Enter your password"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+          </mat-form-field>
+        </div>
+      <div class="login-button">
+          <button class="button" mat-button type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  [disabled]="!loginForm.valid" style="
+                  background-color: #444444;
+                  color: white;">Login</button>
+                  <a type="submit" routerLink="/register" style="margin-left: 20px;">New User?</a>
+                  <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+                    {{errorMessage}}
+                  </div>
+      </div>
+    </form>
+    </div>
+    </div>
+    </div>
+</ng-template>
+  <router-outlet></router-outlet>

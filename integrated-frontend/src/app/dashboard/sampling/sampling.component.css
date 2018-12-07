@@ -1,0 +1,24 @@
+.container{
+    background: url('../../../assets/img/back1.png');
+    /* overflow: scroll; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.head{
+    color: white;
+}
+
+.container-wrap{
+    background: url('../../../assets/img/back1.png');
+    /* overflow: scroll; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+}

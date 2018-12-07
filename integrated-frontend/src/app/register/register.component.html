@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="inner-container">
+      <div class="title">
+          <img src="../../../../assets/img/logo1.png">
+      </div>
+ <form class="registrationform" [formGroup]="registrationform" (ngSubmit)="onSubmit() && registrationform.valid" #f="ngForm" novalidate>
+    <div>
+        <mat-form-field>
+          <input id="userName" matInput type="text" class="form-control" id="usernameid"
+          [(ngModel)]="user.userName" formControlName="usernameform" required placeholder="Enter your First Name" />
+        </mat-form-field>
+        </div>
+  
+        <div>
+        <mat-form-field>
+          <input id="email"
+                matInput
+                type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="email" 
+                [(ngModel)]="user.email" formControlName="emailform" required placeholder="Enter your Email"/>
+        </mat-form-field>
+        </div>
+        <div>
+        <mat-form-field>
+          <input matInput
+                type="password"
+                 class="form-control" id="passwordid"
+                [(ngModel)]="user.password"
+                formControlName="passwordform" required
+                 placeholder="Enter your password"/>
+        </mat-form-field>
+      </div> 
+      <div>
+          <mat-form-field>
+            <input id="phonenumber" matInput type="text" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phonenumber" 
+            [(ngModel)]="user.phonenumber" formControlName="phonenumberform" required placeholder="Contact Number"/>
+          </mat-form-field>
+          </div>
+  
+  <!-- <div class="form-group">
+     <label for="name"><h4>Username</h4></label>
+     <input type="text" class="form-control" id="usernameid"
+     [(ngModel)]="user.userName" formControlName="usernameform" required />
+   </div>
+   <div class="form-group">
+     <label for="alterEgo"><h4>Email</h4></label>
+     <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" id="email" 
+     [(ngModel)]="user.email" formControlName="emailform" required placeholder="Enter your Email"/>
+   </div>
+   
+   <div class="form-group">
+     <label for="alterEgo"><h4>Password</h4></label>
+     <input type="password" class="form-control" id="passwordid"
+     [(ngModel)]="user.password"
+     formControlName="passwordform" required />
+   </div>
+
+   <div class="form-group">
+     <label for="alterEgo"><h4>Phone-Number</h4></label>
+     <input type="text" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phonenumber" 
+     [(ngModel)]="user.phonenumber" formControlName="phonenumberform" required />
+   </div> -->
+   <div>
+    <button type="submit" class="mat-raised-button mat-primary"   (click)="addUsers()" [disabled]="!registrationform.valid" style="width:80px;background-color: #444444; color: white;">Submit</button>
+   <a type="submit" routerLink="/auth/login" style="margin-left: 20px;">Already a Member?</a>
+   </div>
+   
+
+ </form>
+ </div>
+</div>
+<router-outlet></router-outlet> 

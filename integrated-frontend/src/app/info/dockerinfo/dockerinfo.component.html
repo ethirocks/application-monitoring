@@ -1,0 +1,36 @@
+<p>
+
+  To start monitoring your application (here a spring-boot application) following needs to be done:
+</p>
+
+<p>
+  Add this agent as a dependency in your pom.xml file for maven dependency
+</p> 
+<p>
+                    &lt;dependency&gt;<br>
+                    &lt;groupId&gt; com.stackroute &lt;/groupId&gt;<br>
+                    &lt;artifactId&gt; agent &lt;/artifactId&gt;<br>
+                    &lt;version&gt; 0.0.1-SNAPSHOT &lt;/version&gt;<br>
+                    &lt;/dependency&gt;<br>
+</p>   
+<p>
+  Along with this distribution manager
+</p>  
+<p>  
+                  &lt;distributionManagement&gt;<br>
+                  &lt;snapshotRepository&gt;<br>
+                  &lt;id &gt; snapshots &lt;/id&gt;<br>
+                  &lt;name&gt; e8c44ebf2442-snapshots &lt;/name&gt;<br>
+                  &lt;url&gt; http://localhost:8081/artifactory/libs-snapshot-local &lt;/url&gt;<br>
+                  &lt;/snapshotRepository&gt;<br>
+                  &lt;/distributionManagement&gt;<br>
+</p>  
+<p>
+  Add this setting.xml file to your local repository(m2 folder) from ""<br>
+  
+  Then repackage/rebuild your application<br>
+  
+  Provide ip along with port number where your application is running<br>
+  
+  Then the data metrics can be displayed on UI "http://52.66.184.4:4200"<br>
+</p>

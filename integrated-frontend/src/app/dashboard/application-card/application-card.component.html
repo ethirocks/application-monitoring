@@ -1,0 +1,51 @@
+<mat-card class="application-card">
+    <mat-card-header>
+        <div *ngIf="application.dependency==='jar'" mat-card-avatar class="jar-image"></div>
+        <div *ngIf="application.dependency==='war'" mat-card-avatar class="war-image"></div>
+        <div *ngIf="application.dependency==='nodeJs'" mat-card-avatar class="node-image"></div>
+        <div *ngIf="application.dependency==='docker'" mat-card-avatar class="docker-image"></div>
+        <mat-card-title>{{application.applicationName}} {{errorMsg}}</mat-card-title>
+        <mat-card-subtitle>{{application.address}} {{errorMsg}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <div class="buttons" fxLayout="column" fxLayoutGap="1%" FxLayoutWrap fxLayoutAlign="center">
+            <div class="sampling" *ngIf="item==='sample'">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="samplingPeriod" placeholder="Enter the duration for Sampling">
+                </mat-form-field>
+                <div>{{over}}</div>
+                <button mat-raised-button (click)="sample(samplingPeriod)">Sample Application</button>
+                <button mat-raised-button (click)="viewSampleData('cpuusage')">View Sampled Data</button>
+            </div>
+
+            <div class="view" *ngIf="item ==='view'">
+                
+
+                <div *ngIf="application.dependency==='jar'">
+                    <button mat-raised-button [routerLink]="['../','static',application.userId,application.id]">Historic
+                        Data</button>
+                    <button mat-raised-button [routerLink]="['../','display',application.userId,application.id]">Monitor
+                        Application</button>
+                </div>
+
+                <div *ngIf="application.dependency==='docker'">
+                    <button mat-raised-button [routerLink]="['../','static1',application.userId,application.id]">View
+                        Previous Monitored Data</button>
+            
+                </div>
+
+                <div *ngIf="application.dependency==='nodeJs'">
+                    
+                    <button mat-raised-button [routerLink]="['../','static2',application.userId,application.id]">View
+                        Previous Monitored Data</button>
+                </div>
+
+                <!-- <button mat-raised-button>Historic Data </button>
+                <button mat-raised-button>Monitor Application</button> -->
+            </div>
+        </div>
+    </mat-card-actions>
+    <mat-card-content>
+        <p>{{response}}</p>
+    </mat-card-content>
+</mat-card>

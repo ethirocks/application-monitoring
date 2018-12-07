@@ -1,0 +1,56 @@
+<div style="text-align:center">
+  <h1>
+    Dashboard
+  </h1>
+</div>
+
+<mat-tab-group mat-stretch-tabs id="super" class="example-stretched-tabs mat-elevation-z4" style="background-color:white">
+  <mat-tab label=".War">
+    <mat-card class="card1">
+      <div class="content1">
+        <mat-card-content>
+          <button mat-raised-button (click)="openDialog()">.War Dependency</button>
+          <br>
+          <br>
+          <button type="submit" class="mat-flat-button mat-primary">Download</button>
+          <button type="submit" class="mat-flat-button mat-primary" routerLink="/warinfo">Info</button>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label=".Jar">
+    <mat-card class="card2">
+      <div class="content2">
+        <mat-card-content>
+          <button mat-raised-button (click)="openDialog1()">.Jar Dependency</button>
+          <br>
+          <br>
+          <button type="submit" class="mat-flat-button mat-primary">Download</button>
+          <button type="submit" class="mat-flat-button mat-primary" routerLink="/jarinfo">Info</button>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label="Docker">
+    <mat-card class="card3">
+      <div class="content3">
+        <mat-card-content>
+          <button mat-raised-button (click)="openDialog3()">Docker Dependency</button>
+          <br>
+          <br>
+          <button type="submit" class="mat-flat-button mat-primary">Download</button>
+          <button type="submit" class="mat-flat-button mat-primary" routerLink="/dockerinfo">Info</button>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="application">
+  <!-- <button type="submit" class="mat-flat-button mat-primary" [routerLink]="['../','YourApplications']"> Your Applications</button> -->
+  <!-- <button mat-button type="submit" class="mat-flat-button mat-primary" routerLink="/appregister">
+    Add Application</button> -->
+</div>
+<router-outlet></router-outlet>

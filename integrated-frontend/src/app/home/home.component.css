@@ -1,0 +1,158 @@
+/* mat-grid-tile{
+   color: black;
+} */
+
+h3{
+    font-size: 1.3vw;
+    font-weight: normal;
+}
+
+.container{
+        background-repeat: repeat;
+        text-align: center;
+        display: flex;
+        height: 85%;
+        margin-top: -1.8%;
+        color: black;
+        background: url("../../assets/img/2Xy731544024036.png");
+        background-position: left;
+        background-size: cover;
+}
+
+.secondline{
+    padding-top: 1%;
+    padding-bottom: 0%;
+    font-weight: 100;
+}
+
+.firstline{
+    padding-top: 2%;
+    padding-bottom: 0%;
+    font-weight: 100;
+}
+
+/* Service css */
+
+.services {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    width: 35%;
+    padding: 5px;
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+}
+
+.services[_ngcontent-c1] img[_ngcontent-c1]{
+    background-color: #d6d6d6;
+}
+
+.service-box {
+    padding: 15px;
+    padding-bottom: 0px;
+    flex: 1;
+    padding-top: 0px;
+}
+
+/* #one {
+    width: 60px;
+    color: #f00606;
+}
+
+#two {
+    width: 60px;
+    color: #1af525;
+}
+
+#three {
+    width: 60px;
+    color: #fff235;
+}
+
+#four {
+    width: 60px;
+    color: #01fde8;
+} */
+
+.services img{
+    border: 3px solid grey;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.services img:first-child:hover {
+    border: 6px solid #222325;
+}
+
+.services #comroom:hover {
+    border: 6px solid #222325 ;
+}
+
+.services #laundary:hover {
+    border: 6px solid #222325 ;
+}
+
+.services #mess:hover {
+    border: 6px solid #222325;
+}
+
+@media only screen and (max-width: 1024px) {
+    .services {
+        width: 55%;
+    }
+}
+
+
+@media only screen and (max-width: 1020px) {
+    .services {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+.container{
+    margin-top: -10%;
+    font-size: 2.5vw;
+    flex-direction: column;
+}
+h3{
+    font-size: 1.8vw;
+}
+}
+@media only screen and (max-width: 500px) {
+    .container {
+    font-size: 3vw;
+    height: 100%;
+}
+.services{
+    padding-top: 175%;
+    width: 97%;
+}
+h3{
+    font-size: 2vw;
+}
+}
+
+@media only screen and (max-width: 400px) {
+    .services{
+        padding-top: 235%;
+        width: 97%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    h3{
+        font-size: 2.2vw;
+    }
+    .services{
+        padding-top: 273%;
+        width: 97%;
+    }
+}

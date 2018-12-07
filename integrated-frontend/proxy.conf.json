@@ -1,0 +1,20 @@
+{
+    "/api/v1/login": {
+      "target": "http://172.23.239.222:8088",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/userprofile":{
+      "target": "http://172.23.239.222:9095",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"  
+    }, 
+    "/addapplication":{
+      "target": "http://172.23.239.222:8094",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"  
+    }
+}

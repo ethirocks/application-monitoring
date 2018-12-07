@@ -1,0 +1,18 @@
+<div class="container">
+  <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav" routerLinkActive="active">
+            <li><a class="logo" routerLink="home"><img id="logo" src="src/assets/img/logo.png" height="70vw" width="70 vw"></a></li>
+          <div class="menubar">
+          <li *ngIf="isloggedin"><a class="nav-link" (click)="logout()" routerLink="home">Logout</a></li>
+          <li *ngIf="!isloggedin"><a class="nav-link" routerLink="register">Register</a></li>
+          <li *ngIf="!isloggedin"><a class="nav-link" routerLink="auth/login">Login</a></li>
+          <li *ngIf="isloggedin"><a class="nav-link" routerLink="YourApplications">Dashboard</a></li>
+          <li *ngIf="isloggedin"><a class="nav-link" routerLink="dashboard">Download Agent</a></li>
+          <li *ngIf="isloggedin"><a class="nav-link" routerLink="sampling">Sample Application</a></li>
+          </div>
+        </ul>
+      </div>
+    </nav>
+      <router-outlet></router-outlet>
+  </div>
