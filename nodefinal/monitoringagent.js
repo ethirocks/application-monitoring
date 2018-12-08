@@ -52,17 +52,18 @@ router.get('/temperature',(req,res,next)=>
     var userID= req.query.userID;
         var applicationID = req.query.applicationID;
     var spawn = require('child_process').spawn;
-
+    const si = require('systeminformation');
     temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp']);
         temp.stdout.on('data', function(data) {
                 res.status(200).json({
                   userID:userID,
                   applicationID:applicationID,
                   metrics:{
-                    temperature:data/1000
+                    temperature:0
                   }
                 })
          })
+    
             
 })
 

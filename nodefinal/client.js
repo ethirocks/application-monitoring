@@ -2,7 +2,7 @@ const http = require('http');
 var express = require('express');
 const productroutes = require('./monitoringagent');
 
-const HOSTNAME = 'nodejs';
+const HOSTNAME = 'localhost';
 const PORT = 8501;
 
 const app = express();

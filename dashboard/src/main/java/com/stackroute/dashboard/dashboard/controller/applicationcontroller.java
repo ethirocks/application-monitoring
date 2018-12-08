@@ -24,8 +24,8 @@ import static java.lang.Integer.parseInt;
 @RestController
 public class applicationcontroller {
 
-//    @Value("${monitoringServerUrl}")
-    String monitoringServerUrl = "https://appmonitoring-zuul.stackroute.in/monitoring";
+    @Value("${monitoringServerUrl}")
+    String monitoringServerUrl ;
 
     @Autowired
     private ApplicationgeneratorService applicationgeneratorService;

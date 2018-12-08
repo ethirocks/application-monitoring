@@ -10,5 +10,5 @@ RUN npm install
 # RUN npm install --only=production
 # Bundle app source
 COPY . .
-EXPOSE 8501
-CMD [ "node", "client.js" ]
+EXPOSE 3000
+CMD [ "npm", "start" ]
