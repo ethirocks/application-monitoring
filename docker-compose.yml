@@ -250,7 +250,7 @@ services:
    container_name: angular_graph
 
   agenttodocker:
-   image:  harsha7890/agenttomonitordocker:v10
+   image:  harsha7890/agenttomonitordocker:v30
    restart: always
   # network_mode:  host
    volumes:
