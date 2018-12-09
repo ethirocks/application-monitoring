@@ -49,22 +49,29 @@ router.get('/memory',(req,res,next)=>
 
 router.get('/temperature',(req,res,next)=>
 {
-    var userID= req.query.userID;
-        var applicationID = req.query.applicationID;
-    var spawn = require('child_process').spawn;
-    const si = require('systeminformation');
-    temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp']);
-        temp.stdout.on('data', function(data) {
-                res.status(200).json({
-                  userID:userID,
-                  applicationID:applicationID,
-                  metrics:{
-                    temperature:0
-                  }
-                })
-         })
-    
-            
+   var userID= req.query.userID;
+       var applicationID = req.query.applicationID;
+   // var spawn = require('child_process').spawn;
+   // const si = require('systeminformation');
+   // temp = spawn('cat', ['/sys/class/thermal/thermal_zone0/temp']);
+   //     temp.stdout.on('data', function(data) {
+   //             res.status(200).json({
+   //               userID:userID,
+   //               applicationID:applicationID,
+   //               metrics:{
+   //                 temperature:0
+   //               }
+   //             })
+   //      })
+   res.status(200).json({
+       userID:userID,
+       applicationID:applicationID,
+       metrics:{
+       temperature:0.0
+       }
+   })
+
+
 })
 
 module.exports=router;

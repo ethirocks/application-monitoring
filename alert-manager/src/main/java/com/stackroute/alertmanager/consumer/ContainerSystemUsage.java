@@ -57,8 +57,8 @@ public class ContainerSystemUsage {
         try{
             Point point = Point.measurement("containerSystemUsageSample")
                     .time(timeSample, TimeUnit.MILLISECONDS)
-                    .addField("systemMemory",  containerMetricsSystemUsage.getSystemmemory())
-                    .addField("systemCpu", containerMetricsSystemUsage.getSystemcpu())
+                    .addField("systemMemory",  Double.parseDouble(containerMetricsSystemUsage.getSystemmemory()))
+                    .addField("systemCpu", Double.parseDouble(containerMetricsSystemUsage.getSystemcpu()))
                     .tag("userID",String.valueOf(userId))
                     .tag("applicationID",String.valueOf(applicationId))
                     .build();
