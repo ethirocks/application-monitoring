@@ -1,17 +1,21 @@
 <div class="container">
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-      <ul class="nav navbar-nav" routerLinkActive="active" style="height:70px;">
-        <li><a class="logo" routerLink="home"><img id="logo" src="src/assets/img/logo.png" height="70vw" width="70 vw"></a></li>
-        <div class="menubar">
-          <li *ngIf="isloggedin"><a class="nav-link" (click)="logout()" routerLink="home">Logout</a></li>
-          <li *ngIf="!isloggedin"><a class="nav-link" routerLink="register">Register</a></li>
-          <li *ngIf="!isloggedin"><a class="nav-link" routerLink="auth/login">Login</a></li>
-          <li *ngIf="isloggedin"><a class="nav-link" routerLink="YourApplications">Dashboard</a></li>
-          <li *ngIf="isloggedin"><a class="nav-link" routerLink="dashboard">Download Agent</a></li>
-          <li *ngIf="isloggedin"><a class="nav-link" routerLink="sampling">Sample Application</a></li>
+      <div class="nav navbar-nav" routerLinkActive="active">
+        <div class="logo">
+          <a routerLink="home">
+            <img id="logo" src="src/assets/img/logo.png" height="70vw" width="70vw">
+          </a>
         </div>
-      </ul>
+        <div class="menubar">
+          <div class="nav-link-wrapper" *ngIf="!isloggedin"><button mat-raised-button class="nav-link" routerLink="auth/login">Login</button></div>
+          <div class="nav-link-wrapper" *ngIf="!isloggedin"><button mat-raised-button class="nav-link" routerLink="register">Register</button></div>
+          <div class="nav-link-wrapper" *ngIf="isloggedin"><button mat-raised-button class="nav-link" routerLink="dashboard">Download Agent</button></div>
+          <div class="nav-link-wrapper" *ngIf="isloggedin"><button mat-raised-button class="nav-link" routerLink="sampling">Sample Application</button></div>
+          <div class="nav-link-wrapper" *ngIf="isloggedin"><button mat-raised-button class="nav-link" routerLink="YourApplications">Dashboard</button></div>
+          <div class="nav-link-wrapper" *ngIf="isloggedin"><button mat-raised-button class="nav-link" (click)="logout()" routerLink="home">Logout</button></div>
+        </div>
+      </div>
     </div>
   </nav>
 </div>

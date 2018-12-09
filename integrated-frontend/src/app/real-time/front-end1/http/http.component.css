@@ -1,15 +1,15 @@
-/* td, th {
+td, th {
     border: solid 1px black;
-    }  */
+    }  
 
-/* td, th {
+ td, th {
         border-left: solid 1px black;
-        }  */
+        } 
 
         p{
             font-family: cursive;
             font-size: 14px;
-            /* font-display: bold; */
+            font-display: bold;
         }
         canvas{
 

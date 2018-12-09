@@ -213,9 +213,9 @@ services:
     image: war-client
     build: warclient/.
     ports:
-      - 8085:8080
+      - 8080:8080
     expose:
-      - 8085
+      - 8080
     container_name: war-client
 
   mongodb:
@@ -229,7 +229,6 @@ services:
 
   mysql:
     image: mysql:5.7
-    command: "--innodb_use_native_aio=0"
     container_name: mysql
  #   network_mode: host
     ports:

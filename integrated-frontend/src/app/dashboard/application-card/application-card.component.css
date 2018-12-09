@@ -20,23 +20,34 @@
     background-image: url('../../../assets/img/nodejs.png');
     background-size: cover;
 }
+
 .sample-form{
     display: flex;
     flex-direction: row;
 }
+
 .sampling{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+
 button{
-    margin: 5% 0%;
+    margin: 2%;
 }
 
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
 
-.mat-card-actions .mat-button:first-child, .mat-card-actions .mat-raised-button:first-child {
+/* .mat-card-actions .mat-button:first-child, .mat-card-actions .mat-raised-button:first-child {
     margin: auto;
     margin-bottom: 2%;
-}
+} */
 
 .mat-card-title {
     color: lightcyan;
@@ -47,13 +58,22 @@ button{
     color: azure;
 }
 
-.mat-card {
-    padding: 1%;
+input{
+    width: 80%;
 }
 
+.mat-form-field{
+    width: 80%;
+}
+
+.mat-card {
+    padding: 1%;
+} 
+
 .mat-raised-button{
-    margin: auto;
-    margin-bottom: 2%;
+    /* margin: auto;
+    margin-bottom: 2%; */
+    margin: 2%!important;
     width: 150px;
 }
 .view{

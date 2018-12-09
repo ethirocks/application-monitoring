@@ -1,15 +1,8 @@
 import { HealthModel } from './../health-data/health.model';
 import { HttpClient } from '@angular/common/http';
-import { ThreadDataModel } from './../thread-data/thread-data.model';
 
 import { Injectable } from '@angular/core';
 
-import { of } from 'rxjs';
-
-import { Observable } from 'rxjs';
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/delay';
-import { CHARACTERS } from './data1';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable()
@@ -18,7 +11,6 @@ export class AdventureTimeService {
   constructor(private http: HttpClient,
     private route: ActivatedRoute) { 
     }
-
 
   private _url : string = "https://appmonitoring-zuul.stackroute.in/monitoring/api/v1/metrics/";
   data : any = {};
@@ -31,12 +23,10 @@ export class AdventureTimeService {
   }
 
   getStatic(date:string,date1:string,from: number, to: number, metric: string){
-    console.log("fuck you",from);
+    // console.log("fuck you",from);
     console.log(this._url+"query/"+" SELECT * FROM "+metric+" WHERE time > "+"'"+date+" "+from+":00"+"'"+" AND time <= "+"'"+date1+" "+to+":00"+"'");
-    
     return this.http.get<any>(this._url+"query/"+" SELECT * FROM "+metric+" WHERE time > "+"'"+date+" "+from+":00"+"'"+" AND time <= "+"'"+date1+" "+to+":00"+"'");
     
   }
-
 
 }

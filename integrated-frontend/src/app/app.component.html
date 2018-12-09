@@ -1,7 +1,8 @@
 <script src="node_modules/chart.js/src/chart.js"></script>
-<app-header style="position:fixed; width: 100%;"></app-header>
-<div class="routerclass">
-        
+<div class="main">
+    <app-header class="header"></app-header>
+    <div class="routerclass">
+        <router-outlet></router-outlet>
+    </div>
+    <app-footer class="footer"></app-footer>
 </div>
-<router-outlet></router-outlet>
-<app-footer></app-footer>

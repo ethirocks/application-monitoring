@@ -1,14 +1,9 @@
-import { map } from 'rxjs/operators';
-// import { threadValues } from './../data/data.model';
-// import { threadValues, results } from './../thread-data/thread-data.model';
-import { LineData, threadValues ,bar} from '../health-data/cpu.model';
 import { AdventureTimeService } from  '../../real-time/front-end1/services/adventure-time.service'; //  '../../services/adventure-time.service';
 import { Component, OnInit, ElementRef, Input, OnDestroy } from '@angular/core';
 import { CpuDataModel } from '../health-data/cpu.model';
 import { Subscription } from 'rxjs';
-import * as d3 from 'd3';
-import { symbolTriangle } from 'd3';
 import { ActivatedRoute } from '@angular/router';
+import { bar } from '../../real-time/front-end1/health-data/cpu.model';
 
 @Component({
   selector: 'app-network',

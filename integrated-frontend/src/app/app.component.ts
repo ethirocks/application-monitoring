@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'loginfrontend';
   constructor(tokenStorageService: TokenStorageService , router: Router) {
   if (tokenStorageService.getToken()) {
-    router.navigate(['/dashboard']);
+    // router.navigate(['/dashboard']);
   }  else {
     router.navigate(['/home']);
   }

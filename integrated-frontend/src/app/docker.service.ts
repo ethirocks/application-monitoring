@@ -17,11 +17,11 @@ export class DockerService{
   getDetails(metricsName:string,userID:Number,applicationID:Number){
     console.log(applicationID);
     console.log("check");
-    console.log(this._url+"query/select * from "+ metricsName +" where userID='"+userID+"' and applicationID='"+applicationID+"' order by time desc limit 1");
+    console.log(this._url+"query/select * from "+ metricsName +" where userID='"+userID+"' and applicationID='"+applicationID+"' and time >= now() -20s");
     console.log("raed"+this.http.get<any>(this._url+"query/"+ "select * from"+ metricsName +" where userID="+userID+" and applicationID="+applicationID));
       // return this.http.get<any>(this._url+"query/select * from "+ metricsName +" where userID='"+userID+"' and applicationID='"+applicationID+"'");
 
-      return this.http.get<any>(this._url+"query/select * from "+ metricsName +" where userID='"+userID+"' and applicationID='"+applicationID+"' order by time desc limit 1");
+      return this.http.get<any>(this._url+"query/select * from "+ metricsName +" where userID='"+userID+"' and applicationID='"+applicationID+"' and time >= now() -20s");
       // SELECT * FROM <SERIES> GROUP BY * ORDER BY DESC LIMIT 1
   }
 

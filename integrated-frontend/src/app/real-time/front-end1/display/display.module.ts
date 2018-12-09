@@ -14,6 +14,11 @@ import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { HealthMetricComponent } from '../health-metric/health-metric.component';
 import { StaticComponent } from '../static/static.component';
 import { DisplayComponent } from '../display/display.component';
+import { CommonModule } from '@angular/common';
+import {
+  MatButtonModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
+
+
 
 const childroutes:Routes = [
     {path: 'cpu-metric/:userID/:appID' , component: CpuMetricComponent},
@@ -33,11 +38,11 @@ const childroutes:Routes = [
 
 @NgModule({
     imports:[
-        RouterModule.forRoot(childroutes),
-        ChartsModule
+        RouterModule.forRoot(childroutes,{useHash:true}),
+        ChartsModule,ChartsModule,CommonModule, MatButtonModule,MatToolbarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule
     ],
     exports:[
-        RouterModule
+        RouterModule,ChartsModule,CommonModule, MatButtonModule,MatToolbarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule
     ],
     providers: [AdventureTimeService]
 })

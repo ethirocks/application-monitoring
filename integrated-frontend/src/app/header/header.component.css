@@ -1,38 +1,47 @@
 .container{
     text-decoration-color: antiquewhite;
-    margin-top:-5vh;
-    margin-bottom: 0px;
+    width: 100%;
+}
+.nav-link-wrapper{
+    height: 100%;
+    padding: 1%;
 }
 
-li a {
-    color:white;
-    padding:1vw;
-    list-style-type: none;
-    text-decoration: none;
-    }
+.nav-link {
+    text-transform: uppercase;
+    background-color: Transparent;
+    color: antiquewhite;
+    height: 100%;
+}
 
-ul {
-    list-style-type: none;
-    margin:1 vw;
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-    padding:1vw;
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     overflow: hidden;
-    background-color:rgb(41, 43, 43);
+    height: 100%;
+    /* background-color:rgb(41, 43, 43); */
     
 }
 
-.nav-link{
-    float: right;
+.menubar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-basis: 85%;
+    padding-right: 2%;
 }
 
 .logo{
-    float: left;
+    flex-basis: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-.menubar{
-    margin-top:2%;
-}
 @media only screen and (max-width: 500px) {
     .container,{
         font-size: 5vw;
@@ -40,27 +49,19 @@ ul {
 }
 
 @media only screen and (max-width: 700px) {
-#logo{
-    height: 10vw;
-    width: 10vw;
-    padding: 10%;
-}
-ul{
-    padding: 6vw;
-}
-li a {
+.nav-link {
     font-size: 2vw;
 }
 }
 
 @media only screen and (max-width: 500px) {
-    li a {
+    .nav-link {
     font-size: 3vw;
 }
 }
 
 @media only screen and (max-width: 300px) {
-    li a {
+    .nav-link {
         font-size: 3vw;
     }
 }

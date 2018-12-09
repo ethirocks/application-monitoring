@@ -11,7 +11,7 @@ import { WarinfoComponent } from './info/warinfo/warinfo.component';
 import { JarinfoComponent } from './info/jarinfo/jarinfo.component';
 import { DockerinfoComponent } from './info/dockerinfo/dockerinfo.component';
 import { ViewAllApplicationsComponent } from './dashboard/view-all-applications/view-all-applications.component';
-import { StaticComponent } from './real-time/front-end1/static/static.component';
+// import { StaticComponent } from './real-time/front-end1/static/static.component';
 import { DisplayComponent } from './real-time/front-end1/display/display.component';
 import { ChartsModule } from 'ng2-charts';
 import { AdventureTimeService } from './real-time/front-end1/services/adventure-time.service';
@@ -27,6 +27,14 @@ import { RamStatComponent } from './static-graph/ram-stat/ram-stat.component';
 import { BarChartStatComponent } from './static-graph/bar-chart-stat/bar-chart-stat.component';
 import { CpuCoresStatComponent } from './static-graph/cpu-cores-stat/cpu-cores-stat.component';
 import { HealthMetricStatComponent } from './static-graph/health-metric-stat/health-metric-stat.component';
+import { WarDisplayComponent } from './war-graph/war-display/war-display.component';
+import { StaticComponent } from './static-graph/static/static.component';
+import { WarTempComponent } from './war-graph/war-temp/war-temp.component';
+import { WarThreadComponent } from './war-graph/war-thread/war-thread.component';
+import { WarNetworkComponent } from './war-graph/war-network/war-network.component';
+import { WarUsageComponent } from './war-graph/war-usage/war-usage.component';
+import { WarCoresComponent } from './war-graph/war-cores/war-cores.component';
+import { WarMemoryComponent } from './war-graph/war-memory/war-memory.component';
 
 const routes: Routes = [
   {
@@ -70,6 +78,13 @@ component: DockerinfoComponent
 { path: 'YourApplications', component: ViewAllApplicationsComponent },
 { path: 'static/:userID/:appID', component: StaticComponent },
 { path: 'display/:userID/:appID', component: DisplayComponent },
+{path : 'war-display/:userID/:appID', component: WarDisplayComponent},
+{path : 'war-temp/:userID/:appID', component: WarTempComponent},
+{path : 'war-thread/:userID/:appID', component: WarThreadComponent},
+{path : 'war-network/:userID/:appID', component: WarNetworkComponent},
+{path : 'war-usage/:userID/:appID', component: WarUsageComponent},
+{path : 'war-cores/:userID/:appID', component: WarCoresComponent},
+{path : 'war-memory/:userID/:appID', component: WarMemoryComponent},
 { path: 'sampling', component: SamplingComponent },
 { path: 'static1/:userID/:applicationID', component: DockerComponent },
 { path: 'static2/:userID/:applicationID', component: NodejsComponent },

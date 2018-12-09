@@ -13,7 +13,8 @@
   .registrationform{
   display: flex;
   justify-content:center;
-  background-color: whitesmoke;padding: 35px;
+  background-color: whitesmoke;
+  /* padding: 35px; */
   flex-direction: column;
   padding-top: 0px;
   }

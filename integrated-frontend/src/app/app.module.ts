@@ -35,7 +35,7 @@ import { RamComponent } from './real-time/front-end1/ram/ram.component';
 import { HttpComponent } from './real-time/front-end1/http/http.component';
 import { NetworkComponent } from './real-time/front-end1/network/network.component';
 import { routingComponent, DisplayRoutingModule } from './real-time/front-end1/display/display.module';
-import { StaticComponent } from './real-time/front-end1/static/static.component';
+// import { StaticComponent } from './real-time/front-end1/static/static.component';
 import { DisplayComponent } from './real-time/front-end1/display/display.component';
 import { ChartsModule } from 'ng2-charts';
 import { AdventureTimeService } from './real-time/front-end1/services/adventure-time.service';
@@ -59,6 +59,15 @@ import { RamStatComponent } from '../app/static-graph/ram-stat/ram-stat.componen
 import { CpuMetricStatComponent } from '../app/static-graph/cpu-metric-stat/cpu-metric-stat.component';
 import { DockerComponent } from './docker/docker.component';
 import { NodejsComponent } from './nodejs/nodejs.component';
+import { WarUsageComponent } from './war-graph/war-usage/war-usage.component';
+import { WarCoresComponent } from './war-graph/war-cores/war-cores.component';
+import { WarMemoryComponent } from './war-graph/war-memory/war-memory.component';
+import { WarNetworkComponent } from './war-graph/war-network/war-network.component';
+import { WarTempComponent } from './war-graph/war-temp/war-temp.component';
+import { WarThreadComponent } from './war-graph/war-thread/war-thread.component';
+import { WarGraphModule } from './war-graph/war-graph.module';
+import { WarDisplayComponent } from './war-graph/war-display/war-display.component';
+import { StaticComponent } from './static-graph/static/static.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +114,14 @@ import { NodejsComponent } from './nodejs/nodejs.component';
     SampleDialogComponent,
     DiskComponent,
     DockerComponent,
-    NodejsComponent
+    NodejsComponent,
+    WarUsageComponent,
+    WarCoresComponent,
+    WarMemoryComponent,
+    WarNetworkComponent,
+    WarTempComponent,
+    WarThreadComponent,
+    WarDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +147,8 @@ import { NodejsComponent } from './nodejs/nodejs.component';
     MatRippleModule,
     MatIconModule,
     ModalsModule,
-    MatSelectModule
+    MatSelectModule,
+    WarGraphModule
   ],
   entryComponents: [
     MyDialogComponent,
