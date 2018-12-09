@@ -237,7 +237,7 @@ services:
       MYSQL_ROOT_PASSWORD: "12345"
       MYSQL_DATABASE: login
     volumes:
-    - /data/mysql_data:/var/lib/mysql
+    - ../data/mysql:/var/lib/mysql
 
   angular:
    image: app-monitor-ui
