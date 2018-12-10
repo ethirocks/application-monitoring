@@ -1,0 +1,36 @@
+  <h2>
+   Register
+  </h2>
+<div class="container">
+  <form [formGroup]="registrationform" (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="form-group">
+      <label for="name"><h4>Username</h4></label>
+      <input type="text" class="form-control" id="usernameid" required 
+      [(ngModel)]="user.userName" formControlName="usernameform">
+    </div>
+    <div class="form-group">
+      <label for="alterEgo"><h4>Email</h4></label>
+      <input type="text" class="form-control" id="email" 
+      [(ngModel)]="user.email" formControlName="emailform">
+    </div>
+    
+    <div class="form-group">
+      <label for="alterEgo"><h4>Password</h4></label>
+      <input type="text" class="form-control" id="passwordid"
+      [(ngModel)]="user.password"
+      [type]="hide ? 'password':'text'" 
+      formControlName="passwordform">
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo"><h4>Phone-Number</h4></label>
+      <input type="text" class="form-control" id="phonenumber" 
+      [(ngModel)]="user.phonenumber" formControlName="phonenumberform">
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="addUsers()">Submit</button>
+    <button type="submit" class="btn btn-success" routerLink="/auth/login">Cancel</button>
+
+  </form>
+</div>
+<router-outlet></router-outlet>

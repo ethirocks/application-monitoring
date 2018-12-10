@@ -1,0 +1,82 @@
+<!-- <form [formGroup]="exampleForm">
+  <div class="form-group">
+    <label>From</label>
+      <input class="form-control" formControlName="from">
+    <label>To</label>
+    <input class="form-control" formControlName="to">
+  </div>
+</form> -->
+
+<div class="container">
+    <div class="inner-container">
+        <div class="title">
+            <img src="../../../../assets/img/logo1.png">
+        </div>
+        <form class="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <h3>Historic Data</h3>
+            <div class="form-field">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+                        placeholder="From" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">From is required</div>
+                    </div>
+                </mat-form-field>
+            </div>
+            <!-- <div class="form-group">
+                        <label>From : </label>
+                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">From is required</div>
+                        </div>
+                    </div> -->
+            <div class="form-field">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+                        placeholder="To" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">To is required</div>
+                    </div>
+                </mat-form-field>
+            </div>
+            <!-- <div class="form-group">
+                        <label>To : </label>
+                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">To is required</div>
+                        </div>
+                    </div> -->
+            <div class="form-field">
+                <mat-form-field>
+                    <input matInput type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                        placeholder="Metric Name" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Metric name must be a valid name</div>
+                    </div>
+                </mat-form-field>
+            </div>
+            <!-- <div class="form-group">
+                        <label>Metric Name</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email is required</div>
+                            <div *ngIf="f.email.errors.email">Metric name must be a valid name</div>
+                        </div>
+                    </div> -->
+            <!-- <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                    </div> -->
+            <div class="form-group">
+                <button class="button" [disabled]="loading" mat-button type="submit" class="mat-raised-button mat-primary" style="
+                        background-color: #444444;
+                        color: white;">Display</button>
+            </div>
+        </form>
+    </div>
+</div>

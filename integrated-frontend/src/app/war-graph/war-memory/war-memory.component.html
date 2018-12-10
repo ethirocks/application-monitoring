@@ -1,0 +1,49 @@
+<!-- <div> -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    
+    
+    <body>
+    
+      <div class="container">
+        <nav>
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-temp',userID,appID]" routerLinkActive="active">Cpu-metric</button>
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-thread',userID,appID]" routerLinkActive="active">Thread-List</button>
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-network',userID,appID]" routerLinkActive="active">Network</button>
+          <!-- <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/http',userID,appID]" routerLinkActive="active">Http</button> -->
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-usage',userID,appID]" routerLinkActive="active">Cpu-usage</button>
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-memory',userID,appID]" routerLinkActive="active">Ram</button>
+          <!-- <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/bar-chart',userID,appID]" routerLinkActive="active">Disk-Utilization</button> -->
+          <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/war-cores',userID,appID]" routerLinkActive="active">Cpu-cores</button>
+          <!-- <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/health-metric',userID,appID]" routerLinkActive="active">Health</button> -->
+        </nav>
+    
+        <router-outlet></router-outlet>
+      </div>
+    
+      <div style="display: block">
+        <p>X-axis-TIME(hh:mm:ss)</p>
+        <p>Y-axis-MEMORY USED</p>
+        <canvas baseChart
+         [data]="barChartData"
+          [labels]="barChartLabels" 
+          [colors]="barChartColors" 
+          [chartType]="barChartType" 
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <!-- <button (click)="randomize()">Update</button>
+    </div> -->
+    </body>
+    </html>

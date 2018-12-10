@@ -1,9 +1,13 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.ThreadMetrics;
+import com.stackroute.domain.GenericMetrics;
+import com.stackroute.domain.ThreadMetrics;
+import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
 import org.json.JSONException;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +17,6 @@ import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 @Service
 public class ThreadConsumer implements IConsumer {
@@ -25,12 +28,17 @@ public class ThreadConsumer implements IConsumer {
     }
 
     @Override
-    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<ThreadMetrics> response
-                = restTemplate.getForEntity(url+"/threads", ThreadMetrics.class);
-        Logger.getLogger("ThreadDetails "+response.toString());
-        ThreadMetrics threadMetrics= response.getBody();
+        ResponseEntity<GenericMetrics<ThreadMetrics>> response
+                = restTemplate.exchange(url+"/threads?userID="+userID+"&applicationID="+applicationID,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<GenericMetrics<ThreadMetrics>>(){});
+        System.out.println("ThreadDetails "+response.toString());
+        ThreadMetrics threadMetrics= response.getBody().getMetrics();
+        KafkaService kafkaService=new KafkaService();
+        kafkaService.produce(threadMetrics,"threadLive1",userID,applicationID);
         try{
             long time=System.currentTimeMillis();
             if (threadMetrics!=null && threadMetrics.getType_Of_threads()!=null){
@@ -40,6 +48,8 @@ public class ThreadConsumer implements IConsumer {
                     Thread thread= (Thread) threadEntry.getKey();
                     Point point = Point.measurement("thread")
                             .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                            .tag("userID",response.getBody().getUserID().toString())
+                            .tag("applicationID",response.getBody().getApplicationID().toString())
                             .tag("timeStamp",String.valueOf(time))
                             .tag("total_Threads",String.valueOf(threadMetrics.getTotal_Threads()))
                             .addField("thread_name",thread.getName())

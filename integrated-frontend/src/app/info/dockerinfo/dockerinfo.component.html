@@ -1,0 +1,55 @@
+<div class="container">
+    <h3>
+      Follow these steps to monitor application
+    </h3>
+    
+    <div class="indent">
+    <p class="heading">
+      Step one-
+    </p>
+    
+    <p>
+      Add this agent as a dependency in your pom.xml file for maven dependency
+    </p> 
+    <p class="dependency">
+                        &lt;dependency&gt;<br>
+                        &lt;groupId&gt; com.stackroute &lt;/groupId&gt;<br>
+                        &lt;artifactId&gt; agent &lt;/artifactId&gt;<br>
+                        &lt;version&gt; 0.0.1-SNAPSHOT &lt;/version&gt;<br>
+                        &lt;/dependency&gt;<br>
+    </p>  
+    
+    <p class="heading">
+      Step two-
+    </p>
+    
+    <p>
+      Add this distribution manager
+    </p>  
+    <p class="dependency">  
+                      &lt;distributionManagement&gt;<br>
+                      &lt;snapshotRepository&gt;<br>
+                      &lt;id &gt; snapshots &lt;/id&gt;<br>
+                      &lt;name&gt; e8c44ebf2442-snapshots &lt;/name&gt;<br>
+                      &lt;url&gt; http://localhost:8081/artifactory/libs-snapshot-local &lt;/url&gt;<br>
+                      &lt;/snapshotRepository&gt;<br>
+                      &lt;/distributionManagement&gt;<br>
+    </p>
+    
+    <p class="heading">
+      Step three-
+    </p>  
+    
+    <p class="dependency" id="infopara">
+      Add this setting.xml file to your local repository(m2 folder)<br>
+    </p>
+    <p class=dependency>
+      "Then repackage/rebuild your application<br>
+      
+      Provide ip along with port number where your application is running<br>
+      
+      Then the data metrics can be displayed on UI "http://52.66.184.4:4200"<br>
+    </p>
+    </div>
+    </div>
+    

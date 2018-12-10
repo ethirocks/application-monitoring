@@ -1,0 +1,8 @@
+server:
+  port: 9095
+spring:
+  application:
+    name: userprofile
+  cloud:
+    config:
+      uri: http://config-server:8891

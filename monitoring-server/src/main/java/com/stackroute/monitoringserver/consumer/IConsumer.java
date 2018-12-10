@@ -9,5 +9,5 @@ import java.net.URISyntaxException;
 @Service
 public interface IConsumer {
 
-    boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException;
+    boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException;
 }

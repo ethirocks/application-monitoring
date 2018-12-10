@@ -50,8 +50,8 @@ public class MetricsService{
         influxDB.write(batchPoints);
     }
 
-    public QueryResult searchMetrics(String metricsName) throws JSONException {
-        Query query=new Query("select * from "+metricsName,databases.get(0));
+    public QueryResult searchMetrics(String metricsName,Integer userID,Integer applicationID) throws JSONException {
+        Query query=new Query("select * from "+metricsName+" where userID='"+userID+"' and applicationID='"+applicationID+"'",databases.get(0));
         QueryResult queryResult = influxDB.query(query,TimeUnit.MILLISECONDS);
 
         return queryResult;

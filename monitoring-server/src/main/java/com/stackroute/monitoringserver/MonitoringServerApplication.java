@@ -1,18 +1,18 @@
 package com.stackroute.monitoringserver;
 
-import com.stackroute.monitoringserver.consumer.*;
-import com.stackroute.monitoringserver.controller.PollingController;
+import com.stackroute.monitoringserver.consumer.HardDiskConsumer;
+import com.stackroute.monitoringserver.consumer.IConsumer;
 import com.stackroute.monitoringserver.service.MetricsService;
 import com.stackroute.monitoringserver.service.PollingService;
 import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+@EnableEurekaClient
 @SpringBootApplication
 public class MonitoringServerApplication {
 

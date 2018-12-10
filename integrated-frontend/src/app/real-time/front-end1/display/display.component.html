@@ -1,0 +1,80 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body>
+
+  <div class="container">
+    <nav>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-metric',userID,appID]"
+        routerLinkActive="active">Cpu-metric</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/thread-list',userID,appID]"
+        routerLinkActive="active">Thread-List</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/network',userID,appID]"
+        routerLinkActive="active">Network</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/http',userID,appID]"
+        routerLinkActive="active">Http</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-usage',userID,appID]"
+        routerLinkActive="active">Cpu-usage</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/ram',userID,appID]"
+        routerLinkActive="active">Ram</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/bar-chart',userID,appID]"
+        routerLinkActive="active">Disk-Utilization</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/cpu-cores',userID,appID]"
+        routerLinkActive="active">Cpu-cores</button>
+      <button type="button" class="btn btn-success" style="margin:10px" [routerLink]="['/health-metric',userID,appID]"
+        routerLinkActive="active">Health</button>
+
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>
+
+</body>
+
+</html> -->
+
+
+
+
+<body>
+
+
+
+    <mat-toolbar color="warn" style="min-height:25px;background:darkgray">
+        <mat-toolbar-row style="height:20px;color:black">
+          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"  style="min-height:10px">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <!-- <span><img src="./assets/devglan.png"></span> -->
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-sidenav-container class="example-container" style="height:100vh">
+        <!-- <p>Hello</p> -->
+        <mat-sidenav #drawer mode="side" opened role="navigation">
+          <mat-nav-list>
+            <a mat-list-item [routerLink]="['/cpu-metric',userID,appID]" routerLinkActive="active">Cpu-metric</a>
+            <a mat-list-item [routerLink]="['/thread-list',userID,appID]" routerLinkActive="active">Thread-list</a>
+            <a mat-list-item [routerLink]="['/network',userID,appID]" routerLinkActive="active">Network</a>
+            <a mat-list-item [routerLink]="['/http',userID,appID]" routerLinkActive="active">Http</a>
+            <a mat-list-item [routerLink]="['/cpu-usage',userID,appID]" routerLinkActive="active">Cpu-usage</a>
+            <a mat-list-item [routerLink]="['/ram',userID,appID]" routerLinkActive="active">Ram</a>
+            <a mat-list-item [routerLink]="['/cpu-cores',userID,appID]" routerLinkActive="active">Cpu-cores</a>
+            <a mat-list-item [routerLink]="['/health-metric',userID,appID]" routerLinkActive="active">Health</a>
+          </mat-nav-list>
+        </mat-sidenav>
+        <!-- <mat-sidenav-content> -->
+          <router-outlet></router-outlet>
+        <!-- </mat-sidenav-content> -->
+      </mat-sidenav-container>
+      </body>

@@ -1,7 +1,6 @@
 package com.stackroute.monitoringserver.service;
 
 import com.stackroute.monitoringserver.consumer.IConsumer;
-import com.stackroute.monitoringserver.domain.Metrics;
 import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ public class PollingService {
 
     private TimerTask timerTask;
 
-    public void setTimerTask(IConsumer consumer,String url) {
+    public void setTimerTask(IConsumer consumer,String url,Integer userID,Integer applicationID) {
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
                 try {
-                    consumer.consumeMetrics(url);
+                    consumer.consumeMetrics(url,userID,applicationID);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

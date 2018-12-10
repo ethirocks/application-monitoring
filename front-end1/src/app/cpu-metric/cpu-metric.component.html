@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+ <title>Bootstrap Example</title>
+
+ <meta charset="utf-8">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+ <div class="container-fluid">
+
+
+  <div class="row" style="margin-top:20px">
+
+     
+    <div class="col-sm-4">
+
+     <div style="display: block;">
+
+     <canvas baseChart height =4 width=5
+
+           [datasets]="barChartData"
+
+           [labels]="barChartLabels"
+
+           [options]="barChartOptions"
+
+           [colors]="barChartColors"
+
+           [legend]="barChartLegend"
+
+           [chartType]="barChartType"
+
+           (chartHover)="barHovered($event)"
+
+           (chartClick)="chartClicked($event)"></canvas>
+
+     </div>
+
+    </div>
+
+ <div class="col-sm-4">
+
+  <div style="display: block; ">
+
+  <canvas baseChart height =4 width=5
+
+        [datasets]="lineChartData"
+
+        [labels]="lineChartLabels"
+
+        [options]="lineChartOptions"
+
+        [colors]="lineChartColors"
+
+        [legend]="lineChartLegend"
+
+        [chartType]="lineChartType"
+
+        (chartHover)="chartHovered($event)"
+
+        (chartClick)="chartClicked($event)"></canvas>
+
+  
+
+  </div>
+
+ </div>
+  <div class="col-sm-4">
+
+   <div style="display: block; ">
+
+   <canvas baseChart height =4 width=5
+
+         [datasets]="lineChartData1"
+
+         [labels]="lineChartLabels1"
+
+         [options]="lineChartOptions"
+
+         [colors]="lineChartColors1"
+
+         [legend]="lineChartLegend"
+
+         [chartType]="lineChartType"
+
+         (chartHover)="chartHovered($event)"
+
+         (chartClick)="chartClicked($event)"></canvas>
+
+   </div>
+
+  </div>
+
+  </div>
+
+  <div class="row">
+
+  <div class="col-sm-4">
+
+   <div style="display: block; ">
+
+   <canvas baseChart height =4 width=5
+
+         [datasets]="lineChartData2"
+
+         [labels]="lineChartLabels2"
+
+         [options]="lineChartOptions"
+
+         [colors]="lineChartColors2"
+
+         [legend]="lineChartLegend"
+
+         [chartType]="lineChartType"
+
+         (chartHover)="chartHovered($event)"
+
+         (chartClick)="chartClicked($event)"></canvas>
+
+   </div>
+
+  </div>
+
+ <div class="col-sm-4">
+
+  <div style="display: block;">
+
+  <canvas baseChart height =4 width=5 
+
+        [datasets]="lineChartData5"
+
+        [labels]="lineChartLabels5"
+
+        [options]="lineChartOptions"
+
+        [colors]="lineChartColors5"
+
+        [legend]="lineChartLegend"
+
+        [chartType]="lineChartType"
+
+        (chartHover)="chartHovered($event)"
+
+        (chartClick)="chartClicked($event)"></canvas>
+
+  </div>
+
+ </div>
+
+   <div class="col-sm-4">
+
+    <div style="display: block;">
+
+    <canvas baseChart height =4 width=5
+
+          [datasets]="lineChartData7"
+
+          [labels]="lineChartLabels7"
+
+          [options]="lineChartOptions"
+
+          [colors]="lineChartColors7"
+
+          [legend]="lineChartLegend"
+
+          [chartType]="lineChartType"
+
+          (chartHover)="chartHovered($event)"
+
+          (chartClick)="chartClicked($event)"></canvas>
+
+    </div>
+
+   </div>
+</div>
+</div>
+
+</body>
+
+</html>

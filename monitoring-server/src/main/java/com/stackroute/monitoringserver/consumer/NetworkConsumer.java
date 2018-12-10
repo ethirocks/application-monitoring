@@ -1,6 +1,7 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.ContainerMetrics;
+import com.stackroute.domain.GenericMetrics;
+import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -23,16 +23,20 @@ public class NetworkConsumer implements IConsumer{
     }
 
     @Override
-    public boolean consumeMetrics(String url) {
+    public boolean consumeMetrics(String url,Integer userID,Integer applicationID) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<LinkedHashMap<String,LinkedHashMap<String,Object>>> response = restTemplate.exchange(
-                url+"/network",
+        ResponseEntity<GenericMetrics<LinkedHashMap<String, LinkedHashMap<String, Object>>>> response = restTemplate.exchange(
+                url+"/network?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<LinkedHashMap<String,LinkedHashMap<String,Object>>>(){});
+                new ParameterizedTypeReference<GenericMetrics<LinkedHashMap<String,LinkedHashMap<String,Object>>>>(){});
+        System.out.println("....... response body....  "+response.getBody().toString());
+        KafkaService kafkaService=new KafkaService();
+        kafkaService.produce(response.getBody().getMetrics(),"networkLive1",userID,applicationID);
 
         try {
-            LinkedHashMap<String,LinkedHashMap<String,Object>> networkMetrics= response.getBody();
+            LinkedHashMap<String,LinkedHashMap<String,Object>> networkMetrics= response.getBody().getMetrics();
+            System.out.println(networkMetrics.toString());
             Iterator it = networkMetrics.entrySet().iterator();
             int i=1;
             while (it.hasNext()) {
@@ -42,6 +46,8 @@ public class NetworkConsumer implements IConsumer{
                 long time = System.currentTimeMillis();
                 Point point = Point.measurement("networkMetrics")
                         .time(time, TimeUnit.MILLISECONDS)
+                        .tag("userID",response.getBody().getUserID().toString())
+                        .tag("applicationID",response.getBody().getApplicationID().toString())
                         .addField("IPv4addr", metric.get("IPv4addr").toString())
                         .addField("IPv6addr", metric.get("IPv6addr").toString())
                         .addField("Interface_Name", metric.get("Interface_Name").toString())

@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>Select Metrics to view Data</h1>
+<div *ngIf="application.dependency==='jar'" mat-dialog-content fxLayout="row">
+  <button mat-button class="metrics" (click)="view('cpuusage')">Cpu Usage</button>
+  <button mat-button class="metrics" (click)="view('cputemp')">Cpu Temperature</button>
+  <button mat-button class="metrics" (click)="view('cpuCores')">Cpu Cores</button>
+  <button mat-button class="metrics" (click)="view('disk_utilization')">Disk Utilization</button>
+  <button mat-button class="metrics" (click)="view('health')">Health</button>
+  <button mat-button class="metrics" (click)="view('http_requests_agent_Sample')">Http Requests</button>
+  <button mat-button class="metrics" (click)="view('memory')">Memory</button>
+  <button mat-button class="metrics" (click)="view('networkMetricsSample')">Network Metrics</button>
+</div>
+<div *ngIf="application.dependency==='war'" mat-dialog-content fxLayout="row">
+  <button mat-button class="metrics" (click)="view('warCpuUsage')">Cpu Usage</button>
+  <button mat-button class="metrics" (click)="view('warCpuTemp')">Cpu Temperature</button>
+  <button mat-button class="metrics" (click)="view('warCpuCoresSample')">Cpu Cores</button>
+  <button mat-button class="metrics" (click)="view('warMemory')">Memory</button>
+  <button mat-button class="metrics" (click)="view('warNetworkMetricsSample')">Network Metrics</button>
+</div>
+<div *ngIf="application.dependency==='docker'" mat-dialog-content fxLayout="row">
+  <button mat-button class="metrics" (click)="view('containerSystemUsageSample')">Cpu Usage</button>
+</div>
+<div *ngIf="application.dependency==='nodeJs'" mat-dialog-content fxLayout="row">
+  <button mat-button class="metrics" (click)="view('nodeCPU')">Cpu Usage</button>
+  <button mat-button class="metrics" (click)="view('nodeMemory')">Memory</button>
+  <button mat-button class="metrics" (click)="view('nodeTemperature')">Temperature</button>
+</div>
+<div mat-dialog-content>
+  <h4> {{content}} </h4>
+  <div mat-dialog-content>
+    <p> {{content1}} </p>
+  </div>
+  <div mat-dialog-content>
+    <p> {{content2}} </p>
+  </div>
+  <div mat-dialog-content>
+    <p> {{content3}} </p>
+  </div>
+  <div mat-dialog-content>
+    <p> {{content4}} </p>
+  </div>
+</div>
+<div mat-dialog-actions fxLayout="col">
+  <button mat-button class="dialog" (click)="onNoClick()">Done</button>
+</div>

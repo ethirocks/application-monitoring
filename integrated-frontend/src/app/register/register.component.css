@@ -1,0 +1,39 @@
+.container{
+    height: 100%;
+    background: url("../../assets/img/login.jpg");
+    background-size: cover;
+    background-position: left;
+  }
+  .inner-container{
+    margin: auto;
+    padding-top: 2%;
+    width: 300px;
+    margin-left: 57%;
+  }
+
+  .mat-form-field{
+    padding: 15px;
+  }
+  .registrationform{
+  display: flex;
+  justify-content:center;
+  background-color: whitesmoke;
+  /* padding: 35px; */
+  flex-direction: column;
+  padding-top: 0px;
+  }
+  .title{
+    display: flex;
+  justify-content:center;
+  background-color: whitesmoke;
+  }
+  
+  @media only screen and (max-width: 700px) {
+    .inner-container{
+      margin: auto;
+      padding-top: 2%;
+      width: 100%;
+      margin-left: 0%;
+    } 
+  }
+  

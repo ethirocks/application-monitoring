@@ -1,0 +1,37 @@
+.container{
+    /* display: flex; */
+    text-align: center;
+    padding: 28px;
+}
+
+.btn{
+    background-color: rgb(44, 40, 40);
+    color: antiquewhite;
+}
+
+.mat-raised-button{
+    width: 100%;
+}
+/* .mat-input{
+    padding: 18px;
+} */
+
+div{
+    padding: 8px;
+}
+
+/* .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 8px;
+} */
+
+
+
+
+
+
+
+/* @media only screen and (min-width: 720px) {}
+@media only screen and (max-width: 720px) and (min-width: 525px) {}
+@media only screen and (max-width: 525px) and (min-width: 400px) {}
+@media only screen and (max-width: 400px) and (min-width: 300px) {}
+@media only screen and (max-width: 300px) {} */

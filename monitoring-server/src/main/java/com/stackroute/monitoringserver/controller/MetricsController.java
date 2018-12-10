@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/api/v1/metrics")
 public class MetricsController {
 
@@ -51,11 +51,13 @@ public class MetricsController {
     }
 
     @GetMapping("{metricsName}")
-    public ResponseEntity searchMetrics(@PathVariable("metricsName") String metricsName){
+    public ResponseEntity searchMetrics(@PathVariable("metricsName") String metricsName,
+                                        @RequestParam Integer userID,
+                                        @RequestParam Integer applicationID){
         ResponseEntity responseEntity;
         QueryResult queryResult;
         try {
-            queryResult = metricsService.searchMetrics(metricsName);
+            queryResult = metricsService.searchMetrics(metricsName,userID,applicationID);
             responseEntity=new ResponseEntity<QueryResult>(queryResult, HttpStatus.OK);
         } catch (JSONException e) {
             responseEntity=new ResponseEntity<String>("Json exception", HttpStatus.CONFLICT);
@@ -78,17 +80,4 @@ public class MetricsController {
         return responseEntity;
     }
 
-    @GetMapping("poll")
-    public void poll() throws JSONException, IOException, URISyntaxException {
-        PollingController pollingConfiguration=new PollingController();
-        pollingConfiguration.poll();
-    }
-
-//    @DeleteMapping()
-//    public ResponseEntity deleteMetrics(String metricsName){
-//        ResponseEntity responseEntity;
-//        metricsService.deleteMetrics(metricsName);
-//        responseEntity=new ResponseEntity<String>("Successfully deleted ", HttpStatus.OK);
-//        return responseEntity;
-//    }
 }

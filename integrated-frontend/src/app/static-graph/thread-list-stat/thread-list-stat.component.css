@@ -1,0 +1,39 @@
+/* .results_values, .head{
+    padding:20px;
+    color:rgb(19, 16, 16);
+    border-bottom-color: blue;
+    flex:1; 
+}
+
+.array{
+    display: flex;
+} */
+
+p{
+    font-family: cursive;
+    font-size: 14px;
+    /* font-display: bold; */
+}
+div{
+    background-color: white;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+ }td, th {
+    border: 1px solid black
+ ;
+    text-align: left;
+    padding: 8px;
+ }tr:nth-child(even) {
+    background-color: #dddddd
+ ;
+ }
+
+ canvas{
+
+    width:700px !important;
+    height:400px !important;
+  
+  }

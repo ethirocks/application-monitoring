@@ -65,7 +65,7 @@ public class MetricsServiceTest {
     @Test
     public void searchMetricsTestSuccess() throws IOException, JSONException {
         when(influxDB.query(any(),any())).thenReturn(queryResult);
-        Assert.assertNull(metricsService.searchMetrics("health").getError());
+        Assert.assertNull(metricsService.searchMetrics("health",0,0).getError());
         verify(influxDB,times(1)).query(any(),any());
     }
 
@@ -96,7 +96,7 @@ public class MetricsServiceTest {
     public void searchMetricsTestFailure() throws IOException, JSONException {
         queryResult.setError("error");
         when(influxDB.query(any(),any())).thenReturn(queryResult);
-        Assert.assertNotNull(metricsService.searchMetrics("health").getError());
+        Assert.assertNotNull(metricsService.searchMetrics("health",0,0).getError());
         verify(influxDB,times(1)).query(any(),any());
     }
 

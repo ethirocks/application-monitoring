@@ -1,9 +1,10 @@
 package com.stackroute.monitoringserver.consumer;
 
-import com.stackroute.monitoringserver.domain.HttpMetrics;
+import com.stackroute.domain.GenericMetrics;
+import com.stackroute.domain.HttpMetrics;
+import com.stackroute.monitoringserver.service.KafkaService;
 import com.stackroute.monitoringserver.service.MetricsService;
 import org.influxdb.dto.Point;
-import org.influxdb.dto.QueryResult;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -29,13 +29,17 @@ public class HttpConsumer implements IConsumer{
     }
 
     @Override
-    public boolean consumeMetrics(String url) throws IOException, JSONException, URISyntaxException {
+    public boolean consumeMetrics(String url, Integer userID, Integer applicationID) throws IOException, JSONException, URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<HttpMetrics>> response = restTemplate.exchange(
-                url+"/httpMetrics",
+        System.out.println("request to "+url+"/httpMetrics?userID="+userID+"&applicationID="+applicationID);
+        ResponseEntity<GenericMetrics<List<HttpMetrics>>> response = restTemplate.exchange(
+                url+"/httpMetrics?userID="+userID+"&applicationID="+applicationID,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<HttpMetrics>>(){});
+                new ParameterizedTypeReference<GenericMetrics<List<HttpMetrics>>>(){});
+        KafkaService kafkaService=new KafkaService();
+        System.out.println("kafka... sending "+response.getBody().getMetrics());
+        kafkaService.produce(response.getBody().getMetrics(),"HttpLive1",userID,applicationID);
 
         try {
 //            QueryResult queryResult=metricsService.queryMetrics("show series");
@@ -47,11 +51,13 @@ public class HttpConsumer implements IConsumer{
 
             System.out.println("inside http "+response.getBody());
 
-            List<HttpMetrics> httpMetricsList=response.getBody();
+            List<HttpMetrics> httpMetricsList=response.getBody().getMetrics();
             for (HttpMetrics httpMetrics :
                     httpMetricsList) {
                 org.influxdb.dto.Point point = Point.measurement("http_requests")
                         .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                        .tag("userID",response.getBody().getUserID().toString())
+                        .tag("applicationID",response.getBody().getApplicationID().toString())
                         .addField("RequestCount",  httpMetrics.getRequestCount())
                         .addField("RequestId",  httpMetrics.getRequestId())
                         .addField("RequestMethod",  httpMetrics.getRequestMethod())
@@ -64,7 +70,9 @@ public class HttpConsumer implements IConsumer{
                         .addField("SessionId",httpMetrics.getSessionId())
                         .addField("SessionLastAccessedTime",httpMetrics.getSessionLastAccessedTime())
                         .build();
+                System.out.println("inserting point "+point);
                 metricsService.insertMetrics(point);
+                System.out.println("point inserted");
             }
         }
         catch (NullPointerException n){
