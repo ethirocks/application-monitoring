@@ -24,4 +24,4 @@ To start monitoring your application (here a spring-boot application) following 
 
 > Provide ip along with port number where your application is running
 
-> Then the data metrics can be displayed on UI "http://52.66.184.4:4200"
+> Then the data metrics can be displayed on UI "http://52.66.184.4:4200" 
