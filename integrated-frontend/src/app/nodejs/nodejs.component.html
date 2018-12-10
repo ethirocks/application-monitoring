@@ -11,9 +11,9 @@
     <body> -->
 
 <div class="component-style table-component">
-  <div class="component-style">
+  <div class="component-style" style="margin-left:510px">
 
-    <div class="component-tag">
+    <div class="component-tag" >
       <h2>NodeJS Metrics</h2>
 
     </div>
@@ -66,52 +66,52 @@
     <div style="width:100%; border-right: 10px;border-left: 10px">
       <table>
         <div *ngFor="let c of cpu">
-          <div *ngFor="let d of c.series">
+          <div style="margin-bottom: 20px" *ngFor="let d of c.series">
 
 
-            <th class="head" *ngFor="let e of d.columns | slice:1:2">
+            <th class="head" style="text-align:left" *ngFor="let e of d.columns | slice:1:2">
               {{"CPU"}}
             </th>
 
-            <tr class="array" *ngFor="let f of d.values">
+            <tr class="array" style="height:55px ;width:150px" *ngFor="let f of d.values">
 
-              <td class="results_values" *ngFor="let s of f | slice:1:2">
+              <td class="results_values" style="height:55px ;width:150px" *ngFor="let s of f | slice:1:2">
                 {{s}}
               </td>
             </tr>
           </div>
         </div>
         <div *ngFor="let c of systemcpu">
-          <div *ngFor="let d of c.series">
-            <th class="head" *ngFor="let e of d.columns | slice:1:2">
+          <div style="margin-bottom: 20px" *ngFor="let d of c.series">
+            <th class="head" style="text-align:left" *ngFor="let e of d.columns | slice:1:2">
               {{"systemCPU"}}
             </th>
-            <tr class="array" *ngFor="let f of d.values">
-              <td class="results_values" *ngFor="let s of f | slice:1:2">
+            <tr class="array" style="height:55px;width:150px"*ngFor="let f of d.values">
+              <td class="results_values" style="height:55px ;width:150px" *ngFor="let s of f | slice:1:2">
                 {{s}}
               </td>
             </tr>
           </div>
         </div>
         <div *ngFor="let c of mem">
-          <div *ngFor="let d of c.series">
-            <th class="head" *ngFor="let e of d.columns | slice:1:2">
+          <div style="margin-bottom: 20px" *ngFor="let d of c.series">
+            <th class="head" style="text-align:left" *ngFor="let e of d.columns | slice:1:2">
               {{"Memory"}}
             </th>
-            <tr class="array" *ngFor="let f of d.values">
-              <td class="results_values" *ngFor="let s of f | slice:1:2">
+            <tr class="array" style="height:55px ; width:150px" *ngFor="let f of d.values">
+              <td class="results_values" style="height:55px ;width:150px" *ngFor="let s of f | slice:1:2">
                 {{s}}
               </td>
             </tr>
           </div>
         </div>
         <div *ngFor="let c of totalmem">
-          <div *ngFor="let d of c.series">
-            <th class="head" *ngFor="let e of d.columns | slice:1:2">
+          <div style="margin-bottom: 20px" *ngFor="let d of c.series">
+            <th class="head" style="text-align:left" *ngFor="let e of d.columns | slice:1:2">
               {{"Total Memory"}}
             </th>
-            <tr class="array" *ngFor="let f of d.values">
-              <td class="results_values" *ngFor="let s of f | slice:1:2">
+            <tr class="array" style="height:55px ; width:150px" *ngFor="let f of d.values">
+              <td class="results_values" style="height:55px ;width:150px" *ngFor="let s of f | slice:1:2">
                 {{s}}
               </td>
             </tr>

@@ -35,7 +35,12 @@
       <div style="display: block">
         <p>X-axis-TIME(hh:mm:ss)</p>
         <p>Y-axis-MEMORY USED</p>
-        <canvas baseChart [data]="barChartData" [labels]="barChartLabels" [colors]="barChartColors" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+        <canvas baseChart
+         [data]="barChartData"
+          [labels]="barChartLabels" 
+          [colors]="barChartColors" 
+          [chartType]="barChartType" 
+          (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
       </div>
       <!-- <button (click)="randomize()">Update</button>

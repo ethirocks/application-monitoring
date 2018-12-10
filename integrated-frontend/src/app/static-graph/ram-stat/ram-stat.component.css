@@ -6,3 +6,10 @@ p{
     font-size: 14px;
     /* font-display: bold; */
 }
+
+canvas{
+
+    width:700px !important;
+    height:400px !important;
+  
+  }

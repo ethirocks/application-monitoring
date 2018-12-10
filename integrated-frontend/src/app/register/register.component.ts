@@ -30,14 +30,13 @@ export class RegisterComponent implements OnInit {
   }
 
   submitted = false;
-  public message="Successfully registered";
 
   onSubmit() { 
-    this.submitted = true;    
-    alert(this.message); 
+    this.submitted = true; 
     if (this.submitted=true) {
       this.router.navigate([`/auth/login`]);
-      }   
+      }
+      window.location.reload();   
   }
 
   addUsers(user:User){

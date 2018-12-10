@@ -440,7 +440,7 @@ export class WarUsageComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'coral',//'rgba(148,159,177,0.8)',
       pointStyle: 'circle',
-      pointRadius: 4
+      pointRadius: 2
     }]
 
 

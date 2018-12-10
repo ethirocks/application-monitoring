@@ -1,7 +1,7 @@
 .application-card{
     background: rgb(111,111,111,.5);
     width: auto;
-    min-width: 30vw;
+    /* min-width: 30vw; */
     margin: 4% 0%;
 }
 .jar-image {
@@ -32,6 +32,10 @@
     align-items: center;
 }
 
+.samp{
+    color: antiquewhite;
+}
+
 button{
     margin: 2%;
 }
@@ -60,6 +64,7 @@ button{
 
 input{
     width: 80%;
+    color: antiquewhite;
 }
 
 .mat-form-field{

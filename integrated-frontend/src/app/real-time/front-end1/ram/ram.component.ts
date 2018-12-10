@@ -41,9 +41,20 @@ export class RamComponent implements OnInit {
 
   container : CpuDataModel;
   res : any;
+  interval : any;
 
 
   ngOnInit() {
+    let count=0;
+    this.refreshData();
+    this.interval = setInterval(() => { 
+        this.refreshData(); 
+    }, 500);
+    
+  }
+
+
+  refreshData() {
     console.log("ud"+this.gg);
     let a = this.ud
     let b = this.gg
@@ -130,9 +141,10 @@ export class RamComponent implements OnInit {
     });
 
 
-    this.barChartData = [
-      {data : b, label: "used"}
-      ];
+    this.barChartData = b;
+    // [
+    //   {data : b, label: "used"}
+    //   ];
      this.barChartLabels = a;
    
 

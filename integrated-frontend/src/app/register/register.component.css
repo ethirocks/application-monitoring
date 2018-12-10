@@ -10,6 +10,10 @@
     width: 300px;
     margin-left: 57%;
   }
+
+  .mat-form-field{
+    padding: 15px;
+  }
   .registrationform{
   display: flex;
   justify-content:center;

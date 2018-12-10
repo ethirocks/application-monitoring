@@ -117,8 +117,8 @@ export class SampleDialogComponent implements OnInit {
       columnName = 'free_physical_memory';
       this.column = "free physical memory of your system"
     }
-    else if (metricName === 'Container') {
-      columnName = 'cpu';
+    else if (metricName === 'containerSystemUsageSample') {
+      columnName = 'systemCpu';
       this.column = "free physical memory of your system"
     }
     return columnName;
@@ -133,7 +133,7 @@ export class SampleDialogComponent implements OnInit {
   view(metricsName: String) {
 
     var metricName = metricsName;
-    console.log(metricName);
+    console.log(metricsName);
     var columnName = this.getColumnName(metricName);
 
     if (metricsName === 'health') {

@@ -10,10 +10,10 @@
     <mat-card-actions>
         <div class="buttons" fxLayout="column" fxLayoutGap="1%" FxLayoutWrap fxLayoutAlign="center">
             <div class="sampling" *ngIf="item==='sample'">
-                <mat-form-field>
-                    <input matInput style="color:whitesmoke;" [(ngModel)]="samplingPeriod" placeholder="Enter the duration for Sampling">
+                <mat-form-field >
+                    <input class="samp" matInput style="color:whitesmoke;" [(ngModel)]="samplingPeriod" placeholder="Enter the duration for Sampling">
                 </mat-form-field>
-                <div>{{over}}</div>
+                <div class="samp">{{over}}</div>
                 <button mat-raised-button (click)="sample(samplingPeriod)">Start Sampling</button>
                 <button mat-raised-button (click)="viewSampleData('cpuusage')">View Sampled Data</button>
             </div>

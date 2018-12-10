@@ -17,7 +17,7 @@
   <button mat-button class="metrics" (click)="view('warNetworkMetricsSample')">Network Metrics</button>
 </div>
 <div *ngIf="application.dependency==='docker'" mat-dialog-content fxLayout="row">
-  <button mat-button class="metrics" (click)="view('Container')">Cpu Usage</button>
+  <button mat-button class="metrics" (click)="view('containerSystemUsageSample')">Cpu Usage</button>
 </div>
 <div *ngIf="application.dependency==='nodeJs'" mat-dialog-content fxLayout="row">
   <button mat-button class="metrics" (click)="view('nodeCPU')">Cpu Usage</button>

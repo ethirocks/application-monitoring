@@ -17,6 +17,7 @@ export class WarMemoryComponent implements OnInit {
   ee : any = [];
   dd : any = [];
   pp : any = [];
+  interval : any;
   barChartLabels:number[];
   barChartData:Array<any>;
   barChartData1:Array<any>;
@@ -39,6 +40,17 @@ export class WarMemoryComponent implements OnInit {
 
 
   ngOnInit() {
+    let count = 0;
+    this.refreshData();
+
+    this.interval = setInterval(() => {
+      this.refreshData();
+    }, 1000);
+
+  }
+  
+
+  refreshData() {
     console.log("ud"+this.gg);
     let a = this.ud
     let b = this.gg
@@ -82,7 +94,7 @@ export class WarMemoryComponent implements OnInit {
                   if (b.length > 50) {
                     b.splice(0,1)
                   }
-                  console.log(value,'free   memory');
+                  console.log(value,'free memory');
                   //  for(var p = 0 ; p<e.values.length; p++){
                   //   i[p] = b.push(value)
                   //  }
@@ -125,9 +137,10 @@ export class WarMemoryComponent implements OnInit {
     });
 
 
-    this.barChartData = [
-      {data : b, label: "used"}
-      ];
+    this.barChartData = b;
+    // [
+    //   {data : b, label: "used"}
+    //   ];
      this.barChartLabels = a;
    
 

@@ -1,16 +1,29 @@
 .container{
     /* display: flex; */
     text-align: center;
+    padding: 28px;
 }
 
 .btn{
-    background-color: blue;
+    background-color: rgb(44, 40, 40);
+    color: antiquewhite;
 }
 
 .mat-raised-button{
     width: 100%;
 }
-    
+/* .mat-input{
+    padding: 18px;
+} */
+
+div{
+    padding: 8px;
+}
+
+/* .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 8px;
+} */
+
 
 
 

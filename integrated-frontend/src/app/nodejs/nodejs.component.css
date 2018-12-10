@@ -1,22 +1,25 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 25%;
- 
+    width: 50%;
+    
    text-align: center;
  }
- td,th{
+ td,th:nth-child(even){
     border: 1px solid green;
+    background-color: #dddddd
+ ;
     text-align: center;
 
-    
+    width:50%;
     padding: 8px;
  }tr:nth-child(even) {
     background-color: #dddddd
  ;
  fill: green;
- text-align: left;
- padding: 8px;
+ /* text-align: left; */
+ /* padding: 8px; */
+ width:50%;
  }
  .head,.results_values,h2{
      color:green;
@@ -24,4 +27,3 @@ table {
  body{
     border-left: 4%;
  }
- 

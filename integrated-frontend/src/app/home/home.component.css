@@ -1,4 +1,7 @@
 
+/* .service-box{
+    background-color: snow;
+} */
 h3{
     font-size: 1.3vw;
     font-weight: normal;
@@ -54,16 +57,19 @@ h3{
     padding-bottom: 0px;
     flex: 1;
     padding-top: 0px;
+    /* background-color: #d6d6d6; */
 }
 
 .services img{
     border: 3px solid grey;
     padding: 3px;
     border-radius: 50%;
+    
 }
 
 .services img:first-child:hover {
     border: 6px solid #222325;
+    background-color: snow;
 }
 
 .services #comroom:hover {

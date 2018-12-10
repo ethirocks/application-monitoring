@@ -36,11 +36,9 @@ export class AppregisterComponent implements OnInit {
   }
 
   submitted = false;
-  public message = "Successfully registered";
 
   onSubmit() {
     this.submitted = true;
-    alert(this.message);
     if (this.submitted = true) {
       this.router.navigate([`/dashboard`]);
     }
